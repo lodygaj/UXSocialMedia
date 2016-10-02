@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".LoginActivity"
+    android:background="@color/colorBackground">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtTxtUsername"
+        android:hint="username"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="166dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/edtTxtPassword"
+        android:layout_below="@+id/edtTxtUsername"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/edtTxtUsername"
+        android:layout_alignEnd="@+id/edtTxtUsername"
+        android:hint="password" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgThriftyLogo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/edtTxtUsername"
+        android:layout_alignEnd="@+id/edtTxtUsername"
+        android:src="@drawable/thrifty_logo"
+        android:layout_above="@+id/edtTxtPassword" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/btnLogin"
+        android:layout_below="@+id/edtTxtPassword"
+        android:layout_alignLeft="@+id/imgBtnFacebook"
+        android:layout_alignStart="@+id/imgBtnFacebook" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/btnRegister"
+        android:layout_alignBottom="@+id/btnLogin"
+        android:layout_toRightOf="@+id/btnLogin"
+        android:layout_below="@+id/edtTxtPassword" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgBtnFacebook"
+        android:src="@drawable/facebook_login"
+        android:scaleType="fitXY"
+        android:padding="0dp"
+        android:layout_below="@+id/btnLogin"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgBtnTwitter"
+        android:src="@drawable/twitter_login"
+        android:scaleType="fitXY"
+        android:padding="0dp"
+        android:layout_below="@+id/imgBtnFacebook"
+        android:layout_alignLeft="@+id/imgBtnFacebook"
+        android:layout_alignStart="@+id/imgBtnFacebook" />
+
+</RelativeLayout>
