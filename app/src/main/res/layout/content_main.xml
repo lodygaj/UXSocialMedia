@@ -11,12 +11,15 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.gtoz.uxsocialmedia.MainActivity"
     tools:showIn="@layout/app_bar_main"
-    android:background="@color/colorBackground">
+    android:background="@drawable/background">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/staggered_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

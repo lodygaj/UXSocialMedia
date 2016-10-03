@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Joey Laptop on 10/2/2016.
@@ -43,14 +44,20 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
         return nameList.length;
     }
 
-    class GridView extends RecyclerView.ViewHolder {
+    class GridView extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         TextView textView;
 
         public GridView(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             imageView = (ImageView) itemView.findViewById(R.id.img);
             textView = (TextView) itemView.findViewById(R.id.img_name);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(view.getContext(), "Clicked on " + nameList[getPosition()], Toast.LENGTH_SHORT).show();
         }
     }
 }
