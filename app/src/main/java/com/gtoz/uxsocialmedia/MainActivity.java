@@ -1,21 +1,21 @@
 package com.gtoz.uxsocialmedia;
 
+import android.app.Fragment;
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.support.v7.widget.SearchView;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
-    private RecyclerView recyclerView;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Thrifty");
 
+        // Set grid fragment in main content layout
+        GridFragment gridFrag = new GridFragment();
+        setFragment(gridFrag);
+
+
         // Set up navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -35,14 +40,6 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        // Set up grid layout
-        recyclerView = (RecyclerView) findViewById(R.id.staggered_grid);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        GridAdapter adapter = new GridAdapter(this);
-        recyclerView.setAdapter(adapter);
-        ListSpacing dec = new ListSpacing(16);
-        recyclerView.addItemDecoration(dec);
     }
 
     @Override
@@ -59,6 +56,12 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
         return true;
     }
 
@@ -70,7 +73,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_search) {
             return true;
         }
 
@@ -82,15 +85,30 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.nav_my_locations) {
-            // Handle the camera action
-
-        } else if (id == R.id.nav_share) {
-
+        if (id == R.id.nav_home) {
+            GridFragment gridFrag = new GridFragment();
+            setFragment(gridFrag);
+        } else if (id == R.id.nav_my_locations) {
+            MyLocationsFragment myLocationsFrag = new MyLocationsFragment();
+            setFragment(myLocationsFrag);
+        } else if (id == R.id.nav_my_account) {
+            MyAccountFragment myAccountFrag = new MyAccountFragment();
+            setFragment(myAccountFrag);
+        }
+        else if (id == R.id.nav_settings) {
+            SettingsFragment settingsFrag = new SettingsFragment();
+            setFragment(settingsFrag);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    // Method called to update fragment
+    public void setFragment(Fragment fragment) {
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().replace(R.id.flContent, fragment).commit();
+        fm.executePendingTransactions();
     }
 }
