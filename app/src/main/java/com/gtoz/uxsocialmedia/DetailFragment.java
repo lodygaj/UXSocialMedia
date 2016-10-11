@@ -27,10 +27,4 @@ public class DetailFragment extends Fragment {
 
         return view;
     }
-
-    public void onBackPressed()
-    {
-        FragmentManager fm = getActivity().getFragmentManager();
-        fm.popBackStack();
-    }
 }

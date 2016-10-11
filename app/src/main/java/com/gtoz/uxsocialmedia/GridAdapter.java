@@ -52,7 +52,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
     // Method called to upgrade fragment
     public void setFragment(Fragment fragment) {
         //FragmentManager fm = ((Activity)context).getFragmentManager();
-        fm.beginTransaction().replace(R.id.flContent, fragment).commit();
+        fm.beginTransaction().replace(R.id.flContent, fragment).addToBackStack(null).commit();
         fm.executePendingTransactions();
     }
 

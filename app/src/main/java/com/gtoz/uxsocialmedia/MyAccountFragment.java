@@ -21,10 +21,4 @@ public class MyAccountFragment extends Fragment{
 
         return view;
     }
-
-    public void onBackPressed()
-    {
-        FragmentManager fm = getFragmentManager();
-        fm.popBackStack();
-    }
 }

@@ -33,10 +33,4 @@ public class GridFragment extends Fragment {
 
         return view;
     }
-
-    public void onBackPressed()
-    {
-        FragmentManager fm = getActivity().getFragmentManager();
-        fm.popBackStack();
-    }
 }

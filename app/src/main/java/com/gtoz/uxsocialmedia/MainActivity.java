@@ -107,8 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Method called to update fragment
     public void setFragment(Fragment fragment) {
         fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.flContent, fragment).commit();
+        fm.beginTransaction().replace(R.id.flContent, fragment).addToBackStack(null).commit();
         fm.executePendingTransactions();
     }
-
 }
