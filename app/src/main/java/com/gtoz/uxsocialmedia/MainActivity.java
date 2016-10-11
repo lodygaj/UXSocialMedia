@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.support.v7.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private FragmentManager fm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Set grid fragment in main content layout
         GridFragment gridFrag = new GridFragment();
         setFragment(gridFrag);
-
 
         // Set up navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -54,14 +54,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the menu
         getMenuInflater().inflate(R.menu.main, menu);
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.menu_search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
+
+        // Add search bar to toolbar
+        SearchManager sm = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView sv = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        sv.setSearchableInfo(sm.getSearchableInfo(getComponentName()));
         return true;
     }
 
@@ -71,12 +70,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.menu_search) {
+            // Handle search bar here
+
+
+
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             SettingsFragment settingsFrag = new SettingsFragment();
             setFragment(settingsFrag);
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -107,8 +106,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // Method called to update fragment
     public void setFragment(Fragment fragment) {
-        FragmentManager fm = getFragmentManager();
+        fm = getFragmentManager();
         fm.beginTransaction().replace(R.id.flContent, fragment).commit();
         fm.executePendingTransactions();
     }
+
 }
