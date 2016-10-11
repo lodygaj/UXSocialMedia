@@ -1,6 +1,5 @@
 package com.gtoz.uxsocialmedia;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -23,8 +22,8 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
             R.drawable.five, R.drawable.six, R.drawable.seven, R.drawable.eight,
             R.drawable.nine, R.drawable.ten};
 
-    String[] nameList = {"One", "Two", "Three", "Four", "Five", "Six",
-            "Seven", "Eight", "Nine", "Ten"};
+    String[] nameList = {"Fort Myers Beach, FL", "Germain Arena", "Lakes Regional Park", "Everglades Excursions", "Naples Preserve", "Airboat Tours",
+            "Sky Diving", "Water Sports", "Jet Skiing", "Bonita Beach"};
 
     public GridAdapter(Context context, FragmentManager fm) {
         this.context = context;
@@ -51,7 +50,6 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
 
     // Method called to upgrade fragment
     public void setFragment(Fragment fragment) {
-        //FragmentManager fm = ((Activity)context).getFragmentManager();
         fm.beginTransaction().replace(R.id.flContent, fragment).addToBackStack(null).commit();
         fm.executePendingTransactions();
     }
@@ -69,10 +67,10 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), "Clicked on " + nameList[getPosition()], Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), "Clicked on " + nameList[getAdapterPosition()], Toast.LENGTH_SHORT).show();
             DetailFragment detailFragment = new DetailFragment();
             setFragment(detailFragment);
-            detailFragment.setTxtViewTitle(nameList[getPosition()]);
+            detailFragment.setTxtViewTitle(nameList[getAdapterPosition()]);
         }
     }
 }
