@@ -51,20 +51,41 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:text="Login"
         android:id="@+id/btnLogin"
+        android:background="#ffffff"
         android:layout_below="@+id/edtTxtPassword"
-        android:layout_alignLeft="@+id/imgBtnFacebook"
-        android:layout_alignStart="@+id/imgBtnFacebook" />
+        android:layout_alignLeft="@+id/btnRegister"
+        android:layout_alignStart="@+id/btnRegister"
+        android:layout_alignRight="@+id/btnRegister"
+        android:layout_alignEnd="@+id/btnRegister" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:text="Register"
         android:id="@+id/btnRegister"
-        android:layout_below="@+id/edtTxtPassword"
-        android:layout_toRightOf="@+id/btnLogin"
-        android:layout_toEndOf="@+id/btnLogin" />
+        android:background="#ffffff"
+        android:layout_below="@+id/btnLogin"
+        android:layout_alignLeft="@+id/btnGuest"
+        android:layout_alignStart="@+id/btnGuest"
+        android:layout_alignRight="@+id/btnGuest"
+        android:layout_alignEnd="@+id/btnGuest" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Guest"
+        android:id="@+id/btnGuest"
+        android:background="#ffffff"
+        android:layout_below="@+id/btnRegister"
+        android:layout_alignLeft="@+id/imgBtnTwitter"
+        android:layout_alignStart="@+id/imgBtnTwitter"
+        android:layout_alignRight="@+id/imgBtnTwitter"
+        android:layout_alignEnd="@+id/imgBtnTwitter" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -73,8 +94,9 @@
         android:src="@drawable/facebook_login"
         android:scaleType="fitXY"
         android:padding="3dp"
-        android:layout_below="@+id/btnLogin"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/imgBtnTwitter"
+        android:layout_alignLeft="@+id/imgBtnTwitter"
+        android:layout_alignStart="@+id/imgBtnTwitter" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -83,18 +105,7 @@
         android:src="@drawable/twitter_login"
         android:scaleType="fitXY"
         android:padding="3dp"
-        android:layout_below="@+id/imgBtnFacebook"
+        android:layout_below="@+id/btnGuest"
         android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Guest"
-        android:id="@+id/btnGuest"
-        android:layout_below="@+id/imgBtnTwitter"
-        android:layout_alignLeft="@+id/imgBtnTwitter"
-        android:layout_alignStart="@+id/imgBtnTwitter"
-        android:layout_alignRight="@+id/imgBtnFacebook"
-        android:layout_alignEnd="@+id/imgBtnFacebook" />
 
 </RelativeLayout>
