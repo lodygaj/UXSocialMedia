@@ -8,31 +8,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by Joey Laptop on 10/2/2016.
+ * Created by Joey Laptop on 10/20/2016.
  */
-public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
+public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.GridView> {
     private Context context;
     private FragmentManager fm;
 
-    int[] imgList = {R.drawable.flyboard, R.drawable.two, R.drawable.three, R.drawable.four,
-            R.drawable.six, R.drawable.eight,
-            R.drawable.ten};
+    int[] imgList = {R.drawable.cat1, R.drawable.cat2, R.drawable.cat3, R.drawable.cat4,
+            R.drawable.cat5, R.drawable.cat6, R.drawable.cat7};
 
-    String[] nameList = {"SkyHigh JetPacks and Flyboard", "Fort Myers Beach, FL", "Lakes Regional Park", "Everglades Excursions", "Airboat Tours",
-            "Water Sports", "Bonita Beach"};
-
-    public GridAdapter(Context context, FragmentManager fm) {
+    public CategoryListAdapter(Context context, FragmentManager fm) {
         this.context = context;
         this.fm = fm;
     }
 
     @Override
     public GridView onCreateViewHolder(ViewGroup parent, int viewType) {
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false);
         GridView gridView = new GridView(layoutView);
         return gridView;
     }
@@ -40,12 +35,11 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
     @Override
     public void onBindViewHolder(GridView holder, int position) {
         holder.imageView.setImageResource(imgList[position]);
-        holder.textView.setText(nameList[position]);
     }
 
     @Override
     public int getItemCount() {
-        return nameList.length;
+        return imgList.length;
     }
 
     // Method called to upgrade fragment
@@ -56,19 +50,16 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
 
     class GridView extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
-        TextView textView;
 
         public GridView(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             imageView = (ImageView) itemView.findViewById(R.id.img);
-            textView = (TextView) itemView.findViewById(R.id.img_name);
         }
 
         @Override
         public void onClick(View view) {
-            DetailFragment detailFragment = new DetailFragment();
-            setFragment(detailFragment);
+            Toast.makeText(view.getContext(), "Clicked on category" , Toast.LENGTH_SHORT).show();
         }
     }
 }

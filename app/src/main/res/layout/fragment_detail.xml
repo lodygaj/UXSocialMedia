@@ -1,16 +1,135 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    android:weightSum="100"
     tools:context="com.gtoz.uxsocialmedia.DetailFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="78"
+        android:id="@+id/scrollView"
+        android:scrollbars="none"
+        android:fillViewport="false">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/txtViewTitle"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-</RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:id="@+id/imgHeader" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SkyHigh JetPacks and Flyboard Rentals"
+                android:layout_gravity="center"
+                android:id="@+id/txtTitle" />
+
+            <GridLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_corner_grid_item"
+                android:id="@+id/infoView">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fort Myers Beach, FL"
+                    android:id="@+id/txtLocation"
+                    android:layout_row="0"
+                    android:layout_column="0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Visited 23 Times"
+                    android:id="@+id/txtVisited"
+                    android:layout_row="1"
+                    android:layout_column="0" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="36 Trips Planned"
+                    android:id="@+id/txtTripsPlanned"
+                    android:layout_row="0"
+                    android:layout_column="2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="75 Likes"
+                    android:id="@+id/txtLikes"
+                    android:layout_row="1"
+                    android:layout_column="2" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Make A Reservation"
+                    android:id="@+id/btnBookTrip"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                    android:layout_row="2"
+                    android:layout_column="1"
+                    android:layout_gravity="center"/>
+
+            </GridLayout>
+
+            <View style="@style/Divider"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner_grid_item"
+                android:text="New Text"
+                android:id="@+id/txtContent" />
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="2"
+        android:id="@+id/categoryButtonView">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:id="@+id/imageTest2"
+            android:src="@drawable/dots" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="20"
+        android:id="@+id/categoryView">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/category_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>
