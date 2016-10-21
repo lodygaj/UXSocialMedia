@@ -57,18 +57,27 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
     class GridView extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         TextView textView;
+        boolean textShown = false;
 
         public GridView(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             imageView = (ImageView) itemView.findViewById(R.id.img);
             textView = (TextView) itemView.findViewById(R.id.img_name);
+            textView.setVisibility(View.GONE);
         }
 
         @Override
         public void onClick(View view) {
-            DetailFragment detailFragment = new DetailFragment();
-            setFragment(detailFragment);
+            if(textShown) {
+                DetailFragment detailFragment = new DetailFragment();
+                setFragment(detailFragment);
+                textShown = false;
+            }
+            else {
+                textView.setVisibility(View.VISIBLE);
+                textShown = true;
+            }
         }
     }
 }
