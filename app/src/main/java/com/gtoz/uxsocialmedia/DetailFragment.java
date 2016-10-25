@@ -89,7 +89,7 @@ public class DetailFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         CategoryListAdapter adapter = new CategoryListAdapter(context, fm);
         recyclerView.setAdapter(adapter);
-        ListSpacing dec = new ListSpacing(16);
+        ListSpacing dec = new ListSpacing(16, 16);
         recyclerView.addItemDecoration(dec);
 
         return view;

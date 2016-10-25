@@ -28,7 +28,7 @@ public class GridFragment extends Fragment {
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         GridAdapter adapter = new GridAdapter(context, fm);
         recyclerView.setAdapter(adapter);
-        ListSpacing dec = new ListSpacing(20);
+        ListSpacing dec = new ListSpacing(3, 2);
         recyclerView.addItemDecoration(dec);
 
         return view;

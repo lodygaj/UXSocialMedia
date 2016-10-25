@@ -3,6 +3,7 @@ package com.gtoz.uxsocialmedia;
 import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.app.FragmentManager;
