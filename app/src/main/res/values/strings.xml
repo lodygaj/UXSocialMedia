@@ -28,4 +28,10 @@
         more sample text after that. This is some sample text and some more sample text
         after that.  </string>
 
+    <string name="txt_take_survey">Please take a short survey in order to show you customized
+        content that aligns more with your interests: </string>
+
+    <string name="txt_login_prompt">Would you like to register or login with an existing Thrifty account or login with
+        your social media account? You may also choose to continue as a guest. </string>
+
 </resources>

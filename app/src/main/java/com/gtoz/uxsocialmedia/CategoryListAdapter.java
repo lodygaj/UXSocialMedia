@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 /**
- * Created by Joey Laptop on 10/20/2016.
+ * Created by GtoZ on 10/20/2016.
  */
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.GridView> {
     private Context context;

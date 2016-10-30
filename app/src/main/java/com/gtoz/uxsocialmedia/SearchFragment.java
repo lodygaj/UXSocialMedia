@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Joey Laptop on 10/6/2016.
+ * Created by GtoZ on 10/6/2016.
  */
 public class SearchFragment extends Fragment {
     @Override

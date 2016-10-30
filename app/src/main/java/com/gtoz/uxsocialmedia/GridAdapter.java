@@ -9,18 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
- * Created by Joey Laptop on 10/2/2016.
+ * Created by GtoZ on 10/2/2016.
  */
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
     private Context context;
     private FragmentManager fm;
 
     int[] imgList = {R.drawable.flyboard, R.drawable.two, R.drawable.three, R.drawable.four,
-            R.drawable.six, R.drawable.eight,
-            R.drawable.ten};
+            R.drawable.six, R.drawable.eight, R.drawable.ten};
 
     String[] nameList = {"SkyHigh JetPacks and Flyboard", "Fort Myers Beach, FL", "Lakes Regional Park", "Everglades Excursions", "Airboat Tours",
             "Water Sports", "Bonita Beach"};
