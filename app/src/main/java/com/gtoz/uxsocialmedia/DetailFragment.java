@@ -16,6 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.VideoView;
+import android.content.Intent;
+
+import org.w3c.dom.Text;
 
 public class DetailFragment extends Fragment {
     boolean categoryShown = true;
@@ -38,9 +41,30 @@ public class DetailFragment extends Fragment {
         ImageView imageTest = (ImageView) view.findViewById(R.id.imgHeader);
         imageTest.setImageResource(R.drawable.flyboard);
 
-        // Set content text
-        TextView textTest = (TextView) view.findViewById(R.id.txtContent);
-        textTest.setText(R.string.this_is_sample_text);
+        //Handles the title text as button to go to relevant website
+        TextView titleText = (TextView) view.findViewById(R.id.titlerText);
+        titleText.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String url = "http://google.com";
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
+        //Handles category text as button to go to the relevant feed
+        TextView catText = (TextView) view.findViewById(R.id.catText);
+        catText.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent mainIntent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                startActivity(mainIntent);
+            }
+        });
+
 
         // Handle image button
         ImageButton imageBtn = (ImageButton) view.findViewById(R.id.imageTest2);

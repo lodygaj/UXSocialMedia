@@ -13,7 +13,7 @@ import android.widget.TextView;
 /**
  * Created by GtoZ on 10/2/2016.
  */
-public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
+public class    GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
     private Context context;
     private FragmentManager fm;
 
