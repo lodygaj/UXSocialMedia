@@ -67,11 +67,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     // Start animation and shift view down
                     categoryView.animate().translationY(categoryView.getHeight() - categoryShowBtn.getHeight());
                     categoryShown = false;
+                    categoryShowBtn.setImageResource(R.drawable.category_arrow_up);
                 }
                 else {
                     // Start animation and shift view back up
                     categoryView.animate().translationY(0);
                     categoryShown = true;
+                    categoryShowBtn.setImageResource(R.drawable.category_arrow_down);
                 }
             }
         });
@@ -83,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setLayoutManager(layoutManager);
         CategoryListAdapter adapter = new CategoryListAdapter(this, fm);
         recyclerView.setAdapter(adapter);
-        ListSpacing dec = new ListSpacing(5, 1);
+        ListSpacing dec = new ListSpacing(0, 1);
         recyclerView.addItemDecoration(dec);
     }
 

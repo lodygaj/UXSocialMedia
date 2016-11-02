@@ -79,7 +79,8 @@
                 android:text="Reservation/LocationAdd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/reservationButton" />
+                android:id="@+id/reservationButton"
+                style="@style/ThriftyButton"/>
 
         </LinearLayout>
     </ScrollView>
