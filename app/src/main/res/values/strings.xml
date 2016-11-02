@@ -7,28 +7,7 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="this_is_sample_text">\t\t\t\t Water Jetpack Fort Myers and Naples
-        area this week! Bringing out the pack today check it out! Beat the heat with
-        some wakeboarding and water jetpacks! We guarantee you fly your first time!
-        Flyboard World Cup Qualifier at Sugden Park in Naples, Florida was Awesome!
-        It\'s only going to get better, 2 more days to go. Here\'s a couple shots of
-        the action. This is some sample text and some more sample text after that. This
-        is some sample text and some more sample text after that. This is some sample
-        text and some more sample text after that. This is some sample text and some more
-        sample text after that. This is some sample text and some more sample text after
-        that. This is some sample text and some more sample text after that. This is some
-        sample text and some more sample text after that. This is some sample text and
-        some more sample text after that. This is some sample text and some more sample
-        text after that. This is some sample text and some more sample text after that.
-        This is some sample text and some more sample text after that. This is some sample
-        text and some more sample text after that. This is some sample text and some more
-        sample text after that. This is some sample text and some more sample text after
-        that. This is some sample text and some more sample text after that. This is some
-        sample text and some more sample text after that. This is some sample text and some
-        more sample text after that. This is some sample text and some more sample text
-        after that.  </string>
-
-    <string name="txt_take_survey">Please take a short survey in order to show you customized
+    <string name="txt_take_survey">Please take a short survey in order to show you custom
         content that aligns more with your interests: </string>
 
     <string name="txt_login_prompt">Would you like to register or login with an existing Thrifty account or login with

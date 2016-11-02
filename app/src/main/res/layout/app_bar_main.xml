@@ -20,15 +20,18 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:contentDescription="Thrifty"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
-                android:src="@drawable/thrifty_logo"/>
+                android:contentDescription="Thrifty"
+                android:src="@drawable/thrifty_logo_white"/>
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_main"
+        android:layout_height="510dp" />
 
 </android.support.design.widget.CoordinatorLayout>

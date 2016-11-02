@@ -3,7 +3,6 @@ package com.gtoz.uxsocialmedia;
 import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.app.FragmentManager;
@@ -11,18 +10,37 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.SearchView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fm;
+    private FrameLayout contentView;
+    private LinearLayout categoryView;
+    private NavigationView navigationView;
+    private ImageButton categoryShowBtn;
+    boolean categoryShown = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Initialize objects from layouts
+        categoryView = (LinearLayout) findViewById(R.id.categoryView);
+        contentView = (FrameLayout) findViewById(R.id.flContent);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        categoryShowBtn = (ImageButton) findViewById(R.id.imageTest2);
 
         // Set up toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -39,8 +57,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Handle image button to open and close category view
+        categoryShowBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(categoryShown) {
+                    // Start animation and shift view down
+                    categoryView.animate().translationY(categoryView.getHeight() - categoryShowBtn.getHeight());
+                    categoryShown = false;
+                }
+                else {
+                    // Start animation and shift view back up
+                    categoryView.animate().translationY(0);
+                    categoryShown = true;
+                }
+            }
+        });
+
+        // Set up category horizontal list view
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.category_grid);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+        CategoryListAdapter adapter = new CategoryListAdapter(this, fm);
+        recyclerView.setAdapter(adapter);
+        ListSpacing dec = new ListSpacing(5, 1);
+        recyclerView.addItemDecoration(dec);
     }
 
     @Override
