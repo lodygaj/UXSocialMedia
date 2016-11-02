@@ -23,6 +23,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import static android.R.attr.id;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fm;
     private FrameLayout contentView;
@@ -135,14 +137,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_home) {
             GridFragment gridFrag = new GridFragment();
             setFragment(gridFrag);
-        } else if (id == R.id.nav_my_locations) {
+        } else if (id == R.id.nav_my_saved_locations) {
             MyLocationsFragment myLocationsFrag = new MyLocationsFragment();
             setFragment(myLocationsFrag);
-        } else if (id == R.id.nav_my_account) {
+        } else if (id == R.id.nav_link_accounts) {
             MyAccountFragment myAccountFrag = new MyAccountFragment();
             setFragment(myAccountFrag);
-        }
-        else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_update_interests) {
+            MyAccountFragment myAccountFrag = new MyAccountFragment();
+            setFragment(myAccountFrag);
+        } else if (id == R.id.nav_settings) {
             SettingsFragment settingsFrag = new SettingsFragment();
             setFragment(settingsFrag);
         }

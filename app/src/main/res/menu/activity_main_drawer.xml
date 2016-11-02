@@ -8,18 +8,21 @@
                     android:id="@+id/nav_home"
                     android:title="Home" />
                 <item
-                    android:id="@+id/nav_my_locations"
-                    android:title="My Locations" />
+                    android:id="@+id/nav_my_saved_locations"
+                    android:title="My Saved Locations" />
             </menu>
         </item>
         <item android:title="Settings">
             <menu>
                 <item
-                    android:id="@+id/nav_my_account"
-                    android:title="My Account" />
+                    android:id="@+id/nav_link_accounts"
+                    android:title="Link Accounts" />
+                <item
+                    android:id="@+id/nav_update_interests"
+                    android:title="Update Interests" />
                 <item
                     android:id="@+id/nav_settings"
-                    android:title="App Settings" />
+                    android:title="Settings" />
             </menu>
         </item>
     </group>
