@@ -10,28 +10,17 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.SearchView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-
-import static android.R.attr.id;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fm;
-    private FrameLayout contentView;
-    private LinearLayout categoryView;
     private NavigationView navigationView;
-    private ImageButton categoryShowBtn;
-    boolean categoryShown = true;
+    private ImageView heart, home, settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,56 +28,71 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         // Initialize objects from layouts
-        categoryView = (LinearLayout) findViewById(R.id.categoryView);
-        contentView = (FrameLayout) findViewById(R.id.flContent);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        categoryShowBtn = (ImageButton) findViewById(R.id.imageTest2);
 
-        // Set up toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // Set up top toolbar
+        Toolbar topToolbar = (Toolbar) findViewById(R.id.topToolbar);
+        setSupportActionBar(topToolbar);
         getSupportActionBar().setTitle("Thrifty");
 
-        // Set grid fragment in main content layout
-        GridFragment gridFrag = new GridFragment();
-        setFragment(gridFrag);
+        // Set up bottom toolbar
+        Toolbar bottomToolbar = (Toolbar) findViewById(R.id.bottomToolbar);
+        setSupportActionBar(bottomToolbar);
+        heart = (ImageView) findViewById(R.id.heart);
+        home = (ImageView) findViewById(R.id.home);
+        settings = (ImageView) findViewById(R.id.settings);
+
+        // Set menu fragment in main content layout
+        MenuFragment menuFrag = new MenuFragment();
+        setFragment(menuFrag);
 
         // Set up navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, topToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Handle image button to open and close category view
-        categoryShowBtn.setOnClickListener(new View.OnClickListener() {
+        // Set up click listeners for bottom toolbar buttons
+        heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(categoryShown) {
-                    // Start animation and shift view down
-                    categoryView.animate().translationY(categoryView.getHeight() - categoryShowBtn.getHeight());
-                    categoryShown = false;
-                    categoryShowBtn.setImageResource(R.drawable.category_arrow_up);
-                }
-                else {
-                    // Start animation and shift view back up
-                    categoryView.animate().translationY(0);
-                    categoryShown = true;
-                    categoryShowBtn.setImageResource(R.drawable.category_arrow_down);
-                }
+                // Set grid fragment
+                GridFragment fragment = new GridFragment();
+                setFragment(fragment);
+                // Update selected toolbar item
+                heart.setImageResource(R.drawable.heart_selected);
+                home.setImageResource(R.drawable.home_unselected);
+                settings.setImageResource(R.drawable.settings_unselected);
             }
         });
 
-        // Set up category horizontal list view
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.category_grid);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(layoutManager);
-        CategoryListAdapter adapter = new CategoryListAdapter(this, fm);
-        recyclerView.setAdapter(adapter);
-        ListSpacing dec = new ListSpacing(0, 1);
-        recyclerView.addItemDecoration(dec);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Set menu fragment
+                MenuFragment fragment = new MenuFragment();
+                setFragment(fragment);
+                // Update selected toolbar item
+                heart.setImageResource(R.drawable.heart_unselected);
+                home.setImageResource(R.drawable.home_selected);
+                settings.setImageResource(R.drawable.settings_unselected);
+            }
+        });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Set settings fragment
+                SettingsFragment fragment = new SettingsFragment();
+                setFragment(fragment);
+                // Update selected toolbar item
+                heart.setImageResource(R.drawable.heart_unselected);
+                home.setImageResource(R.drawable.home_unselected);
+                settings.setImageResource(R.drawable.settings_selected);
+            }
+        });
     }
 
     @Override
@@ -135,17 +139,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_home) {
+            MenuFragment menuFrag = new MenuFragment();
+            setFragment(menuFrag);
+            //GridFragment gridFrag = new GridFragment();
+            //setFragment(gridFrag);
+        } else if (id == R.id.nav_my_saved_locations) {
             GridFragment gridFrag = new GridFragment();
             setFragment(gridFrag);
-        } else if (id == R.id.nav_my_saved_locations) {
-            MyLocationsFragment myLocationsFrag = new MyLocationsFragment();
-            setFragment(myLocationsFrag);
         } else if (id == R.id.nav_link_accounts) {
-            MyAccountFragment myAccountFrag = new MyAccountFragment();
-            setFragment(myAccountFrag);
+            SettingsFragment settingsFrag = new SettingsFragment();
+            setFragment(settingsFrag);
         } else if (id == R.id.nav_update_interests) {
-            MyAccountFragment myAccountFrag = new MyAccountFragment();
-            setFragment(myAccountFrag);
+            SettingsFragment settingsFrag = new SettingsFragment();
+            setFragment(settingsFrag);
         } else if (id == R.id.nav_settings) {
             SettingsFragment settingsFrag = new SettingsFragment();
             setFragment(settingsFrag);

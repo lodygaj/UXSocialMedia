@@ -1,6 +1,8 @@
 package com.gtoz.uxsocialmedia;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -45,9 +47,27 @@ public class LoginFragment extends Fragment {
         btnGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Load main activity
-                Intent mainIntent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-                startActivity(mainIntent);
+                // Alert user to skip log in
+                AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                alert.setTitle("Skip log in?");
+                alert.setMessage("You may log in later in settings.");
+                //alert.setCancelable(false);
+                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Load main activity
+                        Intent mainIntent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                        startActivity(mainIntent);
+                    }
+                });
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
             }
         });
 

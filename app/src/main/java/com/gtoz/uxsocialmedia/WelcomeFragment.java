@@ -1,7 +1,9 @@
 package com.gtoz.uxsocialmedia;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -38,9 +40,27 @@ public class WelcomeFragment extends Fragment {
         skipSurvey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Load main activity with generic content
-                Intent mainIntent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-                startActivity(mainIntent);
+                // Alert User to quit
+                AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                alert.setTitle("Skip survey?");
+                alert.setMessage("You may complete this survey later in settings.");
+                //alert.setCancelable(false);
+                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Set login fragment
+                        LoginFragment fragment = new LoginFragment();
+                        setFragment(fragment);
+                    }
+                });
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
             }
         });
 
