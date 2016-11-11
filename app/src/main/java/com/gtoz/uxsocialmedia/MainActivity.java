@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         // Set up click listeners for bottom toolbar buttons
+
+        // Listener for the heart
         heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        // Listener for home
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        // Listener for settings
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,18 +147,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             setFragment(menuFrag);
             //GridFragment gridFrag = new GridFragment();
             //setFragment(gridFrag);
+
+            // Update selected toolbar item
+            heart.setImageResource(R.drawable.heart_unselected);
+            home.setImageResource(R.drawable.home_selected);
+            settings.setImageResource(R.drawable.settings_unselected);
         } else if (id == R.id.nav_my_saved_locations) {
             GridFragment gridFrag = new GridFragment();
             setFragment(gridFrag);
+
+            // Update selected toolbar item
+            heart.setImageResource(R.drawable.heart_selected);
+            home.setImageResource(R.drawable.home_unselected);
+            settings.setImageResource(R.drawable.settings_unselected);
         } else if (id == R.id.nav_link_accounts) {
             SettingsFragment settingsFrag = new SettingsFragment();
             setFragment(settingsFrag);
+
+            // Update selected toolbar item
+            heart.setImageResource(R.drawable.heart_unselected);
+            home.setImageResource(R.drawable.home_unselected);
+            settings.setImageResource(R.drawable.settings_selected);
         } else if (id == R.id.nav_update_interests) {
             SettingsFragment settingsFrag = new SettingsFragment();
             setFragment(settingsFrag);
+
+            // Update selected toolbar item
+            heart.setImageResource(R.drawable.heart_unselected);
+            home.setImageResource(R.drawable.home_unselected);
+            settings.setImageResource(R.drawable.settings_selected);
         } else if (id == R.id.nav_settings) {
             SettingsFragment settingsFrag = new SettingsFragment();
             setFragment(settingsFrag);
+
+            // Update selected toolbar item
+            heart.setImageResource(R.drawable.heart_unselected);
+            home.setImageResource(R.drawable.home_unselected);
+            settings.setImageResource(R.drawable.settings_selected);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
