@@ -13,4 +13,8 @@
     <string name="txt_login_prompt">Would you like to register or login with an existing Thrifty account or login with
         your social media account? You may also choose to continue as a guest. </string>
 
+    <string name="Instagram_client_ID">29bf0da6be314e8685bf3a90d667b070</string>
+    <string name="Instagram_client_secret">ae38e4c3ab8b498b917e2df73a89a907</string>
+    <string name="Instagram_access_token">2036986811.29bf0da.904e942a8d3f426db6a6697dbfa5a957</string>
+
 </resources>
