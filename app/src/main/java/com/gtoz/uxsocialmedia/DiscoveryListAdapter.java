@@ -15,29 +15,31 @@ import android.widget.Toast;
  * Created by GtoZ on 11/5/2016.
  */
 
-public class ThriftyListAdapter extends RecyclerView.Adapter<ThriftyListAdapter.GridView> {
+public class DiscoveryListAdapter extends RecyclerView.Adapter<DiscoveryListAdapter.GridView> {
     private Context context;
     private FragmentManager fm;
 
-    int[] imgList = {R.drawable.one, R.drawable.two, R.drawable.three, R.drawable.four, R.drawable.five};
+    int[] imgList = {R.drawable.one, R.drawable.two, R.drawable.three, R.drawable.four,
+            R.drawable.five, R.drawable.six, R.drawable.seven, R.drawable.eight, R.drawable.nine, R.drawable.ten};
 
     String[] nameList = {"SkyHigh JetPacks and Flyboard", "Fort Myers Beach, FL", "Lakes Regional Park",
+            "Everglades Excursions", "Airboat Tours", "SkyHigh JetPacks and Flyboard", "Fort Myers Beach, FL", "Lakes Regional Park",
             "Everglades Excursions", "Airboat Tours"};
 
-    public ThriftyListAdapter(Context context, FragmentManager fm) {
+    public DiscoveryListAdapter(Context context, FragmentManager fm) {
         this.context = context;
         this.fm = fm;
     }
 
     @Override
-    public ThriftyListAdapter.GridView onCreateViewHolder(ViewGroup parent, int viewType) {
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_item, parent, false);
-        ThriftyListAdapter.GridView gridView = new ThriftyListAdapter.GridView(layoutView);
+    public DiscoveryListAdapter.GridView onCreateViewHolder(ViewGroup parent, int viewType) {
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.discovery_item, parent, false);
+        DiscoveryListAdapter.GridView gridView = new DiscoveryListAdapter.GridView(layoutView);
         return gridView;
     }
 
     @Override
-    public void onBindViewHolder(ThriftyListAdapter.GridView holder, int position) {
+    public void onBindViewHolder(DiscoveryListAdapter.GridView holder, int position) {
         holder.imageView.setImageResource(imgList[position]);
         holder.textView.setText(nameList[position]);
     }
@@ -53,7 +55,7 @@ public class ThriftyListAdapter extends RecyclerView.Adapter<ThriftyListAdapter.
         fm.executePendingTransactions();
     }
 
-    class GridView extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class GridView extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         TextView textView;
         boolean textShown = false;
@@ -69,8 +71,8 @@ public class ThriftyListAdapter extends RecyclerView.Adapter<ThriftyListAdapter.
         @Override
         public void onClick(View view) {
             if(textShown) {
-                DetailFragment detailFragment = new DetailFragment();
-                setFragment(detailFragment);
+                StoryFragment storyFragment = new StoryFragment();
+                setFragment(storyFragment);
                 textShown = false;
             }
             else {

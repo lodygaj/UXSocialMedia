@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView">
+        android:id="@+id/scrollView"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,7 +17,8 @@
             android:id="@+id/menuLayout">
 
             <TextView
-                android:text="Thrifty Stories"
+                android:text="THRIFTY STORIES"
+                android:textColor="@color/thriftyBlack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -24,47 +26,47 @@
                 android:id="@+id/title1" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/thriftyList"
+                android:id="@+id/rv1"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="3dp"
                 android:background="#FFFFFF" />
 
             <View style="@style/Divider"/>
 
             <TextView
-                android:text="Recommended Stories"
+                android:text="EXTRAORDINARY PEOPLE AND PLACES"
+                android:textColor="@color/thriftyBlack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:id="@+id/title2" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recommendedList"
+                android:id="@+id/rv2"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="3dp"
                 android:background="#FFFFFF" />
 
             <View style="@style/Divider"/>
 
             <TextView
-                android:text="Categories"
+                android:text="CATEGORIES"
+                android:textColor="@color/thriftyBlack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:id="@+id/title3" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/categoryList"
+                android:id="@+id/rv3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF" />
 
         </LinearLayout>
-
     </ScrollView>
-
 </LinearLayout>

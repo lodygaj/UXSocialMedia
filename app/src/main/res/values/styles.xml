@@ -24,7 +24,7 @@
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">?android:attr/listDivider</item>
+        <item name="android:background">@color/thriftyGrey</item>
     </style>
 
     <style name="ThriftyButton">
@@ -33,12 +33,12 @@
         <item name="android:layout_marginLeft">2dp</item>
         <item name="android:layout_marginRight">2dp</item>
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:background">@color/thriftyBlue</item>
     </style>
 
     <style name="ThriftyDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
-        <item name="color">@color/colorPrimary</item>
+        <item name="color">@color/thriftyBlue</item>
     </style>
 
 </resources>
