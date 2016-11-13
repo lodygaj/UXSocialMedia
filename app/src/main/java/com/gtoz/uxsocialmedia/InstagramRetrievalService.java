@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import org.jinstagram.Instagram;
 import org.jinstagram.auth.InstagramAuthService;
@@ -16,10 +17,6 @@ import org.jinstagram.entity.tags.TagMediaFeed;
 import org.jinstagram.entity.users.feed.MediaFeedData;
 import org.jinstagram.exceptions.InstagramException;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
 /**
@@ -27,6 +24,9 @@ import java.util.List;
  */
 
 public class InstagramRetrievalService extends IntentService {
+
+    // For log messages
+    private static final String TAG = "com.gtoz.uxsocialmedia";
 
     // Client ID and Secret
     private String clientId = "29bf0da6be314e8685bf3a90d667b070"; //getString(R.string.Instagram_client_ID);
@@ -83,6 +83,8 @@ public class InstagramRetrievalService extends IntentService {
             Intent localIntent = new Intent("REFRESH_ACTION")
                     .putExtra("STATUS", true);
 
+            // Log Message
+            Log.i(TAG, "InstagramRetrievalService Ran.");
             // Broadcast the Intent to receivers
             LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
         }

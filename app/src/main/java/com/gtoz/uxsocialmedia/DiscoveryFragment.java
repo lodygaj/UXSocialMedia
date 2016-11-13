@@ -2,14 +2,19 @@ package com.gtoz.uxsocialmedia;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * Created by GtoZ on 11/5/2016.
@@ -47,6 +52,16 @@ public class DiscoveryFragment extends Fragment {
         thriftyList.addItemDecoration(dec);
 
         // Set up Recommended horizontal list
+
+        // Testing InstagramRetrievalService
+        Intent mServiceIntent = new Intent(getActivity(), InstagramRetrievalService.class);
+        getActivity().startService(mServiceIntent);
+
+        // Receive broadcast from InstagramIntentService
+        IntentFilter filter = new IntentFilter("REFRESH_ACTION");
+        ResponseReceiver receiver = new ResponseReceiver();
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(receiver, filter);
+
         recommendedList.setHasFixedSize(true);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(context);
         layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -67,5 +82,18 @@ public class DiscoveryFragment extends Fragment {
         categoryList.addItemDecoration(dec);
 
         return view;
+    }
+    public class ResponseReceiver extends BroadcastReceiver {
+
+        // Called when the BroadcastReceiver gets an Intent it's registered to receive
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Deliver message in toast
+            CharSequence text = "Broadcasted and received from InstagramRetrievalService.";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 }
