@@ -13,9 +13,10 @@ import android.widget.TextView;
 /**
  * Created by GtoZ on 10/2/2016.
  */
-public class    GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
+public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
     private Context context;
     private FragmentManager fm;
+    private View selectedView = null;
 
     int[] imgList = {R.drawable.flyboard, R.drawable.two, R.drawable.three, R.drawable.four,
             R.drawable.six, R.drawable.eight, R.drawable.ten};
@@ -68,8 +69,8 @@ public class    GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
         @Override
         public void onClick(View view) {
             if(textShown) {
-                DetailFragment detailFragment = new DetailFragment();
-                setFragment(detailFragment);
+                StoryFragment storyFragment = new StoryFragment();
+                setFragment(storyFragment);
                 textShown = false;
             }
             else {

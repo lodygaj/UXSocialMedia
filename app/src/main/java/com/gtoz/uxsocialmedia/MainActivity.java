@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         settings = (ImageView) findViewById(R.id.settings);
 
         // Set menu fragment in main content layout
-        MenuFragment menuFrag = new MenuFragment();
+        DiscoveryFragment menuFrag = new DiscoveryFragment();
         setFragment(menuFrag);
 
         // Set up navigation drawer
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 // Set menu fragment
-                MenuFragment fragment = new MenuFragment();
+                DiscoveryFragment fragment = new DiscoveryFragment();
                 setFragment(fragment);
                 // Update selected toolbar item
                 heart.setImageResource(R.drawable.heart_unselected);
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_home) {
-            MenuFragment menuFrag = new MenuFragment();
+            DiscoveryFragment menuFrag = new DiscoveryFragment();
             setFragment(menuFrag);
             //GridFragment gridFrag = new GridFragment();
             //setFragment(gridFrag);
