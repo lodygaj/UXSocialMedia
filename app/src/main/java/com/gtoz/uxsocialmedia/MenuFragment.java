@@ -3,6 +3,7 @@ package com.gtoz.uxsocialmedia;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -45,6 +46,12 @@ public class MenuFragment extends Fragment {
         thriftyList.addItemDecoration(dec);
 
         // Set up Recommended horizontal list
+
+        // Testing InstagramRetrievalService
+        Intent mServiceIntent = new Intent(getActivity(), InstagramRetrievalService.class);
+        getActivity().startService(mServiceIntent);
+
+
         LinearLayoutManager recommendedManager = new LinearLayoutManager(getActivity().getApplicationContext());
         recommendedManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recommendedList.setLayoutManager(recommendedManager);

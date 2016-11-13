@@ -5,12 +5,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
+import android.support.v4.content.LocalBroadcastManager;
+
+import org.jinstagram.Instagram;
+import org.jinstagram.auth.InstagramAuthService;
+import org.jinstagram.auth.model.Token;
+import org.jinstagram.auth.model.Verifier;
+import org.jinstagram.auth.oauth.InstagramService;
+import org.jinstagram.entity.tags.TagMediaFeed;
+import org.jinstagram.entity.users.feed.MediaFeedData;
+import org.jinstagram.exceptions.InstagramException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by Ebli Jr on 11/11/2016.
@@ -19,8 +29,9 @@ import java.net.URL;
 public class InstagramRetrievalService extends IntentService {
 
     // Client ID and Secret
-    private String clientId = getString(R.string.Instagram_client_ID);
-    private String clientSecret = getString(R.string.Instagram_client_secret);
+    private String clientId = "29bf0da6be314e8685bf3a90d667b070"; //getString(R.string.Instagram_client_ID);
+    private String clientSecret = "ae38e4c3ab8b498b917e2df73a89a907"; //getString(R.string.Instagram_client_secret);
+    private String callbackUrl = "http://www.fgcu.edu";//getString(R.string.Instagram_callback_url);
 
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
@@ -38,42 +49,42 @@ public class InstagramRetrievalService extends IntentService {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
-        // Request URL
-        String stringUrl = "https://api.instagram.com/v1/tags/PokeGo/media/recent?access_token="
-                + getString(R.string.Instagram_client_secret);
-        if (networkInfo != null && networkInfo.isConnected()) {
-            // fetch media content
-            try {
-                InputStream response = downloadMedia(stringUrl);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            // display error
-        }
-    }
+        // Instagram service handler
+        InstagramService service = new InstagramAuthService()
+                .apiKey(clientId)
+                .apiSecret(clientSecret)
+                .callback(callbackUrl)
+                .build();
 
-    private InputStream downloadMedia (String requestUrl) throws IOException {
-        // To receive request response
-        InputStream is = null;
+        // Validate user against Instagram
+        String authorizationURl = service.getAuthorizationUrl();
 
+        // Get Access Token
+        Verifier verifier = new Verifier("verifier you get from the user");
+        Token accessToken = new Token ("2036986811.29bf0da.904e942a8d3f426db6a6697dbfa5a957","ae38e4c3ab8b498b917e2df73a89a907");//service.getAccessToken(verifier);
+
+        // Creating Instagram object
+        Instagram instagram = new Instagram(accessToken);
+
+        // Get tagged media
+        String tagName = "PokeGo";
+        TagMediaFeed mediaFeed = null;
         try {
-            URL url = new URL(requestUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(10000 /* milliseconds */);
-            conn.setConnectTimeout(15000 /* milliseconds */);
-            conn.setRequestMethod("GET");
-            conn.setDoInput(true);
+            mediaFeed = instagram.getRecentMediaTags(tagName);
+        } catch (InstagramException e) {
+            e.printStackTrace();
+        }
 
-            // Make request
-            conn.connect();
-            is = conn.getInputStream();
+        List<MediaFeedData> mediaFeeds = mediaFeed.getData();
 
-            return is;
-        }finally {
-            if (is != null) {
-                is.close();
-            }
+        // Return a status saying complete to calling activity
+        if (mediaFeeds != null) {
+            // Create new Intent containing status to broadcast
+            Intent localIntent = new Intent("REFRESH_ACTION")
+                    .putExtra("STATUS", true);
+
+            // Broadcast the Intent to receivers
+            LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
         }
     }
 }
