@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Parcelable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -80,13 +81,17 @@ public class InstagramRetrievalService extends IntentService {
         // Return a status saying complete to calling activity
         if (mediaFeeds != null) {
             // Create new Intent containing status to broadcast
-            Intent localIntent = new Intent("REFRESH_ACTION")
+            Intent instagramResponseIntent = new Intent("REFRESH_ACTION")
                     .putExtra("STATUS", true);
+
+            // Add response from Instagram API
+            instagramResponseIntent.putExtra("MEDIA", (Parcelable) mediaFeeds);
 
             // Log Message
             Log.i(TAG, "InstagramRetrievalService Ran.");
+
             // Broadcast the Intent to receivers
-            LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(instagramResponseIntent);
         }
     }
 }

@@ -16,6 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import org.jinstagram.entity.users.feed.MediaFeedData;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by GtoZ on 11/5/2016.
  */
@@ -91,6 +96,9 @@ public class DiscoveryFragment extends Fragment {
             // Deliver message in toast
             CharSequence text = "Broadcasted and received from InstagramRetrievalService.";
             int duration = Toast.LENGTH_SHORT;
+
+            // Handle content from Intent
+            //ArrayList<MediaFeedData> mediaFeed = intent.getParcelableArrayListExtra("MEDIA");
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
