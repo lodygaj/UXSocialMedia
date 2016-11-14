@@ -85,7 +85,7 @@ public class InstagramRetrievalService extends IntentService {
                     .putExtra("STATUS", true);
 
             // Add response from Instagram API
-            instagramResponseIntent.putExtra("MEDIA", (Parcelable) mediaFeeds);
+            //instagramResponseIntent.putExtra("MEDIA", (Parcelable) mediaFeeds);
 
             // Log Message
             Log.i(TAG, "InstagramRetrievalService Ran.");
