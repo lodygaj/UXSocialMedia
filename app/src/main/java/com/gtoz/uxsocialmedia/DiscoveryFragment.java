@@ -42,6 +42,15 @@ public class DiscoveryFragment extends Fragment {
         thriftyList = (RecyclerView) view.findViewById(R.id.rv1);
         recommendedList = (RecyclerView) view.findViewById(R.id.rv2);
         categoryList = (RecyclerView) view.findViewById(R.id.rv3);
+        
+        // Testing InstagramRetrievalService
+        Intent mServiceIntent = new Intent(getActivity(), InstagramRetrievalService.class);
+        getActivity().startService(mServiceIntent);
+
+        // Receive broadcast from InstagramIntentService
+        IntentFilter filter = new IntentFilter("REFRESH_ACTION");
+        ResponseReceiver receiver = new ResponseReceiver();
+        LocalBroadcastManager.getInstance(context).registerReceiver(receiver, filter);
 
         // Set initial horizontal list layout and spacing values
         ListSpacing dec = new ListSpacing(0, 10);
@@ -57,16 +66,6 @@ public class DiscoveryFragment extends Fragment {
         thriftyList.addItemDecoration(dec);
 
         // Set up Recommended horizontal list
-
-        // Testing InstagramRetrievalService
-        Intent mServiceIntent = new Intent(getActivity(), InstagramRetrievalService.class);
-        getActivity().startService(mServiceIntent);
-
-        // Receive broadcast from InstagramIntentService
-        IntentFilter filter = new IntentFilter("REFRESH_ACTION");
-        ResponseReceiver receiver = new ResponseReceiver();
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(receiver, filter);
-
         recommendedList.setHasFixedSize(true);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(context);
         layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);

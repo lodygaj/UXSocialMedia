@@ -26,7 +26,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     }
 
     @Override
-    public GridView onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CategoryListAdapter.GridView onCreateViewHolder(ViewGroup parent, int viewType) {
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false);
         GridView gridView = new GridView(layoutView);
         return gridView;

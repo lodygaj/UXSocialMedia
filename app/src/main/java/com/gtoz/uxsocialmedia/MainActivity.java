@@ -24,10 +24,14 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import static com.gtoz.uxsocialmedia.R.id.discovery;
+import static com.gtoz.uxsocialmedia.R.id.favorite;
+import static com.gtoz.uxsocialmedia.R.id.poi;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fm;
     private NavigationView navigationView;
-    private ImageView heart, home, settings, camera;
+    private ImageView favorite, discovery, settings, qr, poi;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -50,10 +54,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Set up bottom toolbar
         Toolbar bottomToolbar = (Toolbar) findViewById(R.id.bottomToolbar);
         setSupportActionBar(bottomToolbar);
-        heart = (ImageView) findViewById(R.id.heart);
-        home = (ImageView) findViewById(R.id.home);
+        favorite = (ImageView) findViewById(R.id.favorite);
+        discovery = (ImageView) findViewById(R.id.discovery);
         settings = (ImageView) findViewById(R.id.settings);
-        camera = (ImageView) findViewById(R.id.camera);
+        poi = (ImageView) findViewById(R.id.poi);
+        qr = (ImageView) findViewById(R.id.qrcode);
 
         // Set menu fragment in main content layout
         DiscoveryFragment menuFrag = new DiscoveryFragment();
@@ -70,30 +75,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Set up click listeners for bottom toolbar buttons
 
         // Listener for the heart
-        heart.setOnClickListener(new View.OnClickListener() {
+        favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Set grid fragment
                 GridFragment fragment = new GridFragment();
                 setFragment(fragment);
                 // Update selected toolbar item
-                heart.setImageResource(R.drawable.heart_selected);
-                home.setImageResource(R.drawable.home_unselected);
+                favorite.setImageResource(R.drawable.heart_selected);
+                discovery.setImageResource(R.drawable.home_unselected);
                 settings.setImageResource(R.drawable.settings_unselected);
+                poi.setImageResource(R.drawable.poi_unselected);
+                qr.setImageResource(R.drawable.qr_unselected);
             }
         });
 
         // Listener for home
-        home.setOnClickListener(new View.OnClickListener() {
+        discovery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Set menu fragment
                 DiscoveryFragment fragment = new DiscoveryFragment();
                 setFragment(fragment);
+
                 // Update selected toolbar item
-                heart.setImageResource(R.drawable.heart_unselected);
-                home.setImageResource(R.drawable.home_selected);
+                favorite.setImageResource(R.drawable.heart_unselected);
+                discovery.setImageResource(R.drawable.home_selected);
                 settings.setImageResource(R.drawable.settings_unselected);
+                poi.setImageResource(R.drawable.poi_unselected);
+                qr.setImageResource(R.drawable.qr_unselected);
             }
         });
 
@@ -105,17 +115,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 SettingsFragment fragment = new SettingsFragment();
                 setFragment(fragment);
                 // Update selected toolbar item
-                heart.setImageResource(R.drawable.heart_unselected);
-                home.setImageResource(R.drawable.home_unselected);
+                favorite.setImageResource(R.drawable.heart_unselected);
+                discovery.setImageResource(R.drawable.home_unselected);
                 settings.setImageResource(R.drawable.settings_selected);
+                poi.setImageResource(R.drawable.poi_unselected);
+                qr.setImageResource(R.drawable.qr_unselected);
             }
         });
 
         //Listener for camera (qr scanner)
-        camera.setOnClickListener(new View.OnClickListener() {
+        poi.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+
+                // Update selected toolbar item
+                favorite.setImageResource(R.drawable.heart_unselected);
+                discovery.setImageResource(R.drawable.home_unselected);
+                settings.setImageResource(R.drawable.settings_unselected);
+                poi.setImageResource(R.drawable.poi_selected);
+                qr.setImageResource(R.drawable.qr_unselected);
+            }
+        });
+
+        //Listener for camera (qr scanner)
+        qr.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                // Update selected toolbar item
+                favorite.setImageResource(R.drawable.heart_unselected);
+                discovery.setImageResource(R.drawable.home_unselected);
+                settings.setImageResource(R.drawable.settings_unselected);
+                poi.setImageResource(R.drawable.poi_unselected);
+                qr.setImageResource(R.drawable.qr_selected);
 
                 Intent mainIntent = new Intent(MainActivity.this, QrReaderActivity.class);
                 startActivity(mainIntent);
@@ -177,40 +210,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //setFragment(gridFrag);
 
             // Update selected toolbar item
-            heart.setImageResource(R.drawable.heart_unselected);
-            home.setImageResource(R.drawable.home_selected);
+            favorite.setImageResource(R.drawable.heart_unselected);
+            discovery.setImageResource(R.drawable.home_selected);
             settings.setImageResource(R.drawable.settings_unselected);
         } else if (id == R.id.nav_my_saved_locations) {
             GridFragment gridFrag = new GridFragment();
             setFragment(gridFrag);
 
             // Update selected toolbar item
-            heart.setImageResource(R.drawable.heart_selected);
-            home.setImageResource(R.drawable.home_unselected);
+            favorite.setImageResource(R.drawable.heart_selected);
+            discovery.setImageResource(R.drawable.home_unselected);
             settings.setImageResource(R.drawable.settings_unselected);
         } else if (id == R.id.nav_link_accounts) {
             SettingsFragment settingsFrag = new SettingsFragment();
             setFragment(settingsFrag);
 
             // Update selected toolbar item
-            heart.setImageResource(R.drawable.heart_unselected);
-            home.setImageResource(R.drawable.home_unselected);
+            favorite.setImageResource(R.drawable.heart_unselected);
+            discovery.setImageResource(R.drawable.home_unselected);
             settings.setImageResource(R.drawable.settings_selected);
         } else if (id == R.id.nav_update_interests) {
             SettingsFragment settingsFrag = new SettingsFragment();
             setFragment(settingsFrag);
 
             // Update selected toolbar item
-            heart.setImageResource(R.drawable.heart_unselected);
-            home.setImageResource(R.drawable.home_unselected);
+            favorite.setImageResource(R.drawable.heart_unselected);
+            discovery.setImageResource(R.drawable.home_unselected);
             settings.setImageResource(R.drawable.settings_selected);
         } else if (id == R.id.nav_settings) {
             SettingsFragment settingsFrag = new SettingsFragment();
             setFragment(settingsFrag);
 
             // Update selected toolbar item
-            heart.setImageResource(R.drawable.heart_unselected);
-            home.setImageResource(R.drawable.home_unselected);
+            favorite.setImageResource(R.drawable.heart_unselected);
+            discovery.setImageResource(R.drawable.home_unselected);
             settings.setImageResource(R.drawable.settings_selected);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
