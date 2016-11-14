@@ -3,6 +3,8 @@ package com.gtoz.uxsocialmedia;
 import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.app.FragmentManager;
@@ -17,10 +19,20 @@ import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fm;
     private NavigationView navigationView;
-    private ImageView heart, home, settings;
+    private ImageView heart, home, settings, camera;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         heart = (ImageView) findViewById(R.id.heart);
         home = (ImageView) findViewById(R.id.home);
         settings = (ImageView) findViewById(R.id.settings);
+        camera = (ImageView) findViewById(R.id.camera);
 
         // Set menu fragment in main content layout
         DiscoveryFragment menuFrag = new DiscoveryFragment();
@@ -97,6 +110,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 settings.setImageResource(R.drawable.settings_selected);
             }
         });
+
+        //Listener for camera (qr scanner)
+        camera.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent mainIntent = new Intent(MainActivity.this, QrReaderActivity.class);
+                startActivity(mainIntent);
+
+            }
+        });
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -129,7 +158,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         if (id == R.id.menu_search) {
             // Handle search bar here
-
 
 
             return true;
@@ -195,5 +223,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fm = getFragmentManager();
         fm.beginTransaction().replace(R.id.flContent, fragment).addToBackStack(null).commit();
         fm.executePendingTransactions();
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Main Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
     }
 }

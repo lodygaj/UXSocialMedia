@@ -75,8 +75,6 @@ public class StoryFragment extends Fragment {
         share.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Toast.makeText(view.getContext(), "Clicked on Share" , Toast.LENGTH_SHORT).show();
-
-
             }
         });
 
