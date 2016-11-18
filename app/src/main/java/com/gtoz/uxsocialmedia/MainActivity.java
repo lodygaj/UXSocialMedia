@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 favorite.setImageResource(R.drawable.heart_selected);
                 discovery.setImageResource(R.drawable.home_unselected);
                 settings.setImageResource(R.drawable.settings_unselected);
-                poi.setImageResource(R.drawable.poi_unselected);
-                qr.setImageResource(R.drawable.qr_unselected);
+                poi.setImageResource(R.drawable.cat1);
+                qr.setImageResource(R.drawable.cat2);
             }
         });
 
@@ -133,8 +133,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 favorite.setImageResource(R.drawable.heart_unselected);
                 discovery.setImageResource(R.drawable.home_unselected);
                 settings.setImageResource(R.drawable.settings_unselected);
-                //poi.setImageResource(R.drawable.poi_selected);
-               // qr.setImageResource(R.drawable.qr_unselected);
+                poi.setImageResource(R.drawable.poi_selected);
+                qr.setImageResource(R.drawable.qr_unselected);
             }
         });
 
@@ -147,14 +147,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 favorite.setImageResource(R.drawable.heart_unselected);
                 discovery.setImageResource(R.drawable.home_unselected);
                 settings.setImageResource(R.drawable.settings_unselected);
-                //poi.setImageResource(R.drawable.poi_unselected);
-                //qr.setImageResource(R.drawable.qr_selected);
+                poi.setImageResource(R.drawable.poi_unselected);
+                qr.setImageResource(R.drawable.qr_selected);
 
                 // Set Qr Reader fragment
                 QrReaderFragment fragment = new QrReaderFragment();
                 setFragment(fragment);
-//                Intent qrIntent = new Intent(getApplicationContext(), QrReaderActivity.class);
-//                startActivity(qrIntent);
+                Intent qrIntent = new Intent(getApplicationContext(), QrReaderActivity.class);
+                startActivity(qrIntent);
 
             }
         });
