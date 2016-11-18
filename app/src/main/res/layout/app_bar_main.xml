@@ -83,25 +83,25 @@
                     android:contentDescription="Discovery"
                     android:src="@drawable/home_selected" />
 
-                <ImageView
-                    android:id="@+id/poi"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:contentDescription="POI"
-                    android:src="@drawable/poi_unselected"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/poi"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:contentDescription="POI"-->
+                    <!--android:src="@drawable/poi_unselected"/>-->
 
-                <ImageView
-                    android:id="@+id/qrcode"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:contentDescription="QR Reader"
-                    android:src="@drawable/qr_unselected"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/qrcode"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:contentDescription="QR Reader"-->
+                    <!--android:src="@drawable/qr_unselected"/>-->
 
             </LinearLayout>
 

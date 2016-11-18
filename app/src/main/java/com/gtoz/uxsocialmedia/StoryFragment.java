@@ -1,9 +1,11 @@
 package com.gtoz.uxsocialmedia;
 
+import android.app.FragmentTransaction;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +77,23 @@ public class StoryFragment extends Fragment {
         share.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Toast.makeText(view.getContext(), "Clicked on Share" , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Handling moving to the My Locations Fragment
+        Button addtoLocation = (Button) view.findViewById(R.id.reservationButton);
+        addtoLocation.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+
+                Fragment frag = new MyLocationsFragment();
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(((ViewGroup)getView().getParent()).getId(), frag);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.addToBackStack(null);
+                ft.commit();
+
+
             }
         });
 
