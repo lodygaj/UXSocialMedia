@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 favorite.setImageResource(R.drawable.heart_selected);
                 discovery.setImageResource(R.drawable.home_unselected);
                 settings.setImageResource(R.drawable.settings_unselected);
-                poi.setImageResource(R.drawable.cat1);
-                qr.setImageResource(R.drawable.cat2);
+                poi.setImageResource(R.drawable.poi_unselected);
+                qr.setImageResource(R.drawable.qr_unselected);
             }
         });
 
