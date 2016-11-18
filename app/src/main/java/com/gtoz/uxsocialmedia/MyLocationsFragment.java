@@ -42,7 +42,7 @@ public class MyLocationsFragment extends Fragment {
                 "FGCU",
                 "FGCU",
                 "FGCU",
-                "FGCU",
+                "FGC",
 
         };
 
