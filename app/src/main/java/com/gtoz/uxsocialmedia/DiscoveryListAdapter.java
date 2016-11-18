@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * Created by GtoZ on 11/5/2016.
  */
@@ -18,17 +20,15 @@ import android.widget.Toast;
 public class DiscoveryListAdapter extends RecyclerView.Adapter<DiscoveryListAdapter.GridView> {
     private Context context;
     private FragmentManager fm;
+    private ArrayList<Story> list;
+    private int selectedItem;
+    private TextView selectedText;
+    boolean textShown = false;
 
-    int[] imgList = {R.drawable.one, R.drawable.two, R.drawable.three, R.drawable.four,
-            R.drawable.five, R.drawable.six, R.drawable.seven, R.drawable.eight, R.drawable.nine, R.drawable.ten};
-
-    String[] nameList = {"SkyHigh JetPacks and Flyboard", "Fort Myers Beach, FL", "Lakes Regional Park",
-            "Everglades Excursions", "Airboat Tours", "SkyHigh JetPacks and Flyboard", "Fort Myers Beach, FL", "Lakes Regional Park",
-            "Everglades Excursions", "Airboat Tours"};
-
-    public DiscoveryListAdapter(Context context, FragmentManager fm) {
+    public DiscoveryListAdapter(Context context, FragmentManager fm, ArrayList<Story> list) {
         this.context = context;
         this.fm = fm;
+        this.list = list;
     }
 
     @Override
@@ -40,13 +40,13 @@ public class DiscoveryListAdapter extends RecyclerView.Adapter<DiscoveryListAdap
 
     @Override
     public void onBindViewHolder(DiscoveryListAdapter.GridView holder, int position) {
-        holder.imageView.setImageResource(imgList[position]);
-        holder.textView.setText(nameList[position]);
+        holder.imageView.setImageResource(list.get(position).getResource());
+        holder.textView.setText(list.get(position).getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return imgList.length;
+        return list.size();
     }
 
     // Method called to upgrade fragment
@@ -58,7 +58,7 @@ public class DiscoveryListAdapter extends RecyclerView.Adapter<DiscoveryListAdap
     public class GridView extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         TextView textView;
-        boolean textShown = false;
+
 
         public GridView(View itemView) {
             super(itemView);
@@ -68,19 +68,37 @@ public class DiscoveryListAdapter extends RecyclerView.Adapter<DiscoveryListAdap
             textView.setVisibility(View.GONE);
         }
 
+        // Handles when item is clicked
         @Override
         public void onClick(View view) {
+            // Text is showing for one item
             if(textShown) {
-                StoryFragment storyFragment = new StoryFragment();
-                setFragment(storyFragment);
-                textShown = false;
+                // Text is showing for same item
+                if(getLayoutPosition() == selectedItem) {
+                    // Set selected story and load story fragment
+                    StoryFragment storyFragment = new StoryFragment();
+                    storyFragment.setStory(list.get(getLayoutPosition()));
+                    setFragment(storyFragment);
+                    textShown = false;
+                }
+                // Text is showing for different item
+                else {
+                    // Hide other items text
+                    selectedText.setVisibility(View.GONE);
+                    // Show clicked items text
+                    selectedItem = getLayoutPosition();
+                    selectedText = textView;
+                    textView.setVisibility(View.VISIBLE);
+                }
             }
+            // Text is not showing for any item
             else {
+                // Show clicked items text
+                selectedItem = getLayoutPosition();
+                selectedText = textView;
                 textView.setVisibility(View.VISIBLE);
                 textShown = true;
             }
-
-            Toast.makeText(view.getContext(), "Clicked on Thrifty story" , Toast.LENGTH_SHORT).show();
         }
     }
 }

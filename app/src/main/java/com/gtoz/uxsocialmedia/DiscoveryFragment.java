@@ -30,6 +30,9 @@ public class DiscoveryFragment extends Fragment {
     private FragmentManager fm;
     private RecyclerView thriftyList, recommendedList, categoryList;
 
+    private ArrayList<Story> list1;
+    private ArrayList<Story> list2;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -52,6 +55,13 @@ public class DiscoveryFragment extends Fragment {
         ResponseReceiver receiver = new ResponseReceiver();
         LocalBroadcastManager.getInstance(context).registerReceiver(receiver, filter);
 
+
+        // Create arrays of sample stories
+        list1 = new ArrayList<>();
+        list2 = new ArrayList<>();
+        createLists();
+
+
         // Set initial horizontal list layout and spacing values
         ListSpacing dec = new ListSpacing(0, 10);
 
@@ -61,7 +71,7 @@ public class DiscoveryFragment extends Fragment {
         layoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
         thriftyList.setLayoutManager(layoutManager1);
         thriftyList.setItemAnimator(new DefaultItemAnimator());
-        DiscoveryListAdapter thriftyAdapter = new DiscoveryListAdapter(context, fm);
+        DiscoveryListAdapter thriftyAdapter = new DiscoveryListAdapter(context, fm, list1);
         thriftyList.setAdapter(thriftyAdapter);
         thriftyList.addItemDecoration(dec);
 
@@ -71,7 +81,7 @@ public class DiscoveryFragment extends Fragment {
         layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
         recommendedList.setLayoutManager(layoutManager2);
         recommendedList.setItemAnimator(new DefaultItemAnimator());
-        DiscoveryListAdapter recommendedAdapter = new DiscoveryListAdapter(context, fm);
+        DiscoveryListAdapter recommendedAdapter = new DiscoveryListAdapter(context, fm, list2);
         recommendedList.setAdapter(recommendedAdapter);
         recommendedList.addItemDecoration(dec);
 
@@ -102,5 +112,41 @@ public class DiscoveryFragment extends Fragment {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+    }
+
+    // Used to hardcode sample stories for testing
+    public void createLists() {
+        Story story1 = new Story("Story 1", "Fort Myers, FL", null, "image", "Skiing", "This is sample Text", R.drawable.one, 237);
+        Story story2 = new Story("Story 2", "San Diego, CA", null, "image", "Surfing", "This is sample Text", R.drawable.two, 1216);
+        Story story3 = new Story("Story 3", "Los Angeles, CA", null, "image", "Surfing", "This is sample Text", R.drawable.three, 7243);
+        Story story4 = new Story("Story 4", "Denver, CO", null, "image", "Mountain", "This is sample Text", R.drawable.four, 5231);
+        Story story5 = new Story("Story 5", "Nashville, TN", null, "image", "Cycling", "This is sample Text", R.drawable.five, 863);
+        Story story6 = new Story("Story 6", "Miami, FL", null, "image", "Surfing", "This is sample Text", R.drawable.six, 220);
+        Story story7 = new Story("Story 7", "Park City, UT", null, "image", "Moutain", "This is sample Text", R.drawable.seven, 3655);
+        Story story8 = new Story("Story 8", "Aspen, CO", null, "image", "Skiing", "This is sample Text", R.drawable.eight, 2643);
+        Story story9 = new Story("Story 9", "Grand Rapids, MI", null, "image", "Cycling", "This is sample Text", R.drawable.nine, 1364);
+        Story story10 = new Story("Story 10", "Asheville, NC", null, "image", "Moutain", "This is sample Text", R.drawable.ten, 1744);
+
+        list1.add(story1);
+        list1.add(story2);
+        list1.add(story3);
+        list1.add(story4);
+        list1.add(story5);
+        list1.add(story6);
+        list1.add(story7);
+        list1.add(story8);
+        list1.add(story9);
+        list1.add(story10);
+
+        list2.add(story10);
+        list2.add(story9);
+        list2.add(story8);
+        list2.add(story7);
+        list2.add(story6);
+        list2.add(story5);
+        list2.add(story4);
+        list2.add(story3);
+        list2.add(story2);
+        list2.add(story1);
     }
 }

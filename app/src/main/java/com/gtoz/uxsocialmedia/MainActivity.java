@@ -150,8 +150,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //poi.setImageResource(R.drawable.poi_unselected);
                 //qr.setImageResource(R.drawable.qr_selected);
 
-                Intent mainIntent = new Intent(MainActivity.this, QrReaderActivity.class);
-                startActivity(mainIntent);
+                // Set Qr Reader fragment
+                QrReaderFragment fragment = new QrReaderFragment();
+                setFragment(fragment);
+//                Intent qrIntent = new Intent(getApplicationContext(), QrReaderActivity.class);
+//                startActivity(qrIntent);
 
             }
         });

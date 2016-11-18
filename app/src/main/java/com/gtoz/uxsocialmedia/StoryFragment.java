@@ -1,11 +1,8 @@
 package com.gtoz.uxsocialmedia;
 
-import android.app.FragmentTransaction;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,52 +12,69 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.Toast;
 
+import static com.gtoz.uxsocialmedia.R.id.likeButton;
+
 public class StoryFragment extends Fragment {
     int numOfLikes = 0;
+    Story story;
+
+//    public StoryFragment(Story story) {
+//        this.story = story;
+//    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_story, container, false);
 
-        // Set image header
-        ImageView imageTest = (ImageView) view.findViewById(R.id.imgHeader);
-        imageTest.setImageResource(R.drawable.flyboard);
+        // Set header image
+        ImageView image = (ImageView) view.findViewById(R.id.resource);
+        image.setImageResource(story.getResource());
 
-        //Handles the title text as button to go to relevant website
-        final TextView titleText = (TextView) view.findViewById(R.id.titlerText);
-        titleText.setOnClickListener(new View.OnClickListener() {
+        // Set title text
+        final TextView title = (TextView) view.findViewById(R.id.title);
+        title.setText(story.getTitle());
+        //Handles the title click listener to go to relevant website
+//        if(story.getWebsite() != null) {
+//            title.setOnClickListener(new View.OnClickListener() {
+//
+//                @Override
+//                public void onClick(View v) {
+//                    String url = story.getWebsite();
+//                    Intent i = new Intent(Intent.ACTION_VIEW);
+//                    i.setData(Uri.parse(url));
+//                    startActivity(i);
+//                }
+//            });
+//        }
 
-            @Override
-            public void onClick(View v) {
-                String url = "https://google.com";
-
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
-            }
-        });
-
+        // Set category text
+        TextView category = (TextView) view.findViewById(R.id.category);
+        category.setText(story.getCategory());
         //Handles category text as button to go to the relevant feed
-        TextView catText = (TextView) view.findViewById(R.id.catText);
-        catText.setOnClickListener(new View.OnClickListener(){
+        category.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent mainIntent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-                startActivity(mainIntent);
+                Toast.makeText(view.getContext(), "Clicked on Category" , Toast.LENGTH_SHORT).show();
             }
         });
 
-        //Handling the Like Button
+        // Set # of likes
+        TextView likes = (TextView) view.findViewById(R.id.likes);
+        likes.setText(Integer.toString(story.getLikes()));
+        //Handles the Like Button
         ImageView likeButton = (ImageView) view.findViewById(R.id.likeButton);
         likeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 numOfLikes+=1;
-                TextView tv = (TextView) view.findViewById(R.id.numLikesText);
+                TextView tv = (TextView) view.findViewById(R.id.likes);
                 tv.setText(numOfLikes + " Likes");
             }
         });
 
+        // Set location text
         Button location = (Button) view.findViewById(R.id.locationButton);
+        location.setText(story.getLocation());
         location.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Button b = (Button)v;
@@ -80,23 +94,14 @@ public class StoryFragment extends Fragment {
             }
         });
 
-        //Handling moving to the My Locations Fragment
-        Button addtoLocation = (Button) view.findViewById(R.id.reservationButton);
-        addtoLocation.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-
-                Fragment frag = new MyLocationsFragment();
-
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(((ViewGroup)getView().getParent()).getId(), frag);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
-
-
-            }
-        });
+        // Set content text
+        TextView text = (TextView) view.findViewById(R.id.text);
+        text.setText(story.getText());
 
         return view;
+    }
+
+    public void setStory(Story story) {
+        this.story = story;
     }
 }
