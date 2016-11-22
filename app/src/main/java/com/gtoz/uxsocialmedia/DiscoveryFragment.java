@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.jinstagram.entity.users.feed.MediaFeedData;
@@ -27,7 +28,8 @@ import java.util.ArrayList;
 public class DiscoveryFragment extends Fragment {
     private Context context;
     private FragmentManager fm;
-    private RecyclerView thriftyList, recommendedList, categoryList;
+    private ListView categoryList;
+    private RecyclerView thriftyList, recommendedList;
 
     private ArrayList<Story> list1;
     private ArrayList<Story> list2;
@@ -43,7 +45,7 @@ public class DiscoveryFragment extends Fragment {
         // Initialize layout objects
         thriftyList = (RecyclerView) view.findViewById(R.id.rv1);
         recommendedList = (RecyclerView) view.findViewById(R.id.rv2);
-        categoryList = (RecyclerView) view.findViewById(R.id.rv3);
+        //categoryList = (ListView) view.findViewById(R.id.rv3);
         
         // Testing InstagramRetrievalService
         Intent mServiceIntent = new Intent(getActivity(), InstagramRetrievalService.class);
@@ -84,15 +86,9 @@ public class DiscoveryFragment extends Fragment {
         recommendedList.setAdapter(recommendedAdapter);
         recommendedList.addItemDecoration(dec);
 
-        // Set up Category horizontal list
-        categoryList.setHasFixedSize(true);
-        LinearLayoutManager layoutManager3 = new LinearLayoutManager(context);
-        layoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
-        categoryList.setLayoutManager(layoutManager3);
-        categoryList.setItemAnimator(new DefaultItemAnimator());
-        CategoryListAdapter categoryAdapter = new CategoryListAdapter(context, fm);
-        categoryList.setAdapter(categoryAdapter);
-        categoryList.addItemDecoration(dec);
+        // Set up Category vertical list view
+        //CategoryListAdapter categoryAdapter = new CategoryListAdapter(context, fm);
+        //categoryList.setAdapter(categoryAdapter);
 
         return view;
     }

@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/scrollView"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,11 +63,82 @@
                 android:layout_marginBottom="5dp"
                 android:id="@+id/title3" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv3"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFFF" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/catAutomotive"
+                    android:text="Automotive"
+                    android:textColor="@color/thriftyBlack"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
+                <View style="@style/Divider"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/catExtremeSports"
+                    android:text="Extreme Sports"
+                    android:textColor="@color/thriftyBlack"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
+                <View style="@style/Divider"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/catHiking"
+                    android:text="Hiking"
+                    android:textColor="@color/thriftyBlack"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
+                <View style="@style/Divider"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/catMountain"
+                    android:text="Mountain"
+                    android:textColor="@color/thriftyBlack"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
+                <View style="@style/Divider"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/catSnow"
+                    android:text="Snow"
+                    android:textColor="@color/thriftyBlack"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
+                <View style="@style/Divider"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/catWater"
+                    android:text="Water"
+                    android:textColor="@color/thriftyBlack"
+                    android:textSize="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
