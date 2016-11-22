@@ -42,9 +42,7 @@ public class QrReaderFragment extends Fragment implements ZXingScannerView.Resul
     @Override
     public void handleResult(Result result) {
         //Handle result here
-        Log.w("handleResult", result.getText());
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getApplicationContext());
-
         qrString = result.getText();
 
         //Intiialize result

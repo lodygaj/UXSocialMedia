@@ -50,14 +50,13 @@ public class DiscoveryListAdapter extends RecyclerView.Adapter<DiscoveryListAdap
 
     // Method called to upgrade fragment
     public void setFragment(Fragment fragment) {
-        fm.beginTransaction().replace(R.id.flContent, fragment).addToBackStack(null).commit();
+        fm.beginTransaction().replace(R.id.root_frame, fragment).addToBackStack(null).commit();
         fm.executePendingTransactions();
     }
 
     public class GridView extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         TextView textView;
-
 
         public GridView(View itemView) {
             super(itemView);

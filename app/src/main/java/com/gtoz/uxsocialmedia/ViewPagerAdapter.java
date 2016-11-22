@@ -21,7 +21,16 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return mFragmentList.get(position);
+        switch(position) {
+            case 0: return new SettingsFragment();
+            case 1: return new MyLocationsFragment();
+            case 2: return new RootFragment();
+            case 3: return new GridFragment();
+            case 4: return new QrReaderFragment();
+            default: return new StaticFragment();
+        }
+
+        //return mFragmentList.get(position);
     }
 
     @Override

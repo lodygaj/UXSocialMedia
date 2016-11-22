@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.google.android.gms.appindexing.Action;
@@ -21,11 +23,14 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import static android.view.View.GONE;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fm;
     private NavigationView navigationView;
     private ImageView favorite, discovery, settings, qr, poi;
     private GoogleApiClient client;
+    private FrameLayout flContent;
 
     private Toolbar topToolbar;
     private TabLayout tabLayout;
@@ -76,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
 
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }

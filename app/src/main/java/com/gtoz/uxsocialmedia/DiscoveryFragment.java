@@ -86,10 +86,6 @@ public class DiscoveryFragment extends Fragment {
         recommendedList.setAdapter(recommendedAdapter);
         recommendedList.addItemDecoration(dec);
 
-        // Set up Category vertical list view
-        //CategoryListAdapter categoryAdapter = new CategoryListAdapter(context, fm);
-        //categoryList.setAdapter(categoryAdapter);
-
         return view;
     }
     public class ResponseReceiver extends BroadcastReceiver {
