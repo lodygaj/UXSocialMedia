@@ -1,7 +1,7 @@
 package com.gtoz.uxsocialmedia;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import static android.R.id.list;
 
 /**
  * Created by GtoZ on 10/2/2016.
@@ -27,6 +29,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
     public GridAdapter(Context context, FragmentManager fm) {
         this.context = context;
         this.fm = fm;
+
     }
 
     @Override

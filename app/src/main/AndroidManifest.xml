@@ -27,11 +27,6 @@
         </activity>
 
         <activity
-            android:name=".QrReaderActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name=".SurveyActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />

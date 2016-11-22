@@ -2,7 +2,7 @@ package com.gtoz.uxsocialmedia;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +12,9 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.Toast;
 
-import static com.gtoz.uxsocialmedia.R.id.likeButton;
-
 public class StoryFragment extends Fragment {
     int numOfLikes = 0;
     Story story;
-
-//    public StoryFragment(Story story) {
-//        this.story = story;
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

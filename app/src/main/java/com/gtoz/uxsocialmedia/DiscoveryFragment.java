@@ -1,7 +1,7 @@
 package com.gtoz.uxsocialmedia;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +19,6 @@ import android.widget.Toast;
 import org.jinstagram.entity.users.feed.MediaFeedData;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by GtoZ on 11/5/2016.

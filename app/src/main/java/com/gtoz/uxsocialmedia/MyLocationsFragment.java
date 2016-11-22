@@ -1,6 +1,6 @@
 package com.gtoz.uxsocialmedia;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -8,13 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.content.Context;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by GtoZ on 10/6/2016.
