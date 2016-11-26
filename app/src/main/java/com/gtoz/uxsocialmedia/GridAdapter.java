@@ -20,11 +20,11 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
     private FragmentManager fm;
     private View selectedView = null;
 
-    int[] imgList = {R.drawable.flyboard, R.drawable.two, R.drawable.three, R.drawable.four,
-            R.drawable.six, R.drawable.eight, R.drawable.ten};
+    int[] imgList = {R.drawable.germainarena, R.drawable.napleszoo, R.drawable.naplesbotgarden, R.drawable.dingdarling, R.drawable.barefootbeach,
+                        R.drawable.theveranda, R.drawable.buddhaclub, R.drawable.sunsplash, R.drawable.alicoarena, R.drawable.madhatter};
 
-    String[] nameList = {"SkyHigh JetPacks and Flyboard", "Fort Myers Beach, FL", "Lakes Regional Park", "Everglades Excursions", "Airboat Tours",
-            "Water Sports", "Bonita Beach"};
+    String[] nameList = {"Germain Arena", "Naples Zoo", "Naples Botanical Garden", "Ding Darling Wildlife Preserve", "Barefoot Beach Preserve",
+                            "The Veranda", "The Buddha Rock Club", "Sun Splash Waterpark", "Alico Arena", "Mad Hatter"};
 
     public GridAdapter(Context context, FragmentManager fm) {
         this.context = context;

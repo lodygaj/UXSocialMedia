@@ -17,9 +17,9 @@ public class CustomArrayAdapter extends ArrayAdapter<String> {
     private final Activity context;
     private final String[] title;
     private final String[] location;
-    private final Integer[] imgid;
+    private final int[] imgid;
 
-    public CustomArrayAdapter(Activity context, String[] title, String[] location, Integer[] imgid) {
+    public CustomArrayAdapter(Activity context, String[] title, String[] location, int[] imgid) {
         super(context, R.layout.simplerow, title);
         // TODO Auto-generated constructor stub
 

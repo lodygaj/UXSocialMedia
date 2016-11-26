@@ -107,7 +107,7 @@ public class DiscoveryFragment extends Fragment {
 
     // Used to hardcode sample stories for testing
     public void createLists() {
-        Story story1 = new Story("Story 1", "Fort Myers, FL", null, "video", "Skiing", "This is sample Text", R.drawable.one, 237);
+        Story story1 = new Story("Story 1", "Fort Myers, FL", null, "image", "Skiing", "This is sample Text", R.drawable.one, 237);
         Story story2 = new Story("Story 2", "San Diego, CA", null, "image", "Surfing", "This is sample Text", R.drawable.two, 1216);
         Story story3 = new Story("Story 3", "Los Angeles, CA", null, "image", "Surfing", "This is sample Text", R.drawable.three, 7243);
         Story story4 = new Story("Story 4", "Denver, CO", null, "image", "Mountain", "This is sample Text", R.drawable.four, 5231);

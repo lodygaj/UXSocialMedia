@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -21,6 +22,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import static android.view.View.GONE;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fm;
@@ -51,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ViewPagerAdapter vAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         vAdapter.addFragment(new SettingsFragment());
         vAdapter.addFragment(new MyLocationsFragment());
-        vAdapter.addFragment(new RootFragment());
-        vAdapter.addFragment(new PoiFragment());
+        vAdapter.addFragment(new DiscoveryFragment());
+        vAdapter.addFragment(new GridFragment());
         vAdapter.addFragment(new QrReaderFragment());
         viewPager.setAdapter(vAdapter);
 
@@ -119,8 +122,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             setFragment(menuFrag);
             viewPager.setCurrentItem(2);
         } else if (id == R.id.nav_my_saved_locations) {
-            MyLocationsFragment locationsFrag = new MyLocationsFragment();
-            setFragment(locationsFrag);
+            GridFragment gridFrag = new GridFragment();
+            setFragment(gridFrag);
             viewPager.setCurrentItem(1);
         } else if (id == R.id.nav_link_accounts) {
             SettingsFragment settingsFrag = new SettingsFragment();
