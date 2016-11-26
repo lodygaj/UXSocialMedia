@@ -107,16 +107,16 @@ public class DiscoveryFragment extends Fragment {
 
     // Used to hardcode sample stories for testing
     public void createLists() {
-        Story story1 = new Story("Story 1", "Fort Myers, FL", null, "image", "Skiing", "This is sample Text", R.drawable.one, 237);
-        Story story2 = new Story("Story 2", "San Diego, CA", null, "image", "Surfing", "This is sample Text", R.drawable.two, 1216);
-        Story story3 = new Story("Story 3", "Los Angeles, CA", null, "image", "Surfing", "This is sample Text", R.drawable.three, 7243);
-        Story story4 = new Story("Story 4", "Denver, CO", null, "image", "Mountain", "This is sample Text", R.drawable.four, 5231);
-        Story story5 = new Story("Story 5", "Nashville, TN", null, "image", "Cycling", "This is sample Text", R.drawable.five, 863);
-        Story story6 = new Story("Story 6", "Miami, FL", null, "image", "Surfing", "This is sample Text", R.drawable.six, 220);
-        Story story7 = new Story("Story 7", "Park City, UT", null, "image", "Moutain", "This is sample Text", R.drawable.seven, 3655);
-        Story story8 = new Story("Story 8", "Aspen, CO", null, "image", "Skiing", "This is sample Text", R.drawable.eight, 2643);
-        Story story9 = new Story("Story 9", "Grand Rapids, MI", null, "image", "Cycling", "This is sample Text", R.drawable.nine, 1364);
-        Story story10 = new Story("Story 10", "Asheville, NC", null, "image", "Moutain", "This is sample Text", R.drawable.ten, 1744);
+        Story story1 = new Story("Germain Arena", "Estero, FL", "https://germainarena.com/", "image", "Sport", "This is sample Text", R.drawable.germainarena, 237);
+        Story story2 = new Story("Naples Zoo", "Naples, FL", "http://napleszoo.org/", "image", "Animal", "This is sample Text", R.drawable.napleszoo, 1216);
+        Story story3 = new Story("Naples Botanical Garden", "Naples, FL", "https://www.naplesgarden.org/", "image", "Nature", "This is sample Text", R.drawable.naplesbotgarden, 7243);
+        Story story4 = new Story("Ding Darling Wildlife Preserve", "Sanibel, FL", "https://www.fws.gov/refuge/jn_ding_darling/", "image", "Nature", "This is sample Text", R.drawable.dingdarling, 5231);
+        Story story5 = new Story("The Veranda", "Fort Myers, FL", "http://www.explorenaples.com/barefoot-beach-preserve-county-park.phtml", "image", "Food", "This is sample Text", R.drawable.theveranda, 863);
+        Story story6 = new Story("Barefoot Beach Preserve", "Bonita Springs, FL", "https://www.verandarestaurant.com/", "image", "Nature", "This is sample Text", R.drawable.barefootbeach, 220);
+        Story story7 = new Story("The Buddha Rock Club", "Fort Myers, FL", "https://buddharockclub.com/", "image", "Music", "This is sample Text", R.drawable.buddhaclub, 3655);
+        Story story8 = new Story("Sun Splash Water Park", "Cape Coral, FL", "http://sunsplashwaterpark.com/", "image", "Water", "This is sample Text", R.drawable.sunsplash, 2643);
+        Story story9 = new Story("Alico Arena", "Estero, FL", "http://www.fgcuathletics.com/sports/2014/8/16/alicoarena.aspx", "image", "Sport", "This is sample Text", R.drawable.alicoarena, 1364);
+        Story story10 = new Story("Mad Hatter", "Captiva, FL", "http://www.madhatterrestaurant.com/", "image", "Food", "This is sample Text", R.drawable.madhatter, 1744);
 
         list1.add(story1);
         list1.add(story2);

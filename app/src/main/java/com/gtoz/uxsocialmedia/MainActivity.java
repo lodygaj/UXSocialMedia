@@ -1,5 +1,6 @@
 package com.gtoz.uxsocialmedia;
 
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.io.File;
 
 import static android.view.View.GONE;
 
