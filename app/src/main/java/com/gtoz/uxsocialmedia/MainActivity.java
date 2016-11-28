@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         ViewPagerAdapter vAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         vAdapter.addFragment(new SettingsFragment());
-        vAdapter.addFragment(new MyLocationsFragment());
-        vAdapter.addFragment(new DiscoveryFragment());
         vAdapter.addFragment(new GridFragment());
+        vAdapter.addFragment(new DiscoveryFragment());
+        vAdapter.addFragment(new PoiFragment());
         vAdapter.addFragment(new QrReaderFragment());
         viewPager.setAdapter(vAdapter);
 
