@@ -107,22 +107,53 @@ public class DiscoveryFragment extends Fragment {
 
     // Used to hardcode sample stories for testing
     public void createLists() {
-        Story story1 = new Story("Story 1", "Fort Myers, FL", null, "image", "Skiing", "This is sample Text", R.drawable.one, 237);
-        Story story2 = new Story("Story 2", "San Diego, CA", null, "image", "Surfing", "This is sample Text", R.drawable.two, 1216);
-        Story story3 = new Story("Story 3", "Los Angeles, CA", null, "image", "Surfing", "This is sample Text", R.drawable.three, 7243);
-        Story story4 = new Story("Story 4", "Denver, CO", null, "image", "Mountain", "This is sample Text", R.drawable.four, 5231);
-        Story story5 = new Story("Story 5", "Nashville, TN", null, "image", "Cycling", "This is sample Text", R.drawable.five, 863);
-        Story story6 = new Story("Story 6", "Miami, FL", null, "image", "Surfing", "This is sample Text", R.drawable.six, 220);
-        Story story7 = new Story("Story 7", "Park City, UT", null, "image", "Moutain", "This is sample Text", R.drawable.seven, 3655);
-        Story story8 = new Story("Story 8", "Aspen, CO", null, "image", "Skiing", "This is sample Text", R.drawable.eight, 2643);
-        Story story9 = new Story("Story 9", "Grand Rapids, MI", null, "image", "Cycling", "This is sample Text", R.drawable.nine, 1364);
-        Story story10 = new Story("Story 10", "Asheville, NC", null, "image", "Moutain", "This is sample Text", R.drawable.ten, 1744);
+        Story story1 = new Story("Germain Arena", "Estero, FL", "https://germainarena.com/", "image", "Sport",
+                "In addition to hosting Florida Everblades hockey, Southwest Florida’s premier entertainment venue offers a wide variety of choice entertainment. " +
+                        "Since the arena opened in 1998, it has hosted NHL, NBA, USBL, and Arena football games.",
+                R.drawable.germainarena, 237);
+
+        Story story2 = new Story("Naples Zoo", "Naples, FL", "http://napleszoo.org/", "image", "Animal",
+                "Naples Zoo is a nationally accredited zoo and yet much more than a walk-through zoo. The nonprofit 501(c)(3) charitable institution also features a full day of fun activities. " +
+                        "The paved path winds nearly a mile past rare and beautiful animals residing within a historic tropical garden of exotic plants first planted in 1919 with a fascinating history.",
+                R.drawable.napleszoo, 1216);
+
+        Story story3 = new Story("Naples Botanical Garden", "Naples, FL", "https://www.naplesgarden.org/", "image", "Nature",
+                "Connecting people with plants by conserving and researching the biological diversity of our collections and ecosystems; engaging our visitors in learning about plants," +
+                        " gardens and ecosystems; and inspiring our visitors to value plants, gardens and natural habitats.",
+                R.drawable.naplesbotgarden, 7243);
+
+        Story story4 = new Story("Ding Darling Wildlife Preserve", "Sanibel, FL", "https://www.fws.gov/refuge/jn_ding_darling/", "image", "Nature",
+                "The J.N. \"Ding\" Darling National Wildlife Refuge is located on the subtropical barrier island of Sanibel in the Gulf of Mexico. " +
+                        "The refuge is part of the largest undeveloped mangrove ecosystem in the United States. It is world famous for its spectacular migratory bird populations. ",
+                R.drawable.dingdarling, 5231);
+
+        //Story story5 = new Story("The Veranda", "Fort Myers, FL", "http://www.explorenaples.com/barefoot-beach-preserve-county-park.phtml", "image", "Food", "This is sample Text", R.drawable.theveranda, 863);
+        Story story6 = new Story("Barefoot Beach Preserve", "Bonita Springs, FL", "https://www.verandarestaurant.com/", "image", "Nature",
+                "Collier County's desirable coast reaches its zenith at Barefoot Beach Preserve, where numerous animal species reside and visitors are able to enjoy the ambience of the park's natural surroundings.",
+                R.drawable.barefootbeach, 220);
+
+        Story story7 = new Story("The Buddha Rock Club", "Fort Myers, FL", "https://buddharockclub.com/", "image", "Music",
+                " You'll know you are in the right place by the giant statue of Buddha, sitting in the parking lot. A couple of things you can be sure of in this bar, " +
+                        "the drinks are cold and cheap and the music is loud. Local bands love to rock here as well as those on the touring circuit.",
+                R.drawable.buddhaclub, 3655);
+
+        Story story8 = new Story("Sun Splash Water Park", "Cape Coral, FL", "http://sunsplashwaterpark.com/", "image", "Water",
+                "Seasonal amusement park with 14+ acres of waterslides, a lazy river & kids' water play area.", R.drawable.sunsplash, 2643);
+
+        Story story9 = new Story("Alico Arena", "Estero, FL", "http://www.fgcuathletics.com/sports/2014/8/16/alicoarena.aspx", "image", "Sport",
+                "Alico Arena, also known as The Nest and Dunk City, is a 120,000 sq ft multipurpose arena on the campus of Florida Gulf Coast University in Fort Myers, Florida. " +
+                        "It is the home of the FGCU Eagles volleyball and men's and women's basketball teams.",
+                R.drawable.alicoarena, 1364);
+
+        Story story10 = new Story("Mad Hatter", "Captiva, FL", "http://www.madhatterrestaurant.com/", "image", "Food",
+                "This former bungalow on the beach has been home the The Mad Hatter Restaurant for nearly 30 years, boasting one of Sanibel and Captiva's finest dining experiences.",
+                R.drawable.madhatter, 1744);
 
         list1.add(story1);
         list1.add(story2);
         list1.add(story3);
         list1.add(story4);
-        list1.add(story5);
+        //list1.add(story5);
         list1.add(story6);
         list1.add(story7);
         list1.add(story8);
@@ -134,7 +165,7 @@ public class DiscoveryFragment extends Fragment {
         list2.add(story8);
         list2.add(story7);
         list2.add(story6);
-        list2.add(story5);
+        //list2.add(story5);
         list2.add(story4);
         list2.add(story3);
         list2.add(story2);
