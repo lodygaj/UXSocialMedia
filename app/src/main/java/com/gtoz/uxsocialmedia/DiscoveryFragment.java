@@ -145,7 +145,7 @@ public class DiscoveryFragment extends Fragment {
                         "It is the home of the FGCU Eagles volleyball and men's and women's basketball teams.",
                 R.drawable.alicoarena, 1364);
 
-        Story story10 = new Story("Mad Hatter", "Captiva, FL", "http://www.madhatterrestaurant.com/", "image", "Food",
+        Story story10 = new Story("Mad Hatter", "Captiva, FL", "http://www.madhatterrestaurant.com/", "video", "Food",
                 "This former bungalow on the beach has been home the The Mad Hatter Restaurant for nearly 30 years, boasting one of Sanibel and Captiva's finest dining experiences.",
                 R.drawable.madhatter, 1744);
 

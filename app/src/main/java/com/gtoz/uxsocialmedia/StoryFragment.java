@@ -2,6 +2,7 @@ package com.gtoz.uxsocialmedia;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -11,11 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.Toast;
+import android.widget.VideoView;
+import android.widget.MediaController;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,11 +33,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static android.content.Context.MODE_PRIVATE;
 
 public class StoryFragment extends Fragment {
-    Story story;
+    private Story story;
     List<String> list = new ArrayList<String>();
+    private MediaController mediaController;
+    private VideoView video;
+    private FrameLayout videoFrame;
+    private int position = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,9 +49,54 @@ public class StoryFragment extends Fragment {
 
         final int[] numOfLikes = {(int) story.getLikes()};
 
-        // Set header image
+        // Set header resource
         ImageView image = (ImageView) view.findViewById(R.id.resource);
         image.setImageResource(story.getResource());
+        video = (VideoView) view.findViewById(R.id.videoView);
+        videoFrame = (FrameLayout) view.findViewById(R.id.videoViewFrame);
+
+        // Set up video player
+        if (mediaController == null) {
+            mediaController = new MediaController(getContext());
+            // Set the videoView that acts as the anchor for the MediaController.
+            mediaController.setAnchorView(video);
+            // Set MediaController for VideoView
+            video.setMediaController(mediaController);
+        }
+
+        String uriPath = "android.resource://com.gtoz.uxsocialmedia/"+R.raw.surfing;
+        Uri uri = Uri.parse(uriPath);
+        video.setVideoURI(uri);
+        video.requestFocus();
+
+        // When the video file ready for playback.
+        video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                video.seekTo(position);
+                if (position == 0) {
+                    video.start();
+                }
+                // When video Screen change size.
+                mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+                    @Override
+                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+                        // Re-Set the videoView that acts as the anchor for the MediaController
+                        mediaController.setAnchorView(video);
+                    }
+                });
+            }
+        });
+
+        // Set image and hide video view
+        if(story.getType().equals("image")) {
+            image.setImageResource(story.getResource());
+            videoFrame.setVisibility(View.GONE);
+        }
+        // Set video and hide image view
+        else {
+            //video.start();
+            image.setVisibility(View.GONE);
+        }
 
         // Set title text
         final TextView title = (TextView) view.findViewById(R.id.title);

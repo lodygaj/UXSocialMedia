@@ -19,34 +19,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/videoViewFrame"
+                android:layout_width="match_parent"
+                android:layout_height="235dp" >
+
+                <VideoView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/videoView"
+                    android:layout_gravity="center" />
+
+            </FrameLayout>
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:id="@+id/resource" />
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" >
-
-                <ImageView
-                    android:layout_width="34dp"
-                    android:layout_height="31dp"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/likeButton"
-                    android:background="@drawable/heart_selected"
-                    android:layout_weight="0.06" />
-
-                <TextView
-                    android:id="@+id/likes"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="# of Likes"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:layout_weight="0.95"
-                    android:layout_alignParentTop="true" />
-
-            </RelativeLayout>
 
             <TextView
                 android:text="Title"
@@ -62,39 +53,69 @@
                 android:layout_height="match_parent"
                 android:id="@+id/category"
                 android:textSize="20dp"
-                android:textColor="@color/thriftyBlack"/>
+                android:textColor="@color/thriftyBlack"
+                android:layout_marginBottom="5dp" />
+
+            <View style="@style/Divider"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:weightSum="3">
 
                 <Button
                     android:text="Location"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/locationButton"
-                    android:layout_weight="0.11"
+                    android:layout_weight="1.25"
                     android:drawableLeft="@android:drawable/ic_dialog_map"
                     android:background="@android:color/transparent"
                     android:drawableTint="@color/colorPrimaryDark"
-                    android:elevation="0dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView7"
-                    android:layout_weight="0.29"/>
+                    android:elevation="0dp" />
 
                 <Button
                     android:text="Share"
-                    android:layout_width="104dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/shareButton"
-                    android:layout_weight="0.10"
+                    android:layout_weight="1"
                     android:drawableLeft="@android:drawable/ic_menu_share"
                     android:background="@android:color/transparent"
-                    android:drawableTint="@color/colorPrimaryDark"/>
+                    android:drawableTint="@color/colorPrimaryDark"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"/>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75">
+
+                    <TextView
+                        android:id="@+id/likes"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="#"
+                        android:textSize="15dp"
+                        android:textColor="@color/thriftyBlack"
+                        android:layout_alignParentTop="true"
+                        android:gravity="right"
+                        android:layout_toLeftOf="@+id/likeButton"
+                        android:paddingRight="5dp"/>
+
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="31dp"
+                        android:id="@+id/likeButton"
+                        android:background="@drawable/heart_selected"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="5dp"/>
+
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -103,7 +124,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/reservationButton"
-                style="@style/ThriftyButton"/>
+                android:layout_marginBottom="5dp"
+                style="@style/ThriftyButton" />
+
+            <View style="@style/Divider"/>
 
             <TextView
                 android:text="Text"
@@ -111,7 +135,8 @@
                 android:layout_height="match_parent"
                 android:id="@+id/text"
                 android:textSize="20dp"
-                android:textColor="@color/thriftyBlack"/>
+                android:textColor="@color/thriftyBlack"
+                android:layout_marginTop="5dp"/>
 
         </LinearLayout>
     </ScrollView>
