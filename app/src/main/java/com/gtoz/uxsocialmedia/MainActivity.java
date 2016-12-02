@@ -118,24 +118,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_home) {
-            DiscoveryFragment menuFrag = new DiscoveryFragment();
-            setFragment(menuFrag);
             viewPager.setCurrentItem(2);
         } else if (id == R.id.nav_my_saved_locations) {
-            GridFragment gridFrag = new GridFragment();
-            setFragment(gridFrag);
             viewPager.setCurrentItem(1);
         } else if (id == R.id.nav_link_accounts) {
-            SettingsFragment settingsFrag = new SettingsFragment();
-            setFragment(settingsFrag);
             viewPager.setCurrentItem(0);
         } else if (id == R.id.nav_update_interests) {
-            SettingsFragment settingsFrag = new SettingsFragment();
-            setFragment(settingsFrag);
             viewPager.setCurrentItem(0);
         } else if (id == R.id.nav_settings) {
-            SettingsFragment settingsFrag = new SettingsFragment();
-            setFragment(settingsFrag);
             viewPager.setCurrentItem(0);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -146,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // Method called to update fragment
     public void setFragment(Fragment fragment) {
         fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.flContent, fragment).addToBackStack(null).commit();
+        fm.beginTransaction().replace(R.id.root_frame, fragment).addToBackStack(null).commit();
         fm.executePendingTransactions();
     }
 

@@ -86,6 +86,8 @@ public class DiscoveryFragment extends Fragment {
         recommendedList.setAdapter(recommendedAdapter);
         recommendedList.addItemDecoration(dec);
 
+        //
+
         return view;
     }
     public class ResponseReceiver extends BroadcastReceiver {
