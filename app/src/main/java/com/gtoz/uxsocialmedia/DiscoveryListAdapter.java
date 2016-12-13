@@ -50,7 +50,7 @@ public class DiscoveryListAdapter extends RecyclerView.Adapter<DiscoveryListAdap
 
     // Method called to upgrade fragment
     public void setFragment(Fragment fragment) {
-        fm.beginTransaction().replace(R.id.root_frame, fragment).addToBackStack(null).commit();
+        fm.beginTransaction().replace(R.id.fl_content, fragment).addToBackStack(null).commit();
         fm.executePendingTransactions();
     }
 

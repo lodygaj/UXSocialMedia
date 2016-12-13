@@ -1,7 +1,7 @@
 package com.gtoz.uxsocialmedia;
 
 /**
- * Created by Brendan on 11/17/2016.
+ * Created by GtoZ on 11/17/2016.
  */
 
 import android.app.Activity;
@@ -21,7 +21,6 @@ public class CustomArrayAdapter extends ArrayAdapter<String> {
 
     public CustomArrayAdapter(Activity context, String[] title, String[] location, int[] imgid) {
         super(context, R.layout.simplerow, title);
-        // TODO Auto-generated constructor stub
 
         this.context=context;
         this.title=title;
@@ -41,6 +40,5 @@ public class CustomArrayAdapter extends ArrayAdapter<String> {
         imageView.setImageResource(imgid[position]);
         extratxt.setText(location[position]);
         return rowView;
-
     };
 }

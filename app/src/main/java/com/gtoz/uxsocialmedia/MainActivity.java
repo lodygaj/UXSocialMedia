@@ -7,34 +7,25 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import static android.view.View.GONE;
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fm;
     private NavigationView navigationView;
-    private ImageView favorite, discovery, settings, qr, poi;
     private GoogleApiClient client;
-    private FrameLayout flContent;
 
     private Toolbar topToolbar;
     private TabLayout tabLayout;
-    private ViewPager viewPager;
     private int[] tabIcons = {R.drawable.settings_unselected,
             R.drawable.heart_unselected, R.drawable.home_unselected,
             R.drawable.poi_unselected, R.drawable.qr_unselected};
@@ -44,34 +35,69 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fm = getSupportFragmentManager();
+
         // Set up top toolbar
         topToolbar = (Toolbar) findViewById(R.id.topToolbar);
         setSupportActionBar(topToolbar);
         getSupportActionBar().setTitle("Thrifty");
 
-        // Set up view pager for sliding navigation
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        ViewPagerAdapter vAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        vAdapter.addFragment(new SettingsFragment());
-        vAdapter.addFragment(new MyLocationsFragment());
-        vAdapter.addFragment(new DiscoveryFragment());
-        vAdapter.addFragment(new PoiFragment());
-        vAdapter.addFragment(new QrReaderFragment());
-        viewPager.setAdapter(vAdapter);
+        // Set initial fragment
+        setFragment(new DiscoveryFragment());
 
         // Set up tab layout
         tabLayout = (TabLayout) findViewById(R.id.tabs);
-        // Attach to viewPager
-        tabLayout.setupWithViewPager(viewPager);
         // Add icons
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
-        tabLayout.getTabAt(3).setIcon(tabIcons[3]);
-        tabLayout.getTabAt(4).setIcon(tabIcons[4]);
+        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[0]));
+        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[1]));
+        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[2]));
+        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[3]));
+        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[4]));
+        // Set indicator to initial position
+        tabLayout.setScrollPosition(2, 0, false);
+        // Set click listener for tabs
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                // Load fragment
+                switch(position) {
+                    case 0: setFragment(new SettingsFragment());
+                            break;
+                    case 1: setFragment(new MyLocationsFragment());
+                            break;
+                    case 2: setFragment(new DiscoveryFragment());
+                            break;
+                    case 3: setFragment(new PoiFragment());
+                            break;
+                    case 4: setFragment(new QrReaderFragment());
+                            break;
+                    default: setFragment(new QrReaderFragment());
+                }
+            }
 
-        // Set discovery fragment on app start
-        viewPager.setCurrentItem(2);
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {}
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                // Load fragment
+                switch(position) {
+                    case 0: setFragment(new SettingsFragment());
+                            break;
+                    case 1: setFragment(new MyLocationsFragment());
+                            break;
+                    case 2: setFragment(new DiscoveryFragment());
+                            break;
+                    case 3: setFragment(new PoiFragment());
+                            break;
+                    case 4: setFragment(new QrReaderFragment());
+                            break;
+                    default: setFragment(new QrReaderFragment());
+                }
+            }
+        });
 
         // Set up navigation drawer
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -118,15 +144,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_home) {
-            viewPager.setCurrentItem(2);
+
         } else if (id == R.id.nav_my_saved_locations) {
-            viewPager.setCurrentItem(1);
+
         } else if (id == R.id.nav_link_accounts) {
-            viewPager.setCurrentItem(0);
+
         } else if (id == R.id.nav_update_interests) {
-            viewPager.setCurrentItem(0);
+
         } else if (id == R.id.nav_settings) {
-            viewPager.setCurrentItem(0);
+
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -135,8 +161,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // Method called to update fragment
     public void setFragment(Fragment fragment) {
-        fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.root_frame, fragment).addToBackStack(null).commit();
+        fm.beginTransaction().replace(R.id.fl_content, fragment).addToBackStack(null).commit();
         fm.executePendingTransactions();
     }
 

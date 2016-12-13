@@ -1,17 +1,14 @@
 package com.gtoz.uxsocialmedia;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,19 +21,9 @@ import android.widget.MediaController;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 
 public class StoryFragment extends Fragment {
     private Story story;
-    List<String> list = new ArrayList<String>();
     private MediaController mediaController;
     private VideoView video;
     private FrameLayout videoFrame;

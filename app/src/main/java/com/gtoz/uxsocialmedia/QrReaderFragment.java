@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.zxing.Result;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -17,7 +18,6 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class QrReaderFragment extends Fragment implements ZXingScannerView.ResultHandler {
     private String qrString;
-    private boolean scanResult;
     private ZXingScannerView mScannerView;
 
     @Override
@@ -41,24 +41,13 @@ public class QrReaderFragment extends Fragment implements ZXingScannerView.Resul
 
     @Override
     public void handleResult(Result result) {
-        //Handle result here
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getApplicationContext());
+        // Retrieve result
         qrString = result.getText();
 
-        //Intiialize result
-        scanResult = false;
+        Toast.makeText(getActivity().getApplicationContext(),
+                "Code: " + qrString, Toast.LENGTH_LONG).show();
 
-        builder.setTitle("Scan result");
-        if(scanResult)
-        {
-            builder.setMessage("Found!");
-        }
-        else {
-            builder.setMessage("Not found!");
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
-        }
         mScannerView.resumeCameraPreview(this);  //  use to Resume scanning
-        mScannerView.stopCamera();
+        //mScannerView.stopCamera();
     }
 }

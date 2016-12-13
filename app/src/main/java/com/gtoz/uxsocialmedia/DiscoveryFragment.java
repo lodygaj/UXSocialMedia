@@ -28,7 +28,6 @@ import java.util.ArrayList;
 public class DiscoveryFragment extends Fragment {
     private Context context;
     private FragmentManager fm;
-    private ListView categoryList;
     private RecyclerView thriftyList, recommendedList;
 
     private ArrayList<Story> list1;
@@ -103,7 +102,7 @@ public class DiscoveryFragment extends Fragment {
             //ArrayList<MediaFeedData> mediaFeed = intent.getParcelableArrayListExtra("MEDIA");
 
             Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+            //toast.show();
         }
     }
 

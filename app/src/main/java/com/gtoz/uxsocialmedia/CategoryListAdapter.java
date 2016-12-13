@@ -51,7 +51,7 @@ public class CategoryListAdapter extends BaseAdapter {
 
     // Method called to upgrade fragment
     public void setFragment(Fragment fragment) {
-        fm.beginTransaction().replace(R.id.flContent, fragment).addToBackStack(null).commit();
+        fm.beginTransaction().replace(R.id.fl_content, fragment).addToBackStack(null).commit();
         fm.executePendingTransactions();
     }
 }

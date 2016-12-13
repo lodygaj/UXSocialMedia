@@ -1,16 +1,11 @@
 package com.gtoz.uxsocialmedia;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,11 +14,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 
 
 /**
@@ -33,7 +25,6 @@ import org.json.JSONException;
 public class MyLocationsFragment extends Fragment {
 
     CustomArrayAdapter adapter;
-    ListView lv;
     int[] imgid;
     String[] title, location;
 
@@ -132,14 +123,9 @@ public class MyLocationsFragment extends Fragment {
                     });
                     pm.show();
                     return false;
-
                 }
             });
 
-
-
-
         return view;
         }
-
     }
