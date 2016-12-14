@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private Toolbar topToolbar;
     private TabLayout tabLayout;
-    private int[] tabIcons = {R.drawable.settings_unselected,
+    private int[] tabIcons = {R.drawable.create_story_unselected,
             R.drawable.heart_unselected, R.drawable.home_unselected,
             R.drawable.poi_unselected, R.drawable.qr_unselected};
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 int position = tab.getPosition();
                 // Load fragment
                 switch(position) {
-                    case 0: setFragment(new SettingsFragment());
+                    case 0: setFragment(new CreateStoryFragment());
                             break;
                     case 1: setFragment(new MyLocationsFragment());
                             break;
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 int position = tab.getPosition();
                 // Load fragment
                 switch(position) {
-                    case 0: setFragment(new SettingsFragment());
+                    case 0: setFragment(new CreateStoryFragment());
                             break;
                     case 1: setFragment(new MyLocationsFragment());
                             break;

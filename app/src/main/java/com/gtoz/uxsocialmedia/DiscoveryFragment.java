@@ -1,5 +1,6 @@
 package com.gtoz.uxsocialmedia;
 
+import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.BroadcastReceiver;
@@ -15,11 +16,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jinstagram.entity.users.feed.MediaFeedData;
 
 import java.util.ArrayList;
+
+import static com.gtoz.uxsocialmedia.R.id.title1;
 
 /**
  * Created by GtoZ on 11/5/2016.
@@ -44,8 +48,16 @@ public class DiscoveryFragment extends Fragment {
         // Initialize layout objects
         thriftyList = (RecyclerView) view.findViewById(R.id.rv1);
         recommendedList = (RecyclerView) view.findViewById(R.id.rv2);
-        //categoryList = (ListView) view.findViewById(R.id.rv3);
-        
+        TextView title1 = (TextView) view.findViewById(R.id.title1);
+        TextView title2 = (TextView) view.findViewById(R.id.title2);
+        TextView title3 = (TextView) view.findViewById(R.id.title3);
+
+        // Apply fonts to category headings
+        Typeface franklinGothicStd = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ITCFranklinGothicStd-DmCpIt.otf");
+        title1.setTypeface(franklinGothicStd);
+        title2.setTypeface(franklinGothicStd);
+        title3.setTypeface(franklinGothicStd);
+
         // Testing InstagramRetrievalService
         Intent mServiceIntent = new Intent(getActivity(), InstagramRetrievalService.class);
         getActivity().startService(mServiceIntent);
