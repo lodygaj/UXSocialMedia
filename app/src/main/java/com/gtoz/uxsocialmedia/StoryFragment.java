@@ -1,6 +1,7 @@
 package com.gtoz.uxsocialmedia;
 
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import android.widget.MediaController;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import static com.gtoz.uxsocialmedia.R.id.title1;
 
 
 public class StoryFragment extends Fragment {
@@ -88,6 +91,9 @@ public class StoryFragment extends Fragment {
         // Set title text
         final TextView title = (TextView) view.findViewById(R.id.title);
         title.setText(story.getTitle());
+        // Apply font
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ITCFranklinGothicStd-DmCpIt.otf");
+        title.setTypeface(font);
         //Handles the title click listener to go to relevant website
         if(story.getWebsite() != null) {
             title.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +183,10 @@ public class StoryFragment extends Fragment {
 
         // Set content text
         TextView text = (TextView) view.findViewById(R.id.text);
-        text.setText(story.getText());
+        text.setText("\t\t\t\t\t\t" + story.getText());
+        // Apply font
+        Typeface franklinGothicStd = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ITCFranklinGothicStd-Book.otf");
+        text.setTypeface(franklinGothicStd);
 
         return view;
     }
