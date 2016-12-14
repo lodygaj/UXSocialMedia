@@ -22,8 +22,6 @@ import android.widget.MediaController;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import static com.gtoz.uxsocialmedia.R.id.title1;
-
 
 public class StoryFragment extends Fragment {
     private Story story;

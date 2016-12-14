@@ -3,4 +3,72 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:text="Create a Story"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/thriftyBlack"
+        android:id="@+id/txtViewHeader" />
+
+    <TextView
+        android:text="Title: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/thriftyBlack"
+        android:id="@+id/txtViewTitle" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/edtTxtTitle" />
+
+    <TextView
+        android:text="Category: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/thriftyBlack"
+        android:id="@+id/txtViewCategory" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/categorySpinner" />
+
+    <TextView
+        android:text="Location: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/thriftyBlack"
+        android:id="@+id/txtViewLocation" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/edtTxtLocation" />
+
+    <TextView
+        android:text="Caption: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/thriftyBlack"
+        android:id="@+id/txtViewCaption" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/edtTxtCaption" />
+
+    <TextView
+        android:text="Upload Image/Video: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/thriftyBlack"
+        android:id="@+id/txtViewUpload" />
+
 </LinearLayout>

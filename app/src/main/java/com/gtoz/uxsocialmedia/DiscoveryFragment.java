@@ -15,15 +15,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.jinstagram.entity.users.feed.MediaFeedData;
-
 import java.util.ArrayList;
-
-import static com.gtoz.uxsocialmedia.R.id.title1;
 
 /**
  * Created by GtoZ on 11/5/2016.
