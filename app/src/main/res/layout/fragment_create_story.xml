@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:text="Create a Story"
+        android:textSize="20dp"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/thriftyBlack"
@@ -70,5 +73,49 @@
         android:layout_height="wrap_content"
         android:textColor="@color/thriftyBlack"
         android:id="@+id/txtViewUpload" />
+
+    <Button
+        android:text="Choose file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/uploadButton"
+        style="@style/ThriftyButton" />
+
+    <TextView
+        android:text="Preview: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/thriftyBlack"
+        android:id="@+id/txtViewPreview" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="125dp"
+        app:srcCompat="@drawable/preview_upload"
+        android:id="@+id/imageView2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:text="Submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/submitButton"
+            android:layout_weight="1"
+            style="@style/ThriftyButton" />
+
+        <Button
+            android:text="Cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancelButton"
+            android:layout_weight="1"
+            style="@style/ThriftyButton" />
+
+    </LinearLayout>
 
 </LinearLayout>
