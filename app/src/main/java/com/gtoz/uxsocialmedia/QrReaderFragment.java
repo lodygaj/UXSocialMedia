@@ -2,8 +2,6 @@ package com.gtoz.uxsocialmedia;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,10 +42,10 @@ public class QrReaderFragment extends Fragment implements ZXingScannerView.Resul
         // Retrieve result
         qrString = result.getText();
 
-        Toast.makeText(getActivity().getApplicationContext(),
-                "Code: " + qrString, Toast.LENGTH_LONG).show();
+        // Print result
+        Toast.makeText(getActivity().getApplicationContext(), qrString, Toast.LENGTH_LONG).show();
 
-        mScannerView.resumeCameraPreview(this);  //  use to Resume scanning
-        //mScannerView.stopCamera();
+        // Resume scanning
+        mScannerView.resumeCameraPreview(this);
     }
 }
