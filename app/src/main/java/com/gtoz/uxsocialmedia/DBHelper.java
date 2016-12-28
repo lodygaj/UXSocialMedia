@@ -237,4 +237,95 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return stories;
     }
+
+    // Returns an arraylist of stories from database
+    public ArrayList<Story> getStoriesByCategory(String cat) {
+        ArrayList<Story> stories = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_CATEGORY + " = '" + cat + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        while(cursor.isAfterLast() == false) {
+
+            int titleIndex = cursor.getColumnIndexOrThrow(COLUMN_TITLE);
+            String title = cursor.getString(titleIndex);
+
+            int locationIndex = cursor.getColumnIndexOrThrow(COLUMN_LOCATION);
+            String location = cursor.getString(locationIndex);
+
+            int categoryIndex = cursor.getColumnIndexOrThrow(COLUMN_CATEGORY);
+            String category = cursor.getString(categoryIndex);
+
+            int captionIndex = cursor.getColumnIndexOrThrow(COLUMN_CAPTION);
+            String caption = cursor.getString(captionIndex);
+
+            int likeIndex = cursor.getColumnIndexOrThrow(COLUMN_LIKES);
+            String like = cursor.getString(likeIndex);
+
+            int typeIndex = cursor.getColumnIndexOrThrow(COLUMN_TYPE);
+            String type = cursor.getString(typeIndex);
+
+            int resourceIndex = cursor.getColumnIndexOrThrow(COLUMN_RESOURCE);
+            String resource = cursor.getString(resourceIndex);
+
+            Story story = new Story(title, location, category, caption, Integer.parseInt(like), type, resource);
+            stories.add(story);
+
+            cursor.moveToNext();
+        }
+
+        return stories;
+    }
+
+    // Inserts a new favorite story into database
+    public void addFavoriteStory(int user_id, int story_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_FAVORITE_USER_ID, user_id);
+        values.put(COLUMN_FAVORITE_STORY_ID, story_id);
+        db.insert(TABLE_FAVORITES, null, values);
+    }
+
+    // Returns an arraylist of stories from database
+    public ArrayList<Story> getFavoriteStories(int user_id) {
+        ArrayList<Story> stories = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_FAVORITES + " WHERE " + COLUMN_FAVORITE_USER_ID + " = '" + user_id + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        while(cursor.isAfterLast() == false) {
+
+            int titleIndex = cursor.getColumnIndexOrThrow(COLUMN_TITLE);
+            String title = cursor.getString(titleIndex);
+
+            int locationIndex = cursor.getColumnIndexOrThrow(COLUMN_LOCATION);
+            String location = cursor.getString(locationIndex);
+
+            int categoryIndex = cursor.getColumnIndexOrThrow(COLUMN_CATEGORY);
+            String category = cursor.getString(categoryIndex);
+
+            int captionIndex = cursor.getColumnIndexOrThrow(COLUMN_CAPTION);
+            String caption = cursor.getString(captionIndex);
+
+            int likeIndex = cursor.getColumnIndexOrThrow(COLUMN_LIKES);
+            String like = cursor.getString(likeIndex);
+
+            int typeIndex = cursor.getColumnIndexOrThrow(COLUMN_TYPE);
+            String type = cursor.getString(typeIndex);
+
+            int resourceIndex = cursor.getColumnIndexOrThrow(COLUMN_RESOURCE);
+            String resource = cursor.getString(resourceIndex);
+
+            Story story = new Story(title, location, category, caption, Integer.parseInt(like), type, resource);
+            stories.add(story);
+
+            cursor.moveToNext();
+        }
+
+        return stories;
+    }
 }
