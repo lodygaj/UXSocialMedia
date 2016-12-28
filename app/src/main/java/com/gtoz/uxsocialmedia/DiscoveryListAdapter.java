@@ -39,7 +39,8 @@ public class DiscoveryListAdapter extends RecyclerView.Adapter<DiscoveryListAdap
 
     @Override
     public void onBindViewHolder(DiscoveryListAdapter.GridView holder, int position) {
-        holder.imageView.setImageResource(list.get(position).getResource());
+        int id = context.getResources().getIdentifier("drawable/" + list.get(position).getResource(), null, context.getPackageName());
+        holder.imageView.setImageResource(id);
         holder.textView.setText(list.get(position).getTitle());
     }
 

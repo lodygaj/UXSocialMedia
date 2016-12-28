@@ -1,5 +1,6 @@
 package com.gtoz.uxsocialmedia;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -22,6 +23,9 @@ import android.widget.MediaController;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import static android.R.id.list;
+import static com.gtoz.uxsocialmedia.R.id.img;
+
 
 public class StoryFragment extends Fragment {
     private Story story;
@@ -29,6 +33,7 @@ public class StoryFragment extends Fragment {
     private VideoView video;
     private FrameLayout videoFrame;
     private int position = 0;
+    private Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,9 +42,12 @@ public class StoryFragment extends Fragment {
 
         final int[] numOfLikes = {(int) story.getLikes()};
 
+        context = getActivity().getApplicationContext();
+
         // Set header resource
         ImageView image = (ImageView) view.findViewById(R.id.resource);
-        image.setImageResource(story.getResource());
+        int id = context.getResources().getIdentifier("drawable/" + story.getResource(), null, context.getPackageName());
+        image.setImageResource(id);
         video = (VideoView) view.findViewById(R.id.videoView);
         videoFrame = (FrameLayout) view.findViewById(R.id.videoViewFrame);
 
@@ -77,7 +85,8 @@ public class StoryFragment extends Fragment {
 
         // Set image and hide video view
         if(story.getType().equals("image")) {
-            image.setImageResource(story.getResource());
+            int imageId = context.getResources().getIdentifier("drawable/" + story.getResource(), null, context.getPackageName());
+            image.setImageResource(imageId);
             videoFrame.setVisibility(View.GONE);
         }
         // Set video and hide image view
@@ -92,19 +101,6 @@ public class StoryFragment extends Fragment {
         // Apply font
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ITCFranklinGothicStd-DmCpIt.otf");
         title.setTypeface(font);
-        //Handles the title click listener to go to relevant website
-        if(story.getWebsite() != null) {
-            title.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    String url = story.getWebsite();
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
-            });
-        }
 
         // Set category text
         TextView category = (TextView) view.findViewById(R.id.category);
@@ -181,7 +177,7 @@ public class StoryFragment extends Fragment {
 
         // Set content text
         TextView text = (TextView) view.findViewById(R.id.text);
-        text.setText("\t\t\t\t\t\t" + story.getText());
+        text.setText("\t\t\t\t\t\t" + story.getCaption());
         // Apply font
         Typeface franklinGothicStd = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ITCFranklinGothicStd-Book.otf");
         text.setTypeface(franklinGothicStd);

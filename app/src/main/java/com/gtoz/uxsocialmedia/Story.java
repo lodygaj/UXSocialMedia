@@ -7,21 +7,19 @@ package com.gtoz.uxsocialmedia;
 public class Story {
     private String title;
     private String location;
-    private String website;
-    private String type;
     private String category;
-    private String text;
-    private int resource;
+    private String caption;
     private int likes;
+    private String type;
+    private String resource;
 
-    public Story(String title, String location, String website, String type, String category,
-                 String text, int resource, int likes) {
+    public Story(String title, String location, String category,
+                 String caption, int likes, String type, String resource) {
         this.title = title;
         this.location = location;
-        this.website = website;
         this.type = type;
         this.category = category;
-        this.text = text;
+        this.caption = caption;
         this.resource = resource;
         this.likes = likes;
     }
@@ -50,11 +48,11 @@ public class Story {
         this.likes = likes;
     }
 
-    public int getResource() {
+    public String getResource() {
         return resource;
     }
 
-    public void setResource(int resource) {
+    public void setResource(String resource) {
         this.resource = resource;
     }
 
@@ -66,14 +64,6 @@ public class Story {
         this.type = type;
     }
 
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -82,11 +72,11 @@ public class Story {
         this.category = category;
     }
 
-    public String getText() {
-        return text;
+    public String getCaption() {
+        return caption;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setCaption(String text) {
+        this.caption = text;
     }
 }
