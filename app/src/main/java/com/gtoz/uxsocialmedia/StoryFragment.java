@@ -23,9 +23,6 @@ import android.widget.MediaController;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import static android.R.id.list;
-import static com.gtoz.uxsocialmedia.R.id.img;
-
 
 public class StoryFragment extends Fragment {
     private Story story;
@@ -84,7 +81,7 @@ public class StoryFragment extends Fragment {
         });
 
         // Set image and hide video view
-        if(story.getType().equals("image")) {
+        if(story.getResourceType().equals("image")) {
             int imageId = context.getResources().getIdentifier("drawable/" + story.getResource(), null, context.getPackageName());
             image.setImageResource(imageId);
             videoFrame.setVisibility(View.GONE);

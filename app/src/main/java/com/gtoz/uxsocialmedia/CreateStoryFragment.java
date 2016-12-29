@@ -108,7 +108,7 @@ public class CreateStoryFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Intent uploadIntent = new Intent();
-                //uploadIntent.setType("image/*");
+                //uploadIntent.setResourceType("image/*");
                 //uploadIntent.setAction(Intent.ACTION_GET_CONTENT);
                 //startActivityForResult(Intent.createChooser(uploadIntent, "Select image from gallery", 1));
             }

@@ -10,18 +10,20 @@ public class Story {
     private String category;
     private String caption;
     private int likes;
-    private String type;
+    private String resType;
     private String resource;
+    private String storyType;
 
     public Story(String title, String location, String category,
-                 String caption, int likes, String type, String resource) {
+                 String caption, int likes, String resType, String resource, String storyType) {
         this.title = title;
         this.location = location;
-        this.type = type;
         this.category = category;
         this.caption = caption;
-        this.resource = resource;
         this.likes = likes;
+        this.resType = resType;
+        this.resource = resource;
+        this.storyType = storyType;
     }
 
     public void setTitle(String title) {
@@ -56,12 +58,12 @@ public class Story {
         this.resource = resource;
     }
 
-    public String getType() {
-        return type;
+    public String getResourceType() {
+        return resType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setResourceType(String resourceType) {
+        this.resType = resourceType;
     }
 
     public String getCategory() {
@@ -78,5 +80,13 @@ public class Story {
 
     public void setCaption(String text) {
         this.caption = text;
+    }
+
+    public String getStoryType() {
+        return storyType;
+    }
+
+    public void setStoryType(String storyType) {
+        this.storyType = storyType;
     }
 }

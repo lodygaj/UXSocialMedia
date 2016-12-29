@@ -64,11 +64,8 @@ public class DiscoveryFragment extends Fragment {
 
         // Get stories from database
         DBHelper dbHelper = new DBHelper(context);
-        list1 = new ArrayList<>();
-        list2 = new ArrayList<>();
-        list1 = dbHelper.getStories();
-        list2 = dbHelper.getStories();
-
+        list1 = dbHelper.getStoriesByType("thrifty");
+        list2 = dbHelper.getStoriesByType("people");
 
 
         // Set initial horizontal list layout and spacing values
