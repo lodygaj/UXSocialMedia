@@ -1,5 +1,12 @@
 package com.gtoz.uxsocialmedia;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
@@ -10,7 +17,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
+
+import static android.R.attr.bitmap;
+import static android.R.attr.id;
+import static com.gtoz.uxsocialmedia.R.raw.surfing;
 
 /**
  * Created by GtoZ on 11/5/2016.
@@ -39,8 +51,24 @@ public class DiscoveryListAdapter extends RecyclerView.Adapter<DiscoveryListAdap
 
     @Override
     public void onBindViewHolder(DiscoveryListAdapter.GridView holder, int position) {
-        int id = context.getResources().getIdentifier("drawable/" + list.get(position).getResource(), null, context.getPackageName());
-        holder.imageView.setImageResource(id);
+        // Get image
+        if(list.get(position).getResourceType().equals("video")) {
+            // Get thumbnail from video file
+            Uri videoURI = Uri.parse("android.resource://com.gtoz.uxsocialmedia/raw/" + list.get(position).getResource());
+            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+            retriever.setDataSource(context, videoURI);
+            Bitmap bitmap = retriever.getFrameAtTime(100000,MediaMetadataRetriever.OPTION_PREVIOUS_SYNC);
+            Drawable drawable = new BitmapDrawable(context.getResources(), bitmap);
+            // Set thumbnail
+            holder.imageView.setImageDrawable(drawable);
+        }
+        else {
+            // Get image from drawables
+            int id = context.getResources().getIdentifier("drawable/" + list.get(position).getResource(), null, context.getPackageName());
+            // Set image
+            holder.imageView.setImageResource(id);
+        }
+
         holder.textView.setText(list.get(position).getTitle());
     }
 
