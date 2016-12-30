@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import static android.R.attr.bitmap;
 import static android.R.attr.id;
+import static android.R.attr.name;
 import static com.gtoz.uxsocialmedia.R.raw.surfing;
 
 /**
@@ -48,10 +49,14 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
 
     @Override
     public void onBindViewHolder(CategoryListAdapter.GridView holder, int position) {
-            // Get image from drawables
-        int id = context.getResources().getIdentifier("drawable/" + list.get(position), null, context.getPackageName());
+        // Get category string
+        String category = list.get(position);
+        // Set category text
+        holder.textView.setText(category);
+        // Convert string to lowercase and set image
+        category = category.substring(0).toLowerCase();
+        int id = context.getResources().getIdentifier("drawable/" + category, null, context.getPackageName());
         holder.imageView.setImageResource(id);
-        holder.textView.setText(list.get(position));
     }
 
     @Override
