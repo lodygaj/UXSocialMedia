@@ -1,57 +1,88 @@
 package com.gtoz.uxsocialmedia;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.util.ArrayList;
+
+import static android.R.attr.bitmap;
+import static android.R.attr.id;
+import static com.gtoz.uxsocialmedia.R.raw.surfing;
+
 /**
- * Created by GtoZ on 10/20/2016.
+ * Created by GtoZ on 11/5/2016.
  */
-public class CategoryListAdapter extends BaseAdapter {
+
+public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.GridView> {
     private Context context;
     private FragmentManager fm;
-    private LayoutInflater inflater;
+    private ArrayList<String> list;
 
-    // Hardcoded - Add code to get dynamically from database
-    private String[] categories = {"Automotive", "Extreme Sports", "Hiking", "Mountain", "Snow", "Water"};
-
-    public CategoryListAdapter(Context context, FragmentManager fm) {
+    public CategoryListAdapter(Context context, FragmentManager fm, ArrayList<String> list) {
         this.context = context;
         this.fm = fm;
-        this.inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.list = list;
     }
 
     @Override
-    public int getCount() {
-        return categories.length;
+    public CategoryListAdapter.GridView onCreateViewHolder(ViewGroup parent, int viewType) {
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false);
+        CategoryListAdapter.GridView gridView = new CategoryListAdapter.GridView(layoutView);
+        return gridView;
     }
 
     @Override
-    public Object getItem(int position) {
-        return categories[position];
+    public void onBindViewHolder(CategoryListAdapter.GridView holder, int position) {
+            // Get image from drawables
+        int id = context.getResources().getIdentifier("drawable/" + list.get(position), null, context.getPackageName());
+        holder.imageView.setImageResource(id);
+        holder.textView.setText(list.get(position));
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
-        View view = inflater.inflate(R.layout.view_category_item, null);
-        TextView txtCategory = (TextView) view.findViewById(R.id.txtCategory);
-        txtCategory.setText(categories[position].toString());
-        return view;
+    public int getItemCount() {
+        return list.size();
     }
 
     // Method called to upgrade fragment
     public void setFragment(Fragment fragment) {
         fm.beginTransaction().replace(R.id.fl_content, fragment).addToBackStack(null).commit();
         fm.executePendingTransactions();
+    }
+
+    public class GridView extends RecyclerView.ViewHolder implements View.OnClickListener {
+        ImageView imageView;
+        TextView textView;
+
+        public GridView(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+            imageView = (ImageView) itemView.findViewById(R.id.img);
+            textView = (TextView) itemView.findViewById(R.id.img_name);
+        }
+
+        // Handles when item is clicked
+        @Override
+        public void onClick(View view) {
+            // Set selected story and load story fragment
+            GridFragment gridFragment = new GridFragment();
+            //storyFragment.setStory(list.get(getLayoutPosition()));
+            //setFragment(gridFragment);
+        }
     }
 }

@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static com.gtoz.uxsocialmedia.R.id.title1;
+
 /**
  * Created by GtoZ on 11/5/2016.
  */
@@ -27,10 +29,11 @@ import java.util.ArrayList;
 public class DiscoveryFragment extends Fragment {
     private Context context;
     private FragmentManager fm;
-    private RecyclerView thriftyList, recommendedList;
+    private RecyclerView thriftyList, recommendedList, categoryList;
 
     private ArrayList<Story> list1;
     private ArrayList<Story> list2;
+    private ArrayList<String> list3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class DiscoveryFragment extends Fragment {
         // Initialize layout objects
         thriftyList = (RecyclerView) view.findViewById(R.id.rv1);
         recommendedList = (RecyclerView) view.findViewById(R.id.rv2);
+        categoryList = (RecyclerView) view.findViewById(R.id.rv3);
         TextView title1 = (TextView) view.findViewById(R.id.title1);
         TextView title2 = (TextView) view.findViewById(R.id.title2);
         TextView title3 = (TextView) view.findViewById(R.id.title3);
@@ -66,6 +70,7 @@ public class DiscoveryFragment extends Fragment {
         DBHelper dbHelper = new DBHelper(context);
         list1 = dbHelper.getStoriesByType("thrifty");
         list2 = dbHelper.getStoriesByType("people");
+        list3 = dbHelper.getCategories();
 
 
         // Set initial horizontal list layout and spacing values
@@ -90,6 +95,16 @@ public class DiscoveryFragment extends Fragment {
         DiscoveryListAdapter recommendedAdapter = new DiscoveryListAdapter(context, fm, list2);
         recommendedList.setAdapter(recommendedAdapter);
         recommendedList.addItemDecoration(dec);
+
+        // Set up Category horizontal list
+        categoryList.setHasFixedSize(true);
+        LinearLayoutManager layoutManager3 = new LinearLayoutManager(context);
+        layoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
+        categoryList.setLayoutManager(layoutManager3);
+        categoryList.setItemAnimator(new DefaultItemAnimator());
+        CategoryListAdapter categoryAdapter = new CategoryListAdapter(context, fm, list3);
+        categoryList.setAdapter(categoryAdapter);
+        categoryList.addItemDecoration(dec);
 
         return view;
     }

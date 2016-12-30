@@ -335,4 +335,24 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return stories;
     }
+
+    // Returns an arraylist of stories from database
+    public ArrayList<String> getCategories() {
+        ArrayList<String> categories = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_CATEGORIES;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        while(cursor.isAfterLast() == false) {
+            int categoryIndex = cursor.getColumnIndexOrThrow(COLUMN_CATEGORY_CATEGORY);
+            String category = cursor.getString(categoryIndex);
+            categories.add(category);
+
+            cursor.moveToNext();
+        }
+
+        return categories;
+    }
 }

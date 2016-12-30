@@ -63,82 +63,12 @@
                 android:layout_marginBottom="5dp"
                 android:id="@+id/title3" />
 
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/catAnimal"
-                    android:text="Animal"
-                    android:textColor="@color/thriftyBlack"
-                    android:textSize="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp" />
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/catFood"
-                    android:text="Food"
-                    android:textColor="@color/thriftyBlack"
-                    android:textSize="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp" />
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/catMusic"
-                    android:text="Music"
-                    android:textColor="@color/thriftyBlack"
-                    android:textSize="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp" />
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/catNature"
-                    android:text="Nature"
-                    android:textColor="@color/thriftyBlack"
-                    android:textSize="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp" />
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/catSport"
-                    android:text="Sport"
-                    android:textColor="@color/thriftyBlack"
-                    android:textSize="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp" />
-
-                <View style="@style/Divider"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/catWater"
-                    android:text="Water"
-                    android:textColor="@color/thriftyBlack"
-                    android:textSize="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp" />
-
-            </LinearLayout>
+                android:layout_height="200dp"
+                android:layout_marginBottom="5dp"
+                android:background="#FFFFFF" />
 
         </LinearLayout>
     </ScrollView>
