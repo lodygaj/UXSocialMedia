@@ -10,10 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 public class GridFragment extends Fragment {
     private RecyclerView recyclerView;
     private Context context;
     private FragmentManager fm;
+    private String category;
+    private ArrayList<Story> stories;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -23,14 +27,27 @@ public class GridFragment extends Fragment {
         context = getActivity().getApplicationContext();
         fm = getFragmentManager();
 
+        // Get stories from database
+        DBHelper dbHelper = new DBHelper(context);
+        stories = dbHelper.getStoriesByCategory(category);
+
+
         // Set up grid layout
         recyclerView = (RecyclerView) view.findViewById(R.id.staggered_grid);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-        GridAdapter adapter = new GridAdapter(context, fm);
+        GridAdapter adapter = new GridAdapter(context, fm, stories);
         recyclerView.setAdapter(adapter);
         ListSpacing dec = new ListSpacing(3, 2);
         recyclerView.addItemDecoration(dec);
 
         return view;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

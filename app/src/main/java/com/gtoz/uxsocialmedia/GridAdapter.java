@@ -1,5 +1,10 @@
 package com.gtoz.uxsocialmedia;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.MediaMetadataRetriever;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
@@ -10,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import static android.R.id.list;
 
 /**
@@ -18,18 +25,15 @@ import static android.R.id.list;
 public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
     private Context context;
     private FragmentManager fm;
-    private View selectedView = null;
+    private ArrayList<Story> list;
+    private int selectedItem;
+    private TextView selectedText;
+    boolean textShown = false;
 
-    int[] imgList = {R.drawable.germainarena, R.drawable.napleszoo, R.drawable.naplesbotgarden, R.drawable.dingdarling, R.drawable.barefootbeach,
-                        R.drawable.theveranda, R.drawable.buddhaclub, R.drawable.sunsplash, R.drawable.alicoarena, R.drawable.madhatter};
-
-    String[] nameList = {"Germain Arena", "Naples Zoo", "Naples Botanical Garden", "Ding Darling Wildlife Preserve", "Barefoot Beach Preserve",
-                            "The Veranda", "The Buddha Rock Club", "Sun Splash Waterpark", "Alico Arena", "Mad Hatter"};
-
-    public GridAdapter(Context context, FragmentManager fm) {
+    public GridAdapter(Context context, FragmentManager fm, ArrayList<Story> list) {
         this.context = context;
         this.fm = fm;
-
+        this.list = list;
     }
 
     @Override
@@ -41,13 +45,30 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
 
     @Override
     public void onBindViewHolder(GridView holder, int position) {
-        holder.imageView.setImageResource(imgList[position]);
-        holder.textView.setText(nameList[position]);
+        // Get image
+        if(list.get(position).getResourceType().equals("video")) {
+            // Get thumbnail from video file
+            Uri videoURI = Uri.parse("android.resource://com.gtoz.uxsocialmedia/raw/" + list.get(position).getResource());
+            MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+            retriever.setDataSource(context, videoURI);
+            Bitmap bitmap = retriever.getFrameAtTime(100000,MediaMetadataRetriever.OPTION_PREVIOUS_SYNC);
+            Drawable drawable = new BitmapDrawable(context.getResources(), bitmap);
+            // Set thumbnail
+            holder.imageView.setImageDrawable(drawable);
+        }
+        else {
+            // Get image from drawables
+            int id = context.getResources().getIdentifier("drawable/" + list.get(position).getResource(), null, context.getPackageName());
+            // Set image
+            holder.imageView.setImageResource(id);
+        }
+
+        holder.textView.setText(list.get(position).getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return nameList.length;
+        return list.size();
     }
 
     // Method called to upgrade fragment
@@ -59,7 +80,6 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
     class GridView extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
         TextView textView;
-        boolean textShown = false;
 
         public GridView(View itemView) {
             super(itemView);
@@ -71,12 +91,31 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
 
         @Override
         public void onClick(View view) {
+            // Text is showing for one item
             if(textShown) {
-                StoryFragment storyFragment = new StoryFragment();
-                setFragment(storyFragment);
-                textShown = false;
+                // Text is showing for same item
+                if(getLayoutPosition() == selectedItem) {
+                    // Set selected story and load story fragment
+                    StoryFragment storyFragment = new StoryFragment();
+                    storyFragment.setStory(list.get(getLayoutPosition()));
+                    setFragment(storyFragment);
+                    textShown = false;
+                }
+                // Text is showing for different item
+                else {
+                    // Hide other items text
+                    selectedText.setVisibility(View.GONE);
+                    // Show clicked items text
+                    selectedItem = getLayoutPosition();
+                    selectedText = textView;
+                    textView.setVisibility(View.VISIBLE);
+                }
             }
+            // Text is not showing for any item
             else {
+                // Show clicked items text
+                selectedItem = getLayoutPosition();
+                selectedText = textView;
                 textView.setVisibility(View.VISIBLE);
                 textShown = true;
             }

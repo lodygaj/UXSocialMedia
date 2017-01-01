@@ -19,7 +19,7 @@
         android:layout_alignRight="@+id/img"
         android:layout_alignBottom="@+id/img"
         android:gravity="center"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/thriftyBlack"
         android:background="#CCFFFFFF"
         android:padding="8dp" />
 

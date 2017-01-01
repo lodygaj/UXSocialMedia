@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import static android.R.attr.bitmap;
 import static android.R.attr.id;
 import static android.R.attr.name;
+import static android.media.CamcorderProfile.get;
 import static com.gtoz.uxsocialmedia.R.raw.surfing;
 
 /**
@@ -84,10 +85,11 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         // Handles when item is clicked
         @Override
         public void onClick(View view) {
-            // Set selected story and load story fragment
+            // Load category in grid fragment
+            String cat = list.get(getLayoutPosition());
             GridFragment gridFragment = new GridFragment();
-            //storyFragment.setStory(list.get(getLayoutPosition()));
-            //setFragment(gridFragment);
+            gridFragment.setCategory(cat);
+            setFragment(gridFragment);
         }
     }
 }

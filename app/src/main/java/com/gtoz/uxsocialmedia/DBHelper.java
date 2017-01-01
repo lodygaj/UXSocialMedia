@@ -15,7 +15,7 @@ import static android.media.tv.TvContract.Channels.COLUMN_TYPE;
  */
 
 public class DBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME = "UXandSocial.db";
 
     // Table USERS with columns
@@ -44,7 +44,6 @@ public class DBHelper extends SQLiteOpenHelper {
     // Table FAVORITES with columns
     private static final String TABLE_FAVORITES = "favorites";
     public static final String COLUMN_FAVORITE_ID = "_id";
-    public static final String COLUMN_FAVORITE_USER_ID = "user_id";
     public static final String COLUMN_FAVORITE_STORY_ID = "story_id";
 
     // Table CATEGORIES with columns
@@ -97,7 +96,6 @@ public class DBHelper extends SQLiteOpenHelper {
         String CREATE_FAVORITES_TABLE = "CREATE TABLE " +
                 TABLE_FAVORITES + "(" +
                 COLUMN_FAVORITE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_FAVORITE_USER_ID + " INTEGER NOT NULL, " +
                 COLUMN_FAVORITE_STORY_ID + " INTEGER NOT NULL )";
         db.execSQL(CREATE_FAVORITES_TABLE);
 
@@ -170,6 +168,11 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + TABLE_QR + " VALUES ('6','666666');");
         db.execSQL("INSERT INTO " + TABLE_QR + " VALUES ('7','777777');");
 
+        // Insert initial favorites entries
+        // Insert initial category entries
+        db.execSQL("INSERT INTO " + TABLE_FAVORITES + " VALUES ('1','1');");
+        db.execSQL("INSERT INTO " + TABLE_FAVORITES + " VALUES ('2','3');");
+        db.execSQL("INSERT INTO " + TABLE_FAVORITES + " VALUES ('3','7');");
     }
 
     @Override
@@ -288,15 +291,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public void addFavoriteStory(int user_id, int story_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_FAVORITE_USER_ID, user_id);
         values.put(COLUMN_FAVORITE_STORY_ID, story_id);
         db.insert(TABLE_FAVORITES, null, values);
     }
 
     // Returns an arraylist of stories from database
-    public ArrayList<Story> getFavoriteStories(int user_id) {
+    public ArrayList<Story> getFavoriteStories() {
         ArrayList<Story> stories = new ArrayList<>();
-        String query = "SELECT * FROM " + TABLE_FAVORITES + " WHERE " + COLUMN_FAVORITE_USER_ID + " = '" + user_id + "'";
+        String query = "SELECT A.* FROM " + TABLE_STORIES + " A WHERE A._ID IN (SELECT B.STORY_ID FROM " + TABLE_FAVORITES + " B)";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
