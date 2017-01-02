@@ -5,6 +5,7 @@ package com.gtoz.uxsocialmedia;
  */
 
 public class Story {
+    private int id;
     private String title;
     private String location;
     private String category;
@@ -14,8 +15,9 @@ public class Story {
     private String resource;
     private String storyType;
 
-    public Story(String title, String location, String category,
+    public Story(int id, String title, String location, String category,
                  String caption, int likes, String resType, String resource, String storyType) {
+        this.id = id;
         this.title = title;
         this.location = location;
         this.category = category;
@@ -24,6 +26,14 @@ public class Story {
         this.resType = resType;
         this.resource = resource;
         this.storyType = storyType;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {

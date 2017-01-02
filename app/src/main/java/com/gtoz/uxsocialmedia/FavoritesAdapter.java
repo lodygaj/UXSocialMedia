@@ -77,4 +77,8 @@ public class FavoritesAdapter extends BaseAdapter {
 
         return rowView;
     };
+
+    public void setList(ArrayList<Story> list) {
+        this.list = list;
+    }
 }

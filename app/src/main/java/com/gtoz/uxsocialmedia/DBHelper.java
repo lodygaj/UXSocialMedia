@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import static android.R.attr.description;
+import static android.R.attr.id;
 import static android.media.tv.TvContract.Channels.COLUMN_TYPE;
 
 /**
@@ -15,7 +17,7 @@ import static android.media.tv.TvContract.Channels.COLUMN_TYPE;
  */
 
 public class DBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
     private static final String DATABASE_NAME = "UXandSocial.db";
 
     // Table USERS with columns
@@ -211,6 +213,9 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
 
         while(cursor.isAfterLast() == false) {
+            int idIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_ID);
+            String id = cursor.getString(idIndex);
+
             int titleIndex = cursor.getColumnIndexOrThrow(COLUMN_TITLE);
             String title = cursor.getString(titleIndex);
 
@@ -235,7 +240,7 @@ public class DBHelper extends SQLiteOpenHelper {
             int storyTypeIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_TYPE);
             String storyType = cursor.getString(storyTypeIndex);
 
-            Story story = new Story(title, location, category, caption, Integer.parseInt(like), resourceType, resource, storyType);
+            Story story = new Story(Integer.parseInt(id), title, location, category, caption, Integer.parseInt(like), resourceType, resource, storyType);
             stories.add(story);
 
             cursor.moveToNext();
@@ -254,6 +259,9 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
 
         while(cursor.isAfterLast() == false) {
+            int idIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_ID);
+            String id = cursor.getString(idIndex);
+
             int titleIndex = cursor.getColumnIndexOrThrow(COLUMN_TITLE);
             String title = cursor.getString(titleIndex);
 
@@ -278,7 +286,7 @@ public class DBHelper extends SQLiteOpenHelper {
             int storyTypeIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_TYPE);
             String storyType = cursor.getString(storyTypeIndex);
 
-            Story story = new Story(title, location, category, caption, Integer.parseInt(like), resourceType, resource, storyType);
+            Story story = new Story(Integer.parseInt(id), title, location, category, caption, Integer.parseInt(like), resourceType, resource, storyType);
             stories.add(story);
 
             cursor.moveToNext();
@@ -305,6 +313,9 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
 
         while(cursor.isAfterLast() == false) {
+            int idIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_ID);
+            String id = cursor.getString(idIndex);
+
             int titleIndex = cursor.getColumnIndexOrThrow(COLUMN_TITLE);
             String title = cursor.getString(titleIndex);
 
@@ -329,7 +340,7 @@ public class DBHelper extends SQLiteOpenHelper {
             int storyTypeIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_TYPE);
             String storyType = cursor.getString(storyTypeIndex);
 
-            Story story = new Story(title, location, category, caption, Integer.parseInt(like), resourceType, resource, storyType);
+            Story story = new Story(Integer.parseInt(id), title, location, category, caption, Integer.parseInt(like), resourceType, resource, storyType);
             stories.add(story);
 
             cursor.moveToNext();
@@ -356,5 +367,19 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         return categories;
+    }
+
+    // Deletes a favorite from database
+    public void deleteFavorite(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_FAVORITES, COLUMN_FAVORITE_STORY_ID + " = '" + id + "'", null);
+    }
+
+    //inserts a new product into database
+    public void addFavorite(int storyId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_FAVORITE_STORY_ID, storyId);
+        db.insert(TABLE_FAVORITES, null, values);
     }
 }

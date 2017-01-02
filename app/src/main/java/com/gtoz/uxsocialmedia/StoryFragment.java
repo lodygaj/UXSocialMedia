@@ -40,6 +40,7 @@ public class StoryFragment extends Fragment {
         final int[] numOfLikes = {(int) story.getLikes()};
 
         context = getActivity().getApplicationContext();
+        final DBHelper dbHelper = new DBHelper(context);
 
         // Set header resource
         ImageView image = (ImageView) view.findViewById(R.id.resource);
@@ -121,6 +122,9 @@ public class StoryFragment extends Fragment {
                 numOfLikes[0] += 1;
                 TextView tv = (TextView) view.findViewById(R.id.likes);
                 tv.setText(Integer.toString(numOfLikes[0]));
+
+                // Add story to favorites
+                dbHelper.addFavorite(story.getId());
             }
         });
 
