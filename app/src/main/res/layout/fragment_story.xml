@@ -106,10 +106,10 @@
                         android:paddingRight="5dp"/>
 
                     <ImageView
+                        android:id="@+id/likeButton"
                         android:layout_width="34dp"
                         android:layout_height="31dp"
-                        android:id="@+id/likeButton"
-                        android:background="@drawable/heart_selected"
+                        android:background="@drawable/like_unselected"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true"
@@ -119,21 +119,13 @@
 
             </LinearLayout>
 
-            <Button
-                android:text="Reservation/LocationAdd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/reservationButton"
-                android:layout_marginBottom="5dp"
-                style="@style/ThriftyButton" />
-
             <View style="@style/Divider"/>
 
             <TextView
                 android:text="Text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/text"
+                android:id="@+id/caption"
                 android:textSize="20dp"
                 android:textColor="@color/thriftyBlack"
                 android:layout_marginTop="5dp"/>

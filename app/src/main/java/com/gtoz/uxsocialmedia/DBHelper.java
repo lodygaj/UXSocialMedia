@@ -203,6 +203,21 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(TABLE_STORIES, null, values);
     }
 
+    // Edits a story already in database
+    public void editStory(Story story) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TITLE, story.getTitle());
+        values.put(COLUMN_LOCATION, story.getLocation());
+        values.put(COLUMN_CATEGORY, story.getCategory());
+        values.put(COLUMN_CAPTION, story.getCaption());
+        values.put(COLUMN_LIKES, story.getLikes());
+        values.put(COLUMN_RES_TYPE, story.getResourceType());
+        values.put(COLUMN_RESOURCE, story.getResource());
+        values.put(COLUMN_STORY_TYPE, story.getStoryType());
+        db.update(TABLE_STORIES, values, COLUMN_STORY_ID + " = '" + story.getId() + "'", null);
+    }
+
     // Returns an arraylist of stories from database
     public ArrayList<Story> getStoriesByType(String type) {
         ArrayList<Story> stories = new ArrayList<>();
@@ -375,11 +390,27 @@ public class DBHelper extends SQLiteOpenHelper {
         db.delete(TABLE_FAVORITES, COLUMN_FAVORITE_STORY_ID + " = '" + id + "'", null);
     }
 
-    //inserts a new product into database
+    // Inserts a new favorite story into database
     public void addFavorite(int storyId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_FAVORITE_STORY_ID, storyId);
         db.insert(TABLE_FAVORITES, null, values);
+    }
+
+    // Checks if story is a favorite
+    public boolean isFavorite(int storyId){
+        String query = "SELECT * FROM " + TABLE_FAVORITES + " WHERE " + COLUMN_FAVORITE_STORY_ID + " = '" + storyId + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.getCount() == 0){
+            db.close();
+            return false;
+        }
+        else {
+            db.close();
+            return true;
+        }
     }
 }

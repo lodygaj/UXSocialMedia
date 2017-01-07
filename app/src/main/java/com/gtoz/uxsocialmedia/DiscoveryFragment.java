@@ -72,7 +72,6 @@ public class DiscoveryFragment extends Fragment {
         list2 = dbHelper.getStoriesByType("people");
         list3 = dbHelper.getCategories();
 
-
         // Set initial horizontal list layout and spacing values
         ListSpacing dec = new ListSpacing(0, 10);
 

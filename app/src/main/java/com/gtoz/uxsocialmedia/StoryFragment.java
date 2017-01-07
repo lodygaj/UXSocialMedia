@@ -19,10 +19,8 @@ import android.content.Intent;
 import android.widget.Toast;
 import android.widget.VideoView;
 import android.widget.MediaController;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-
 
 public class StoryFragment extends Fragment {
     private Story story;
@@ -37,10 +35,12 @@ public class StoryFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_story, container, false);
 
-        final int[] numOfLikes = {(int) story.getLikes()};
-
         context = getActivity().getApplicationContext();
         final DBHelper dbHelper = new DBHelper(context);
+
+
+
+
 
         // Set header resource
         ImageView image = (ImageView) view.findViewById(R.id.resource);
@@ -58,7 +58,7 @@ public class StoryFragment extends Fragment {
             video.setMediaController(mediaController);
         }
 
-        String uriPath = "android.resource://com.gtoz.uxsocialmedia/"+R.raw.surfing;
+        String uriPath = "android.resource://com.gtoz.uxsocialmedia/raw/" + story.getResource();
         Uri uri = Uri.parse(uriPath);
         video.setVideoURI(uri);
         video.requestFocus();
@@ -89,21 +89,23 @@ public class StoryFragment extends Fragment {
         }
         // Set video and hide image view
         else {
-            //video.start();
             image.setVisibility(View.GONE);
         }
 
+
+
+
+
         // Set title text
-        final TextView title = (TextView) view.findViewById(R.id.title);
+        TextView title = (TextView) view.findViewById(R.id.title);
         title.setText(story.getTitle());
-        // Apply font
+        // Apply font to title text
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ITCFranklinGothicStd-DmCpIt.otf");
         title.setTypeface(font);
 
         // Set category text
         TextView category = (TextView) view.findViewById(R.id.category);
         category.setText(story.getCategory());
-        //Handles category text as button to go to the relevant feed
         category.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -111,38 +113,16 @@ public class StoryFragment extends Fragment {
             }
         });
 
-        // Set # of likes
-        TextView likes = (TextView) view.findViewById(R.id.likes);
-        likes.setText(Integer.toString(story.getLikes()));
-
-        //Handles the Like Button
-        ImageView likeButton = (ImageView) view.findViewById(R.id.likeButton);
-        likeButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                numOfLikes[0] += 1;
-                TextView tv = (TextView) view.findViewById(R.id.likes);
-                tv.setText(Integer.toString(numOfLikes[0]));
-
-                // Add story to favorites
-                dbHelper.addFavorite(story.getId());
-            }
-        });
-
-        // Set location text
+        // Setup location button
         Button location = (Button) view.findViewById(R.id.locationButton);
         location.setText(story.getLocation());
         location.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Button b = (Button)v;
-                String text = b.getText().toString();
-
-                Uri gmmIntentUri = Uri.parse("geo:0,0?q="+text);
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                startActivity(mapIntent);
+                Toast.makeText(view.getContext(), "Clicked on Location" , Toast.LENGTH_SHORT).show();
             }
         });
 
+        // Setup share button
         Button share = (Button) view.findViewById(R.id.shareButton);
         share.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -150,36 +130,67 @@ public class StoryFragment extends Fragment {
             }
         });
 
-        Button fave = (Button) view.findViewById(R.id.reservationButton);
-        fave.setOnClickListener(new View.OnClickListener(){
+        // Set # of likes
+        TextView likes = (TextView) view.findViewById(R.id.likes);
+        likes.setText(Integer.toString(story.getLikes()));
+
+        // Set if story is liked or not
+        final ImageView likeButton = (ImageView) view.findViewById(R.id.likeButton);
+        if(dbHelper.isFavorite(story.getId())) {
+            likeButton.setImageResource(R.drawable.like_selected);
+        }
+
+        // Handles the Like Button
+        likeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                if(!dbHelper.isFavorite(story.getId())) {
+                    // Update likes
+                    TextView tv = (TextView) view.findViewById(R.id.likes);
+                    tv.setText(Integer.toString(story.getLikes() + 1));
+                    // Set like image
+                    likeButton.setImageResource(R.drawable.like_selected);
 
-                JSONArray jsonArray2 = null;
-                try {
-                    jsonArray2 = new JSONArray(prefs.getString("key", "[]"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    // Update story in database
+                    story.setLikes(story.getLikes() + 1);
+                    dbHelper.editStory(story);
+
+                    // Add story to favorites
+                    dbHelper.addFavorite(story.getId());
                 }
-
-                jsonArray2.put(story.getTitle());
-                jsonArray2.put(story.getLocation());
-                jsonArray2.put(story.getResource());
-
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("key", jsonArray2.toString());
-
-                System.out.println(jsonArray2.toString());
-                editor.commit();
-
-                Toast.makeText(view.getContext(), "Added to Favorites", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Set content text
-        TextView text = (TextView) view.findViewById(R.id.text);
+//        Button fave = (Button) view.findViewById(R.id.reservationButton);
+//        fave.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v) {
+//                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+//
+//                JSONArray jsonArray2 = null;
+//                try {
+//                    jsonArray2 = new JSONArray(prefs.getString("key", "[]"));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                jsonArray2.put(story.getTitle());
+//                jsonArray2.put(story.getLocation());
+//                jsonArray2.put(story.getResource());
+//
+//                SharedPreferences.Editor editor = prefs.edit();
+//                editor.putString("key", jsonArray2.toString());
+//
+//                System.out.println(jsonArray2.toString());
+//                editor.commit();
+//
+//                Toast.makeText(view.getContext(), "Added to Favorites", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        // Set caption text
+        TextView text = (TextView) view.findViewById(R.id.caption);
         text.setText("\t\t\t\t\t\t" + story.getCaption());
-        // Apply font
+
+        // Apply font to caption text
         Typeface franklinGothicStd = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ITCFranklinGothicStd-Book.otf");
         text.setTypeface(franklinGothicStd);
 
