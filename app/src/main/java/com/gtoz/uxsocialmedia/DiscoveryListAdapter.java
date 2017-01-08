@@ -4,9 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
@@ -16,13 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.io.File;
 import java.util.ArrayList;
-
-import static android.R.attr.bitmap;
-import static android.R.attr.id;
-import static com.gtoz.uxsocialmedia.R.raw.surfing;
 
 /**
  * Created by GtoZ on 11/5/2016.

@@ -92,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="125dp"
         app:srcCompat="@drawable/preview_upload"
-        android:id="@+id/imageView2" />
+        android:id="@+id/previewImage" />
 
     <LinearLayout
         android:layout_width="match_parent"

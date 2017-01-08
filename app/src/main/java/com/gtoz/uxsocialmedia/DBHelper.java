@@ -17,7 +17,7 @@ import static android.media.tv.TvContract.Channels.COLUMN_TYPE;
  */
 
 public class DBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
     private static final String DATABASE_NAME = "UXandSocial.db";
 
     // Table USERS with columns
@@ -116,7 +116,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 COLUMN_VEHICLE_STORY_STORY + " INTEGER NOT NULL )";
         db.execSQL(CREATE_VEHICLE_STORIES_TABLE);
 
-
         // Insert initial category entries
         db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('1','Adventure');");
         db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('2','Animal');");
@@ -169,9 +168,15 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + TABLE_QR + " VALUES ('5','555555');");
         db.execSQL("INSERT INTO " + TABLE_QR + " VALUES ('6','666666');");
         db.execSQL("INSERT INTO " + TABLE_QR + " VALUES ('7','777777');");
+        db.execSQL("INSERT INTO " + TABLE_QR + " VALUES ('8','123456');");
+
+        // Insert initial vehical qr stories
+        db.execSQL("INSERT INTO " + TABLE_VEHICLE_STORIES + " VALUES ('1','123456','2');");
+        db.execSQL("INSERT INTO " + TABLE_VEHICLE_STORIES + " VALUES ('2','123456','3');");
+        db.execSQL("INSERT INTO " + TABLE_VEHICLE_STORIES + " VALUES ('3','123456','5');");
+        db.execSQL("INSERT INTO " + TABLE_VEHICLE_STORIES + " VALUES ('4','123456','8');");
 
         // Insert initial favorites entries
-        // Insert initial category entries
         db.execSQL("INSERT INTO " + TABLE_FAVORITES + " VALUES ('1','1');");
         db.execSQL("INSERT INTO " + TABLE_FAVORITES + " VALUES ('2','3');");
         db.execSQL("INSERT INTO " + TABLE_FAVORITES + " VALUES ('3','7');");
@@ -310,12 +315,96 @@ public class DBHelper extends SQLiteOpenHelper {
         return stories;
     }
 
-    // Inserts a new favorite story into database
-    public void addFavoriteStory(int user_id, int story_id) {
+    // Returns an arraylist of stories from database
+    public ArrayList<Story> getStoriesByLocation(String loc) {
+        ArrayList<Story> stories = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_LOCATION + " = '" + loc + "'";
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_FAVORITE_STORY_ID, story_id);
-        db.insert(TABLE_FAVORITES, null, values);
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        while(cursor.isAfterLast() == false) {
+            int idIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_ID);
+            String id = cursor.getString(idIndex);
+
+            int titleIndex = cursor.getColumnIndexOrThrow(COLUMN_TITLE);
+            String title = cursor.getString(titleIndex);
+
+            int locationIndex = cursor.getColumnIndexOrThrow(COLUMN_LOCATION);
+            String location = cursor.getString(locationIndex);
+
+            int categoryIndex = cursor.getColumnIndexOrThrow(COLUMN_CATEGORY);
+            String category = cursor.getString(categoryIndex);
+
+            int captionIndex = cursor.getColumnIndexOrThrow(COLUMN_CAPTION);
+            String caption = cursor.getString(captionIndex);
+
+            int likeIndex = cursor.getColumnIndexOrThrow(COLUMN_LIKES);
+            String like = cursor.getString(likeIndex);
+
+            int resourceTypeIndex = cursor.getColumnIndexOrThrow(COLUMN_RES_TYPE);
+            String resourceType = cursor.getString(resourceTypeIndex);
+
+            int resourceIndex = cursor.getColumnIndexOrThrow(COLUMN_RESOURCE);
+            String resource = cursor.getString(resourceIndex);
+
+            int storyTypeIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_TYPE);
+            String storyType = cursor.getString(storyTypeIndex);
+
+            Story story = new Story(Integer.parseInt(id), title, location, category, caption, Integer.parseInt(like), resourceType, resource, storyType);
+            stories.add(story);
+
+            cursor.moveToNext();
+        }
+
+        return stories;
+    }
+
+    // Returns an arraylist of stories from database
+    public ArrayList<Story> getStoriesByQr(int qrCode) {
+        ArrayList<Story> stories = new ArrayList<>();
+        String query = "SELECT A.* FROM " + TABLE_STORIES + " A WHERE A._ID IN (SELECT B.STORY_ID FROM " + TABLE_VEHICLE_STORIES + " B WHERE B.QR_ID = '" + qrCode + "')";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        while(cursor.isAfterLast() == false) {
+            int idIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_ID);
+            String id = cursor.getString(idIndex);
+
+            int titleIndex = cursor.getColumnIndexOrThrow(COLUMN_TITLE);
+            String title = cursor.getString(titleIndex);
+
+            int locationIndex = cursor.getColumnIndexOrThrow(COLUMN_LOCATION);
+            String location = cursor.getString(locationIndex);
+
+            int categoryIndex = cursor.getColumnIndexOrThrow(COLUMN_CATEGORY);
+            String category = cursor.getString(categoryIndex);
+
+            int captionIndex = cursor.getColumnIndexOrThrow(COLUMN_CAPTION);
+            String caption = cursor.getString(captionIndex);
+
+            int likeIndex = cursor.getColumnIndexOrThrow(COLUMN_LIKES);
+            String like = cursor.getString(likeIndex);
+
+            int resourceTypeIndex = cursor.getColumnIndexOrThrow(COLUMN_RES_TYPE);
+            String resourceType = cursor.getString(resourceTypeIndex);
+
+            int resourceIndex = cursor.getColumnIndexOrThrow(COLUMN_RESOURCE);
+            String resource = cursor.getString(resourceIndex);
+
+            int storyTypeIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_TYPE);
+            String storyType = cursor.getString(storyTypeIndex);
+
+            Story story = new Story(Integer.parseInt(id), title, location, category, caption, Integer.parseInt(like), resourceType, resource, storyType);
+            stories.add(story);
+
+            cursor.moveToNext();
+        }
+
+        return stories;
     }
 
     // Returns an arraylist of stories from database
@@ -401,6 +490,22 @@ public class DBHelper extends SQLiteOpenHelper {
     // Checks if story is a favorite
     public boolean isFavorite(int storyId){
         String query = "SELECT * FROM " + TABLE_FAVORITES + " WHERE " + COLUMN_FAVORITE_STORY_ID + " = '" + storyId + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.getCount() == 0){
+            db.close();
+            return false;
+        }
+        else {
+            db.close();
+            return true;
+        }
+    }
+
+    // Checks if story is a favorite
+    public boolean isValidQr(int qrCode){
+        String query = "SELECT * FROM " + TABLE_QR + " WHERE " + COLUMN_QR + " = '" + qrCode + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 

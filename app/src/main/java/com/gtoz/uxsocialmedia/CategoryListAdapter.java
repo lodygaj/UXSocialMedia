@@ -1,12 +1,5 @@
 package com.gtoz.uxsocialmedia;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.MediaMetadataRetriever;
-import android.media.ThumbnailUtils;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
@@ -17,14 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.File;
 import java.util.ArrayList;
-
-import static android.R.attr.bitmap;
-import static android.R.attr.id;
-import static android.R.attr.name;
-import static android.media.CamcorderProfile.get;
-import static com.gtoz.uxsocialmedia.R.raw.surfing;
 
 /**
  * Created by GtoZ on 11/5/2016.
@@ -88,7 +74,9 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             // Load category in grid fragment
             String cat = list.get(getLayoutPosition());
             GridFragment gridFragment = new GridFragment();
-            gridFragment.setCategory(cat);
+            DBHelper dbHelper = new DBHelper(context);
+            ArrayList<Story> stories = dbHelper.getStoriesByCategory(cat);
+            gridFragment.setStories(stories);
             setFragment(gridFragment);
         }
     }

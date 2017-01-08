@@ -16,7 +16,6 @@ public class GridFragment extends Fragment {
     private RecyclerView recyclerView;
     private Context context;
     private FragmentManager fm;
-    private String category;
     private ArrayList<Story> stories;
 
     @Override
@@ -26,11 +25,6 @@ public class GridFragment extends Fragment {
 
         context = getActivity().getApplicationContext();
         fm = getFragmentManager();
-
-        // Get stories from database
-        DBHelper dbHelper = new DBHelper(context);
-        stories = dbHelper.getStoriesByCategory(category);
-
 
         // Set up grid layout
         recyclerView = (RecyclerView) view.findViewById(R.id.staggered_grid);
@@ -43,11 +37,7 @@ public class GridFragment extends Fragment {
         return view;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+    public void setStories(ArrayList<Story> stories) {
+        this.stories = stories;
     }
 }

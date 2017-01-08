@@ -1,5 +1,6 @@
 package com.gtoz.uxsocialmedia;
 
+import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -29,6 +30,7 @@ public class StoryFragment extends Fragment {
     private FrameLayout videoFrame;
     private int position = 0;
     private Context context;
+    private FragmentManager fm;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,10 +39,7 @@ public class StoryFragment extends Fragment {
 
         context = getActivity().getApplicationContext();
         final DBHelper dbHelper = new DBHelper(context);
-
-
-
-
+        fm = getFragmentManager();
 
         // Set header resource
         ImageView image = (ImageView) view.findViewById(R.id.resource);
@@ -92,10 +91,6 @@ public class StoryFragment extends Fragment {
             image.setVisibility(View.GONE);
         }
 
-
-
-
-
         // Set title text
         TextView title = (TextView) view.findViewById(R.id.title);
         title.setText(story.getTitle());
@@ -109,7 +104,9 @@ public class StoryFragment extends Fragment {
         category.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(view.getContext(), "Clicked on Category" , Toast.LENGTH_SHORT).show();
+                GridFragment gridFragment = new GridFragment();
+                gridFragment.setStories(dbHelper.getStoriesByCategory(story.getCategory()));
+                setFragment(gridFragment);
             }
         });
 
@@ -118,7 +115,9 @@ public class StoryFragment extends Fragment {
         location.setText(story.getLocation());
         location.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Toast.makeText(view.getContext(), "Clicked on Location" , Toast.LENGTH_SHORT).show();
+                GridFragment gridFragment = new GridFragment();
+                gridFragment.setStories(dbHelper.getStoriesByLocation(story.getLocation()));
+                setFragment(gridFragment);
             }
         });
 
@@ -199,5 +198,11 @@ public class StoryFragment extends Fragment {
 
     public void setStory(Story story) {
         this.story = story;
+    }
+
+    // Method called to upgrade fragment
+    public void setFragment(Fragment fragment) {
+        fm.beginTransaction().replace(R.id.fl_content, fragment).addToBackStack(null).commit();
+        fm.executePendingTransactions();
     }
 }
