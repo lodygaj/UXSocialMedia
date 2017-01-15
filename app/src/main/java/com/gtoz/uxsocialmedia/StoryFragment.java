@@ -185,9 +185,20 @@ public class StoryFragment extends Fragment {
 //            }
 //        });
 
+        // Handles the Make Reservation Button
+        Button btnReservation = (Button) view.findViewById(R.id.btnReservation);
+        btnReservation.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Uri uri = Uri.parse("http://www.thrifty.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+
         // Set caption text
         TextView text = (TextView) view.findViewById(R.id.caption);
-        text.setText("\t\t\t\t\t\t" + story.getCaption());
+        text.setText(story.getCaption());
 
         // Apply font to caption text
         Typeface franklinGothicStd = Typeface.createFromAsset(getActivity().getAssets(), "fonts/ITCFranklinGothicStd-Book.otf");

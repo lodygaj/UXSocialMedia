@@ -17,7 +17,7 @@ import static android.media.tv.TvContract.Channels.COLUMN_TYPE;
  */
 
 public class DBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 9;
     private static final String DATABASE_NAME = "UXandSocial.db";
 
     // Table USERS with columns
@@ -119,46 +119,78 @@ public class DBHelper extends SQLiteOpenHelper {
         // Insert initial category entries
         db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('1','Adventure');");
         db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('2','Animal');");
-        db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('3','Food');");
-        db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('4','Music');");
-        db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('5','Nature');");
-        db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('6','Sport');");
-        db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('7','Water');");
+        db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('3','Entertainment');");
+        db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('4','Nature');");
+        db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('5','Sports');");
+        db.execSQL("INSERT INTO " + TABLE_CATEGORIES + " VALUES ('6','Water');");
 
         // Insert initial story entries
-        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('1','Germain Arena','Estero, FL','Sport'," +
-                "'In addition to hosting Florida Everblades hockey, Southwest Florida’s premier entertainment venue offers " +
-                "a wide variety of choice entertainment. Since the arena opened in 1998, it has hosted NHL, NBA, USBL, and Arena " +
-                "football games.','2375','image','germainarena','thrifty');");
-        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('2','Naples Zoo','Naples, FL','Animal'," +
-                "'Naples Zoo is a nationally accredited zoo and yet much more than a walk-through zoo. The nonprofit 501(c)(3) " +
-                "charitable institution also features a full day of fun activities. The paved path winds nearly a mile past rare " +
-                "and beautiful animals residing within a historic tropical garden of exotic plants first planted in 1919 with a " +
-                "fascinating history.','1216','image','napleszoo','thrifty');");
-        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('3','Naples Botanical Garden','Naples, FL','Nature'," +
-                "'Connecting people with plants by conserving and researching the biological diversity of our collections and " +
-                "ecosystems; engaging our visitors in learning about plants, gardens and ecosystems; and inspiring our visitors " +
-                "to value plants, gardens and natural habitats.','7243','image','naplesbotgarden','thrifty');");
-        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('4','Ding Darling Wildlife Preserve','Sanibel, FL','Nature'," +
-                "'The J.N. Ding Darling National Wildlife Refuge is located on the subtropical barrier island of Sanibel in " +
-                "the Gulf of Mexico. The refuge is part of the largest undeveloped mangrove ecosystem in the United States. It " +
-                "is world famous for its spectacular migratory bird populations.','5231','image','dingdarling','thrifty');");
-        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('5','Barefoot Beach Preserve','Bonita Springs, FL','Nature'," +
-                "'Collier Countys desirable coast reaches its zenith at Barefoot Beach Preserve, where numerous animal species " +
-                "reside and visitors are able to enjoy the ambience of the parks natural surroundings.','2205','image','barefootbeach','thrifty');");
-        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('6','The Buddha Rock Club','Fort Myers, FL','Music'," +
-                "'Youll know you are in the right place by the giant statue of Buddha, sitting in the parking lot. A couple " +
-                "of things you can be sure of in this bar, the drinks are cold and cheap and the music is loud. Local bands love " +
-                "to rock here as well as those on the touring circuit.','3655','image','buddhaclub','people');");
-        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('7','Sun Splash Water Park','Cape Coral, FL','Water'," +
-                "'Seasonal amusement park with 14+ acres of waterslides, a lazy river and kids water play area.','2643','image','sunsplash','people');");
-        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('8','Alico Arena','Estero, FL','Sport'," +
-                "'Alico Arena, also known as The Nest and Dunk City, is a 120,000 sq ft multipurpose arena on the campus " +
-                "of Florida Gulf Coast University in Fort Myers, Florida. It is the home of the FGCU Eagles volleyball and " +
-                "mens and womens basketball teams.','1364','image','alicoarena','people');");
-        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('9','Mad Hatter','Captiva, FL','Food'," +
-                "'This former bungalow on the beach has been home the The Mad Hatter Restaurant for nearly 30 years, boasting " +
-                "one of Sanibel and Captivas finest dining experiences.','1744','video','surfing','people');");
+
+//        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('1','Germain Arena','Estero, FL','Sport'," +
+//                "'In addition to hosting Florida Everblades hockey, Southwest Florida’s premier entertainment venue offers " +
+//                "a wide variety of choice entertainment. Since the arena opened in 1998, it has hosted NHL, NBA, USBL, and Arena " +
+//                "football games.','2375','image','germainarena','thrifty');");
+//        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('2','Naples Zoo','Naples, FL','Animal'," +
+//                "'Naples Zoo is a nationally accredited zoo and yet much more than a walk-through zoo. The nonprofit 501(c)(3) " +
+//                "charitable institution also features a full day of fun activities. The paved path winds nearly a mile past rare " +
+//                "and beautiful animals residing within a historic tropical garden of exotic plants first planted in 1919 with a " +
+//                "fascinating history.','1216','image','napleszoo','thrifty');");
+//        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('3','Naples Botanical Garden','Naples, FL','Nature'," +
+//                "'Connecting people with plants by conserving and researching the biological diversity of our collections and " +
+//                "ecosystems; engaging our visitors in learning about plants, gardens and ecosystems; and inspiring our visitors " +
+//                "to value plants, gardens and natural habitats.','7243','image','naplesbotgarden','thrifty');");
+//        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('4','Ding Darling Wildlife Preserve','Sanibel, FL','Nature'," +
+//                "'The J.N. Ding Darling National Wildlife Refuge is located on the subtropical barrier island of Sanibel in " +
+//                "the Gulf of Mexico. The refuge is part of the largest undeveloped mangrove ecosystem in the United States. It " +
+//                "is world famous for its spectacular migratory bird populations.','5231','image','dingdarling','thrifty');");
+//        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('5','Barefoot Beach Preserve','Bonita Springs, FL','Nature'," +
+//                "'Collier Countys desirable coast reaches its zenith at Barefoot Beach Preserve, where numerous animal species " +
+//                "reside and visitors are able to enjoy the ambience of the parks natural surroundings.','2205','image','barefootbeach','thrifty');");
+//        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('6','The Buddha Rock Club','Fort Myers, FL','Music'," +
+//                "'Youll know you are in the right place by the giant statue of Buddha, sitting in the parking lot. A couple " +
+//                "of things you can be sure of in this bar, the drinks are cold and cheap and the music is loud. Local bands love " +
+//                "to rock here as well as those on the touring circuit.','3655','image','buddhaclub','people');");
+//        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('7','Sun Splash Water Park','Cape Coral, FL','Water'," +
+//                "'Seasonal amusement park with 14+ acres of waterslides, a lazy river and kids water play area.','2643','image','sunsplash','people');");
+//        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('8','Alico Arena','Estero, FL','Sport'," +
+//                "'Alico Arena, also known as The Nest and Dunk City, is a 120,000 sq ft multipurpose arena on the campus " +
+//                "of Florida Gulf Coast University in Fort Myers, Florida. It is the home of the FGCU Eagles volleyball and " +
+//                "mens and womens basketball teams.','1364','image','alicoarena','people');");
+//        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('9','Mad Hatter','Captiva, FL','Food'," +
+//                "'This former bungalow on the beach has been home the The Mad Hatter Restaurant for nearly 30 years, boasting " +
+//                "one of Sanibel and Captivas finest dining experiences.','1744','video','surfing','people');");
+
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('1','Dwayne The Rock Johnson Q&A','Los Angeles, CA','Entertainment'," +
+                "'Q&A with Dwayne The Rock Johnson','1744','video','dwaynetherockjohnsonqanda','thrifty');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('2','Fall Out Boy','San Francisco, CA','Entertainment'," +
+                "'Message from the music group Fall Out Boy.','2562','video','falloutboy','thrifty');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('3','Kevin Hart','Philadelphia, PA','Entertainment'," +
+                "'Kevin Harts What Now promo.','1265','video','kevinhartwhatnow','thrifty');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('4','Jamie Anderson','Aspen, CO','Entertainment'," +
+                "'A collection of footage from snowboarder Jamie Anderson.','2131','video','jamieanderson','thrifty');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('5','Sjokz','Barcelona, Spain','Entertainment'," +
+                "'A video message from Sjokz.','1987','video','sjokz','thrifty');");
+
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('6','BMX Rider','Asheville, NC','Sports'," +
+                "'Go Pro footage of BMX riders at the Red Bull Dreamline competition.','1876','video','bmx','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('7','Free Running Dublin','Dublin, Ireland','Sports'," +
+                "'Free Runners showing off their skills in Dublin.','3284','video','freerunningdublin','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('8','Downhill Ice Skating','Quebec, Canada','Sports'," +
+                "'Top 5 airtimes in competitive downhill ice skating.','1268','video','iceskating','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('9','Motocross Riders','Aspen, CO','Sports'," +
+                "'Go Pro footage of Motocross rider at Red Bull competition.','1765','video','motocross','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('10','Skateboarding In China','Huairou, China','Sports'," +
+                "'Skateboarders riding the Great Wall of China','1633','video','skateboardinginchina','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('11','Sky Diving','Albuquerque, NM','Adventure'," +
+                "'Go Pro cameras capture these sky divers doing their jumps.','1784','video','skydiving','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('12','Snowboarding in Colorado','Aspen, CO','Sports'," +
+                "'Footage of Jamie Anderson snowboarding in Colorado.','2654','video','snowboarding','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('13','Surfing','San Diego, CA','Water'," +
+                "'Surfer riding a wave in California.','2374','video','surfing','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('14','Lol Allstar 2016','Barcelona, Spain','Entertainment'," +
+                "'Lol Allstar 2016','2945','video','lolallstar2016','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('15','McGregor Vs Mayweather','Phoenix, AZ','Sports'," +
+                "'McGregor Vs Mayweather','1265','video','mcgreggorvsmayweatherpromo','people');");
 
         // Insert initial qr entries
         db.execSQL("INSERT INTO " + TABLE_QR + " VALUES ('1','111111');");

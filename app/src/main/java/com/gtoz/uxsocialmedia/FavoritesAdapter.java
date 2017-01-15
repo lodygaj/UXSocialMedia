@@ -63,7 +63,7 @@ public class FavoritesAdapter extends BaseAdapter {
             Uri videoURI = Uri.parse("android.resource://com.gtoz.uxsocialmedia/raw/" + list.get(position).getResource());
             MediaMetadataRetriever retriever = new MediaMetadataRetriever();
             retriever.setDataSource(context, videoURI);
-            Bitmap bitmap = retriever.getFrameAtTime(100000,MediaMetadataRetriever.OPTION_PREVIOUS_SYNC);
+            Bitmap bitmap = retriever.getFrameAtTime(6500000, MediaMetadataRetriever.OPTION_PREVIOUS_SYNC);
             Drawable drawable = new BitmapDrawable(context.getResources(), bitmap);
             // Set thumbnail
             image.setImageDrawable(drawable);

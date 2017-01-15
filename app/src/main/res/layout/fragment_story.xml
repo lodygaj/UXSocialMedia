@@ -121,6 +121,16 @@
 
             <View style="@style/Divider"/>
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Make A Reservation"
+                android:id="@+id/btnReservation"
+                style="@style/ThriftyButton" />
+
+            <View style="@style/Divider"/>
+
             <TextView
                 android:text="Text"
                 android:layout_width="match_parent"
