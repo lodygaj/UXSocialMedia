@@ -86,39 +86,39 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
             itemView.setOnClickListener(this);
             imageView = (ImageView) itemView.findViewById(R.id.img);
             textView = (TextView) itemView.findViewById(R.id.img_name);
-            textView.setVisibility(View.GONE);
+            //textView.setVisibility(View.GONE);
         }
 
         @Override
         public void onClick(View view) {
-            // Text is showing for one item
-            if(textShown) {
-                // Text is showing for same item
-                if(getLayoutPosition() == selectedItem) {
+//            // Text is showing for one item
+//            if(textShown) {
+//                // Text is showing for same item
+//                if(getLayoutPosition() == selectedItem) {
                     // Set selected story and load story fragment
                     StoryFragment storyFragment = new StoryFragment();
                     storyFragment.setStory(list.get(getLayoutPosition()));
                     setFragment(storyFragment);
-                    textShown = false;
-                }
-                // Text is showing for different item
-                else {
-                    // Hide other items text
-                    selectedText.setVisibility(View.GONE);
-                    // Show clicked items text
-                    selectedItem = getLayoutPosition();
-                    selectedText = textView;
-                    textView.setVisibility(View.VISIBLE);
-                }
-            }
-            // Text is not showing for any item
-            else {
-                // Show clicked items text
-                selectedItem = getLayoutPosition();
-                selectedText = textView;
-                textView.setVisibility(View.VISIBLE);
-                textShown = true;
-            }
+//                    textShown = false;
+//                }
+//                // Text is showing for different item
+//                else {
+//                    // Hide other items text
+//                    selectedText.setVisibility(View.GONE);
+//                    // Show clicked items text
+//                    selectedItem = getLayoutPosition();
+//                    selectedText = textView;
+//                    textView.setVisibility(View.VISIBLE);
+//                }
+//            }
+//            // Text is not showing for any item
+//            else {
+//                // Show clicked items text
+//                selectedItem = getLayoutPosition();
+//                selectedText = textView;
+//                textView.setVisibility(View.VISIBLE);
+//                textShown = true;
+//            }
         }
     }
 }

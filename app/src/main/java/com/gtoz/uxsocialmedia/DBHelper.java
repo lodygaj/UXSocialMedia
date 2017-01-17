@@ -17,7 +17,7 @@ import static android.media.tv.TvContract.Channels.COLUMN_TYPE;
  */
 
 public class DBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
     private static final String DATABASE_NAME = "UXandSocial.db";
 
     // Table USERS with columns
@@ -191,6 +191,28 @@ public class DBHelper extends SQLiteOpenHelper {
                 "'Lol Allstar 2016','2945','video','lolallstar2016','people');");
         db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('15','McGregor Vs Mayweather','Phoenix, AZ','Sports'," +
                 "'McGregor Vs Mayweather','1265','video','mcgreggorvsmayweatherpromo','people');");
+
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('16','Yosemite Park','Yosemite Valley, CA','Nature'," +
+                "'Footage and information about Yosemite National Park in the winter time.','3241','video','yosemitewinter','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('17','Amazon Rain Forest','Amazonas, Brazil','Nature'," +
+                "'Footage and information about the Amazon Rain forest.','2467','video','amazonrainforest','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('18','Nile River','Cairo, Egypt','Nature'," +
+                "'Footage and information about the Nile River in Egypt.','3201','video','nileriver','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('19','The Arctic Circle','Arctic Circle','Nature'," +
+                "'Footage and information about the Arctic Circle.','2147','video','thearctic','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('20','The Sahara Desert','Cairo, Egypt','Nature'," +
+                "'Footage and information about the Sahara Desert.','1984','video','thedesert','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('21','The Grand Canyon','Grand Canyon, AZ','Nature'," +
+                "'Footage and information about the Grand Canyon in the winter time.','1763','video','grandcanyonwinter','people');");
+
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('22','Cat Reflexes','Asheville, NC','Animal'," +
+                "'Video footage looking at the reflexes of cats.','1765','video','cats','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('23','The Arctic Fox','Arctic Circle','Animal'," +
+                "'Video of an Arctic Fox drinkin water.','1965','video','arcticfox','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('24','Lions and Cheetahs','Algeria, Africa','Animal'," +
+                "'Footage and information about lions and cheetahs in the wild.','2341','video','lionsandcheetahs','people');");
+        db.execSQL("INSERT INTO " + TABLE_STORIES + " VALUES ('25','Giraffes','Zambia, Africa','Animal'," +
+                "'Footage and information about giraffes in the wild.','3159','video','giraffes','people');");
 
         // Insert initial qr entries
         db.execSQL("INSERT INTO " + TABLE_QR + " VALUES ('1','111111');");
