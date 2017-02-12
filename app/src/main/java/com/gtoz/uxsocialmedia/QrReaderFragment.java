@@ -53,10 +53,16 @@ public class QrReaderFragment extends Fragment implements ZXingScannerView.Resul
         qrString = result.getText();
         if(StringUtils.isNumeric(qrString)) {
             if(dbHelper.isValidQr(Integer.parseInt(qrString))) {
-                GridFragment gridFragment = new GridFragment();
-                stories = dbHelper.getStoriesByQr(Integer.parseInt(qrString));
-                gridFragment.setStories(stories);
-                setFragment(gridFragment);
+//                GridFragment gridFragment = new GridFragment();
+//                stories = dbHelper.getStoriesByQr(Integer.parseInt(qrString));
+//                gridFragment.setStories(stories);
+//                setFragment(gridFragment);
+
+                WebsiteFragment websiteFragment = new WebsiteFragment();
+
+                setFragment(websiteFragment);
+                websiteFragment.setUrl("https://roadtrippers.com/search?location=-81.8723%2C26.6406&location_name=" +
+                        "Fort%20Myers%2C%20Florida%2C%20United%20States&query=&sort_by=popular&primary_category=entertainment");
             }
             else {
                 Toast.makeText(getActivity().getApplicationContext(), "QR Not Found!", Toast.LENGTH_LONG).show();
