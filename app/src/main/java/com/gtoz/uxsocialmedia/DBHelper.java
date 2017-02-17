@@ -288,39 +288,40 @@ public class DBHelper extends SQLiteOpenHelper {
 
         while(cursor.isAfterLast() == false) {
             int idIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_ID);
-            String id = cursor.getString(idIndex);
+            String id = cursor.getString(idIndex); // Story ID
 
             int titleIndex = cursor.getColumnIndexOrThrow(COLUMN_TITLE);
-            String title = cursor.getString(titleIndex);
+            String title = cursor.getString(titleIndex); // Story title
 
             int locationIndex = cursor.getColumnIndexOrThrow(COLUMN_LOCATION);
-            String location = cursor.getString(locationIndex);
+            String location = cursor.getString(locationIndex); // Story location
 
             int categoryIndex = cursor.getColumnIndexOrThrow(COLUMN_CATEGORY);
-            String category = cursor.getString(categoryIndex);
+            String category = cursor.getString(categoryIndex); // Story category
 
             int captionIndex = cursor.getColumnIndexOrThrow(COLUMN_CAPTION);
-            String caption = cursor.getString(captionIndex);
+            String caption = cursor.getString(captionIndex); // Story caption
 
             int likeIndex = cursor.getColumnIndexOrThrow(COLUMN_LIKES);
-            String like = cursor.getString(likeIndex);
+            String like = cursor.getString(likeIndex); // Story likes count
 
             int resourceTypeIndex = cursor.getColumnIndexOrThrow(COLUMN_RES_TYPE);
-            String resourceType = cursor.getString(resourceTypeIndex);
+            String resourceType = cursor.getString(resourceTypeIndex); // Story resource type
 
             int resourceIndex = cursor.getColumnIndexOrThrow(COLUMN_RESOURCE);
-            String resource = cursor.getString(resourceIndex);
+            String resource = cursor.getString(resourceIndex); // Story resource filename
 
             int storyTypeIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_TYPE);
-            String storyType = cursor.getString(storyTypeIndex);
+            String storyType = cursor.getString(storyTypeIndex); // Story type
 
-            Story story = new Story(Integer.parseInt(id), title, location, category, caption, Integer.parseInt(like), resourceType, resource, storyType);
-            stories.add(story);
+            Story story = new Story(Integer.parseInt(id), title, location, category, caption,
+                    Integer.parseInt(like), resourceType, resource, storyType); // Create story object
+            stories.add(story); // Add story to array list
 
             cursor.moveToNext();
         }
 
-        return stories;
+        return stories; // Return array list of stories
     }
 
     // Returns an arraylist of stories from database

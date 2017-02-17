@@ -1,15 +1,18 @@
 package com.gtoz.uxsocialmedia;
 
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 /**
- * To work on unit tests, switch the Test Artifact in the Build Variants view.
+ * Created by GtoZ on 2/17/2017.
  */
-public class ExampleUnitTest {
+
+public class AppUnitTest {
+
+    // Example format for unit tests
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
+
 }
