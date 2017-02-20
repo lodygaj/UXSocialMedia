@@ -159,32 +159,6 @@ public class StoryFragment extends Fragment {
             }
         });
 
-//        Button fave = (Button) view.findViewById(R.id.reservationButton);
-//        fave.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v) {
-//                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-//
-//                JSONArray jsonArray2 = null;
-//                try {
-//                    jsonArray2 = new JSONArray(prefs.getString("key", "[]"));
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                jsonArray2.put(story.getTitle());
-//                jsonArray2.put(story.getLocation());
-//                jsonArray2.put(story.getResource());
-//
-//                SharedPreferences.Editor editor = prefs.edit();
-//                editor.putString("key", jsonArray2.toString());
-//
-//                System.out.println(jsonArray2.toString());
-//                editor.commit();
-//
-//                Toast.makeText(view.getContext(), "Added to Favorites", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
         // Handles the Make Reservation Button
         Button btnReservation = (Button) view.findViewById(R.id.btnReservation);
         btnReservation.setOnClickListener(new View.OnClickListener() {
