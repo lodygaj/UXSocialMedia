@@ -2,12 +2,10 @@ package com.gtoz.uxsocialmedia;
 
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +18,6 @@ import android.content.Intent;
 import android.widget.Toast;
 import android.widget.VideoView;
 import android.widget.MediaController;
-import org.json.JSONArray;
-import org.json.JSONException;
 
 public class StoryFragment extends Fragment {
     private Story story;

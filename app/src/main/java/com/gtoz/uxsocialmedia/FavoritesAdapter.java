@@ -4,7 +4,6 @@ package com.gtoz.uxsocialmedia;
  * Created by GtoZ on 11/17/2016.
  */
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -14,14 +13,10 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
-import static com.gtoz.uxsocialmedia.R.id.imageView;
 
 public class FavoritesAdapter extends BaseAdapter {
     private Context context;

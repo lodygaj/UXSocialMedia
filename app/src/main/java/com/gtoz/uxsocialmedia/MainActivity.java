@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private GoogleApiClient client;
 
     private Toolbar topToolbar;
-    private TabLayout tabLayout;
+    public static TabLayout tabLayout;
     private int[] tabIcons = {R.drawable.create_story_unselected,
             R.drawable.heart_unselected, R.drawable.home_unselected,
             R.drawable.poi_unselected, R.drawable.qr_unselected};
@@ -92,7 +92,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             break;
                     case 2: setFragment(new DiscoveryFragment());
                             break;
-                    case 3: setFragment(new PoiFragment());
+                    case 3: WebsiteFragment websiteFragment = new WebsiteFragment();
+                            setFragment(websiteFragment);
+                            websiteFragment.setUrl("http://www.roadtrippers.com");
                             break;
                     case 4: setFragment(new QrReaderFragment());
                             break;

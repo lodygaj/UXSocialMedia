@@ -1,6 +1,5 @@
 package com.gtoz.uxsocialmedia;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,14 +24,9 @@ public class WebsiteFragment extends Fragment {
 
         web = (WebView) view.findViewById(webView);
         web.setWebViewClient(new MyBrowser());
-
-        //String url = "https://roadtrippers.com/search?location=-81.8723%2C26.6406&location_name=" +
-                //"Fort%20Myers%2C%20Florida%2C%20United%20States&query=&sort_by=popular&primary_category=entertainment";
-
         web.getSettings().setLoadsImagesAutomatically(true);
         web.getSettings().setJavaScriptEnabled(true);
         web.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        //web.loadUrl(url);
 
         return view;
     }
@@ -49,5 +43,4 @@ public class WebsiteFragment extends Fragment {
         this.url = url;
         web.loadUrl(this.url);
     }
-
 }

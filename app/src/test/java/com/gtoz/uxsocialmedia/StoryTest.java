@@ -21,12 +21,6 @@ public class StoryTest {
     private String storyStoryType = "Fun";
 
 
-    // Example format for unit tests
-    @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
-    }
-
     @Test
     public void getIdTest() throws Exception {
         Story test = new Story(storyID, storyTitle, storyLocation, storyCategory, storyCaption, storyLikes,

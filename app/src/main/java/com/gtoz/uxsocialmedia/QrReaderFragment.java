@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import com.google.zxing.Result;
 import org.apache.commons.lang3.StringUtils;
-import java.util.ArrayList;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 /**
@@ -21,7 +20,6 @@ public class QrReaderFragment extends Fragment implements ZXingScannerView.Resul
     private String qrString;
     private ZXingScannerView mScannerView;
     private DBHelper dbHelper;
-    private ArrayList<Story> stories;
     private Context context;
     private FragmentManager fm;
 
@@ -53,13 +51,7 @@ public class QrReaderFragment extends Fragment implements ZXingScannerView.Resul
         qrString = result.getText();
         if(StringUtils.isNumeric(qrString)) {
             if(dbHelper.isValidQr(Integer.parseInt(qrString))) {
-//                GridFragment gridFragment = new GridFragment();
-//                stories = dbHelper.getStoriesByQr(Integer.parseInt(qrString));
-//                gridFragment.setStories(stories);
-//                setFragment(gridFragment);
-
                 WebsiteFragment websiteFragment = new WebsiteFragment();
-
                 setFragment(websiteFragment);
                 websiteFragment.setUrl("https://roadtrippers.com/search?location=-81.8723%2C26.6406&location_name=" +
                         "Fort%20Myers%2C%20Florida%2C%20United%20States&query=&sort_by=popular&primary_category=entertainment");

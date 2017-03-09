@@ -19,4 +19,3 @@ public class ListSpacing extends RecyclerView.ItemDecoration {
         outRect.bottom = verticalSpace;
     }
 }
-
