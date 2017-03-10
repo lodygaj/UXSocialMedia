@@ -11,3 +11,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         super(Application.class);
     }
 }
+
+
+// Run this in command line to generate jacoco coverage:
+// gradlew clean createDebugCoverageReport jacocoTestReport
