@@ -3,9 +3,9 @@ package com.gtoz.uxsocialmedia;
 import android.app.Activity;
 import android.support.design.widget.TabLayout;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.v4.app.FragmentManager;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,7 +19,13 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 
 /**
  * Created by GtoZ on 3/9/2017.
@@ -33,14 +39,10 @@ public class CreateStoryTest {
     @Before
     public void setUp() {
         //DBHelper dbHelper = new DBHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
-        //mActivityRule.getActivity().setFragment(new CreateStoryFragment());
     }
 
     @Test
     public void testLoadCreateStoryFragment() {
-
-
-
 
     }
 
@@ -54,7 +56,5 @@ public class CreateStoryTest {
 
         //Assert.assertEquals();
     }
-
-
 
 }
