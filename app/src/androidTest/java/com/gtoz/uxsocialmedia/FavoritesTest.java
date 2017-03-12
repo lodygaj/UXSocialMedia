@@ -65,7 +65,7 @@ public class FavoritesTest {
     public void selectItemTest() {
 
         onData(anything()).inAdapterView(withId(R.id.locationList)).atPosition(1).perform(click());
-        onView(withText("Kevin Hart")).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.shareButton)).check(matches(isCompletelyDisplayed()));
 
     }
 
@@ -81,8 +81,9 @@ public class FavoritesTest {
     public void deleteItemTest(){
 
         onData(anything()).inAdapterView(withId(R.id.locationList)).atPosition(1).perform(longClick());
-        onView(withContentDescription("Delete")).inRoot(isPlatformPopup()).perform(click());
+        onView(withText("Delete")).inRoot(isPlatformPopup()).perform(click());
         onView(withText("Kevin Hart")).check(doesNotExist());
+
     }
 
 
