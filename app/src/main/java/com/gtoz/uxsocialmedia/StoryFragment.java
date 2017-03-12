@@ -159,9 +159,12 @@ public class StoryFragment extends Fragment {
         Button btnReservation = (Button) view.findViewById(R.id.btnReservation);
         btnReservation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Uri uri = Uri.parse("http://www.thrifty.com");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                WebsiteFragment fragment = new WebsiteFragment();
+                setFragment(fragment);
+                fragment.setUrl("http://www.thrifty.com");
+//                Uri uri = Uri.parse("http://www.thrifty.com");
+//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                startActivity(intent);
             }
         });
 
