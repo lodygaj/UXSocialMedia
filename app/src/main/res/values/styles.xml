@@ -41,4 +41,10 @@
         <item name="color">@color/thriftyBlue</item>
     </style>
 
+    <style name="TabTextStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/thriftyGrey</item>
+    </style>
+
 </resources>

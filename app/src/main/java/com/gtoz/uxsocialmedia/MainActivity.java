@@ -48,11 +48,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Set up tab layout
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         // Add icons
-        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[0]));
-        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[1]));
-        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[2]));
-        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[3]));
-        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[4]));
+        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[0]).setText("Create"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[1]).setText("Favorites"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[2]).setText("Discovery"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[3]).setText("Poi"));
+        tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[4]).setText("Qr"));
         // Set indicator to initial position
         tabLayout.setScrollPosition(2, 0, false);
         // Set click listener for tabs
