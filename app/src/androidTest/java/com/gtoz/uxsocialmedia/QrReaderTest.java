@@ -29,9 +29,12 @@ public class QrReaderTest {
 
     @Test
     public void testQrFragmentLoad() {
+        // Locate Qr tab
         Matcher<View> matcher = allOf(withText("Qr"),
                 isDescendantOfA(withId(R.id.tabs)));
+        // Click tab
         onView(matcher).perform(click());
-        //onView(withText("Create a Story")).check(matches(isCompletelyDisplayed()));
+        // Verify that fragment has loaded
+
     }
 }

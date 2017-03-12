@@ -36,9 +36,12 @@ public class CreateStoryTest {
 
     @Test
     public void testLoadCreateStoryFragment() {
+        // Locate Create Story tab
         Matcher<View> matcher = allOf(withText("Create"),
                 isDescendantOfA(withId(R.id.tabs)));
+        // Click tab
         onView(matcher).perform(click());
+        // Verify that fragment has loaded by checking that title is displayed
         onView(withText("Create a Story")).check(matches(isCompletelyDisplayed()));
     }
 

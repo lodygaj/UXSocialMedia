@@ -31,9 +31,12 @@ public class DiscoveryTest {
 
     @Test
     public void testDiscoveryFragmentLoad() {
+        // Locate discovery tab
         Matcher<View> matcher = allOf(withText("Discovery"),
                 isDescendantOfA(withId(R.id.tabs)));
+        // Click tab
         onView(matcher).perform(click());
+        // Verify that fragment has loaded by checking that title is displayed
         onView(withText("THRIFTY STORIES")).check(matches(isCompletelyDisplayed()));
     }
 

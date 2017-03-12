@@ -29,9 +29,12 @@ public class FavoritesTest {
 
     @Test
     public void testFavoriteFragmentLoad() {
+        // Locate favorites tab
         Matcher<View> matcher = allOf(withText("Favorites"),
                 isDescendantOfA(withId(R.id.tabs)));
+        // Click tab
         onView(matcher).perform(click());
+        // Verify that fragment has loaded by checking that listview is displayed
         onView(withId(R.id.locationList)).check(matches(isCompletelyDisplayed()));
     }
 }
