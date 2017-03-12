@@ -32,6 +32,12 @@ public class DatabaseTest {
     private String storyResource = "Resource";
     private String storyStoryType = "Fun";
 
+    // Consider using @BeforeClass to connect to the database. Android documentation says that it's
+    // Best to use this annotation because it will only run once prior to the class, and is useful
+    // For expensive tasks like connecting to a database. @Before runs before every test method
+    // You could use @AfterClass for the database, and use @After to redo the story after every test
+    // Not going to mess with your code because it's already working and you worked hard on it
+
     @Before
     public void setUp() {
         dbHelper = new DBHelper(InstrumentationRegistry.getTargetContext());
