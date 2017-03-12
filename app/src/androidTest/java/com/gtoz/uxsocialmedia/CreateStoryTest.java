@@ -52,45 +52,39 @@ public class CreateStoryTest {
         onView(matcher).perform(click());
         // Verify that fragment has loaded by checking that title is displayed
         onView(withText("Create a Story")).check(matches(isCompletelyDisplayed()));
-
-        try {
-            Thread.sleep(9999);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @Test
     public void titleTextTest(){
+
+        //Placing text into the Title field and checking for accuracy
         onView(withId(R.id.edtTxtTitle)).perform(typeText("New Story"), closeSoftKeyboard());
         onView(withId(R.id.edtTxtTitle)).check(matches(withText("New Story")));
 
+        //Choosing field on the spinner and checking for accuracy
         onView(withId(R.id.categorySpinner)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("Sports"))).perform(click());
         onView(withId(R.id.categorySpinner)).check(matches(withSpinnerText(containsString("Sports"))));
 
+        //Placing text into the Locaiton field and checking for accuracy
         onView(withId(R.id.edtTxtLocation)).perform(typeText("Fort Myers"), closeSoftKeyboard());
         onView(withId(R.id.edtTxtLocation)).check(matches(withText("Fort Myers")));
 
-
+        //Placing text into the Caption field and checking for accuracy
         onView(withId(R.id.edtTxtCaption)).perform(typeText("This is a new story."), closeSoftKeyboard());
         onView(withId(R.id.edtTxtCaption)).check(matches(withText("This is a new story.")));
 
-
+        //Clicking the submit button and checking for correct toast pop
         onView(withId(R.id.submitButton)).perform(click());
         onView(withText("Story Submitted"))
                 .inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        //Clicking the cancel button and checking that user is navigated back to discoveryfragment
         onView(withId(R.id.cancelButton)).perform(click());
         onView(withText("THRIFTY STORIES")).check(matches(isCompletelyDisplayed()));
     }
+
 
 }
 
