@@ -114,6 +114,11 @@ public class CreateStoryFragment extends Fragment {
                 // Add story to database
                 Story story = new Story(0, title, location, category, caption, 0, resType, res, "people");
                 dbHelper.addStory(story);
+                Toast.makeText(getActivity().getApplicationContext(), "Story Submitted", Toast.LENGTH_LONG).show();
+
+                titleEdtTxt.setText("");
+                locationEdtTxt.setText("");
+                captionEdtTxt.setText("");
             }
         });
 
