@@ -7,6 +7,7 @@ import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.intent.Intents;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -33,10 +34,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDis
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.espresso.web.sugar.Web.onWebView;
+import static android.support.test.espresso.web.webdriver.DriverAtoms.getText;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.is;
+import static android.support.test.espresso.web.assertion.WebViewAssertions.webMatches;
+import static org.hamcrest.Matchers.containsString;
 
 /**
  * Test class for Story Fragment methodology
@@ -82,8 +87,8 @@ public class StoryFragmentTest {
         onView(withId(R.id.btnReservation2))
                 .perform(click());
 
-        // Verify necessary intent
-        intended(hasAction(Intent.ACTION_VIEW));
+        onView(withId(R.id.webView)).check(matches(isCompletelyDisplayed()));
+
     }
 
     // Test the favorite button
