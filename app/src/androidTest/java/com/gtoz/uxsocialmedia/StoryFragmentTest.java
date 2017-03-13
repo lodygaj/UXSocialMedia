@@ -75,6 +75,7 @@ public class StoryFragmentTest {
         // Verify that website fragment was loaded
         onView(withId(R.id.webView)).check(matches(isCompletelyDisplayed()));
 
+        // Verify that the thrifty web site is displayed
         onWebView().check(webMatches(getCurrentUrl(), containsString("https://m.thrifty.com")));
 
     }

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             break;
                     case 3: WebsiteFragment websiteFragment = new WebsiteFragment();
                             setFragment(websiteFragment);
-                            websiteFragment.setUrl("http://www.roadtrippers.com");
+                            websiteFragment.setUrl("https://roadtrippers.com");
                             break;
                     case 4: setFragment(new QrReaderFragment());
                             break;
