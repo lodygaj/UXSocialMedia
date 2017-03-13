@@ -20,9 +20,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDis
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.espresso.web.model.Atoms.getCurrentUrl;
+import static android.support.test.espresso.web.sugar.Web.onWebView;
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.containsString;
+import static android.support.test.espresso.web.assertion.WebViewAssertions.webMatches;
 
 /**
  * Test class for Story Fragment methodology
@@ -70,6 +74,9 @@ public class StoryFragmentTest {
 
         // Verify that website fragment was loaded
         onView(withId(R.id.webView)).check(matches(isCompletelyDisplayed()));
+
+        onWebView().check(webMatches(getCurrentUrl(), containsString("https://m.thrifty.com")));
+
     }
 
     // Toggle the favorite button test and insure proper response
