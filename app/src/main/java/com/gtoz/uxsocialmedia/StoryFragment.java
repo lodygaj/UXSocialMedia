@@ -156,7 +156,7 @@ public class StoryFragment extends Fragment {
         });
 
         // Handles the Make Reservation Button
-        Button btnReservation = (Button) view.findViewById(R.id.btnReservation);
+        Button btnReservation = (Button) view.findViewById(R.id.btnReservation2);
         btnReservation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 WebsiteFragment fragment = new WebsiteFragment();

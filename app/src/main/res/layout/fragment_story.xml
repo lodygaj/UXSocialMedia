@@ -122,12 +122,12 @@
             <View style="@style/Divider"/>
 
             <Button
+                android:id="@+id/btnReservation2"
+                style="@style/ThriftyButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Make A Reservation"
-                android:id="@+id/btnReservation"
-                style="@style/ThriftyButton" />
+                android:text="Make A Reservation" />
 
             <View style="@style/Divider"/>
 

@@ -1,40 +1,38 @@
 package com.gtoz.uxsocialmedia;
 
-import android.support.test.rule.ActivityTestRule;
+import android.content.Intent;
+import android.support.test.espresso.contrib.RecyclerViewActions;
+import android.support.test.espresso.intent.Intents;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.widget.VideoView;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.allOf;
-import static com.gtoz.uxsocialmedia.R.id.webView;
 import static junit.framework.Assert.assertTrue;
-
-import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.webkit.WebView;
-import android.widget.VideoView;
 
 /**
  * Test class for Story Fragment methodology
- * Created by GtoZ on 3/12/2017.
+ * Created by Joey Laptop on 3/12/2017.
  */
 
 @RunWith(AndroidJUnit4.class)
 public class StoryFragmentTest {
-    private static boolean setUp = false;
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
+    public IntentsTestRule<MainActivity> mActivityRule = new IntentsTestRule<>(MainActivity.class);
 
     // Navitate to Story fragment prior to test case
     @Before
@@ -43,7 +41,7 @@ public class StoryFragmentTest {
         // And again to open story fragment
         for (int i = 0 ; i < 2 ; i++) {
             onView(withId(R.id.rv1))
-                    .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+                    .perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
         }
     }
 
@@ -62,38 +60,26 @@ public class StoryFragmentTest {
         assertTrue (vidView.isPlaying());
     }
 
-    // Test that reservation button loads webview of Thrifty website
+    // Test the Make Reservation button leads to the right location
     @Test
-    public void testMakeReservationButton() {
-        // Click reservation button
+    public void testMakeReservation() {
+        // Click on the Make Reservation Button
+        onView(withId(R.id.btnReservation2))
+                .perform(click());
 
-        onView(allOf(withId(R.id.btnReservation), isDisplayed())).perform(click());
-        // Verify that website fragment is loaded
-        WebView web = (WebView) mActivityRule.getActivity().findViewById(R.id.webView);
-        Assert.assertTrue(web.getUrl().equals("http://www.thrifty.com"));
-        //onView(withId(webView)).check(matches(isCompletelyDisplayed()));
+        // Verify necessary intent
+        intended(hasAction(Intent.ACTION_VIEW));
     }
 
+    /*// Test the favorite button
     @Test
-    public void testLocationButton() {
-        // Click location button
-        onView(withId(R.id.locationButton)).perform(click());
-        // Verify that grid fragment was loaded
-        onView(withId(R.id.staggered_grid)).check(matches(isCompletelyDisplayed()));
-    }
+    public void testFavorite() {
 
-    @Test
-    public void testCategoryButton() {
-        // Click category button
-        onView(withId(R.id.category)).perform(click());
-        // Verify that grid fragment was loaded
-        onView(withId(R.id.staggered_grid)).check(matches(isCompletelyDisplayed()));
-    }
-
-//    @Test
-//    public void testLikeButton() {
-//        // Click like button
-//        onView(withId(R.id.likeButton)).perform(click());
-//
-//    }
+        // Check state of like/favorite button
+        if (mActivityRule.getActivity().findViewById(R.id.likeButton).)
+        // Click on the favorite button
+        onView(withId(R.id.likeButton))
+                .perform (click())
+                .check(matches(withId(R.drawable.like_selected)));
+    }*/
 }
