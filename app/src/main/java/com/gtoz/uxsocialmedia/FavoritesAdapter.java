@@ -63,12 +63,12 @@ public class FavoritesAdapter extends BaseAdapter {
             // Set thumbnail
             image.setImageDrawable(drawable);
         }
-        else {
-            // Get image from drawables
-            int id = context.getResources().getIdentifier("drawable/" + list.get(position).getResource(), null, context.getPackageName());
-            // Set image
-            image.setImageResource(id);
-        }
+//        else {
+//            // Get image from drawables
+//            int id = context.getResources().getIdentifier("drawable/" + list.get(position).getResource(), null, context.getPackageName());
+//            // Set image
+//            image.setImageResource(id);
+//        }
 
         return rowView;
     };

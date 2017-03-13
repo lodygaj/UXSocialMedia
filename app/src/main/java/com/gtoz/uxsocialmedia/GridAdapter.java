@@ -56,12 +56,12 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.GridView> {
             // Set thumbnail
             holder.imageView.setImageDrawable(drawable);
         }
-        else {
-            // Get image from drawables
-            int id = context.getResources().getIdentifier("drawable/" + list.get(position).getResource(), null, context.getPackageName());
-            // Set image
-            holder.imageView.setImageResource(id);
-        }
+//        else {
+//            // Get image from drawables
+//            int id = context.getResources().getIdentifier("drawable/" + list.get(position).getResource(), null, context.getPackageName());
+//            // Set image
+//            holder.imageView.setImageResource(id);
+//        }
 
         holder.textView.setText(list.get(position).getTitle());
     }

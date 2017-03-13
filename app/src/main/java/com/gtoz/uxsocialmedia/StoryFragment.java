@@ -76,16 +76,16 @@ public class StoryFragment extends Fragment {
             }
         });
 
-        // Set image and hide video view
-        if(story.getResourceType().equals("image")) {
-            int imageId = context.getResources().getIdentifier("drawable/" + story.getResource(), null, context.getPackageName());
-            image.setImageResource(imageId);
-            videoFrame.setVisibility(View.GONE);
-        }
-        // Set video and hide image view
-        else {
+//        // Set image and hide video view
+//        if(story.getResourceType().equals("image")) {
+//            int imageId = context.getResources().getIdentifier("drawable/" + story.getResource(), null, context.getPackageName());
+//            image.setImageResource(imageId);
+//            videoFrame.setVisibility(View.GONE);
+//        }
+//        // Set video and hide image view
+//        else {
             image.setVisibility(View.GONE);
-        }
+//        }
 
         // Set title text
         TextView title = (TextView) view.findViewById(R.id.title);

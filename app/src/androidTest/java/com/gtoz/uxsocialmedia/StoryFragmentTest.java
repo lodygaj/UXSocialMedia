@@ -123,5 +123,11 @@ public class StoryFragmentTest {
         onView(withId(R.id.staggered_grid)).check(matches((isCompletelyDisplayed())));
     }
 
-
+    @Test
+    public void testCategoryButton() {
+        // Click category button
+        onView(withId(R.id.category)).perform(click());
+        // Verify that grid fragment was loaded
+        onView(withId(R.id.staggered_grid)).check(matches(isCompletelyDisplayed()));
+    }
 }
