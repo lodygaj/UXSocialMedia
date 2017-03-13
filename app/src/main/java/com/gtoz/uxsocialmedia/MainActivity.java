@@ -13,11 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import static android.app.PendingIntent.getActivity;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FragmentManager fm;
@@ -148,15 +151,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_home) {
-
+            setFragment(new DiscoveryFragment());
         } else if (id == R.id.nav_my_saved_locations) {
+            setFragment(new MyLocationsFragment());
 
         } else if (id == R.id.nav_link_accounts) {
+            Toast.makeText(this, "Link Accounts", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_update_interests) {
+            Toast.makeText(this, "Clicked Update Interests", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_settings) {
-
+            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
