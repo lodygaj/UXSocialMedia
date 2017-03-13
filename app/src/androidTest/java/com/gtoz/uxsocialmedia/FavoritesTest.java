@@ -53,10 +53,7 @@ public class FavoritesTest {
 
     @Before
     public void setUp() {
-        // Get database and add a favorite story to delete
         dbHelper = new DBHelper(InstrumentationRegistry.getTargetContext());
-        dbHelper.addFavorite(1);
-
         // Locate favorites tab
         Matcher<View> matcher = allOf(withText("Favorites"),
                 isDescendantOfA(withId(R.id.tabs)));

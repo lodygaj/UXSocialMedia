@@ -23,7 +23,6 @@ import static android.support.design.widget.CoordinatorLayout.Behavior.getTag;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.core.deps.guava.base.Predicates.not;
 import static android.support.test.espresso.intent.Intents.intended;
@@ -57,7 +56,7 @@ public class StoryFragmentTest {
         // And again to open story fragment
         for (int i = 0 ; i < 2 ; i++) {
             onView(withId(R.id.rv1))
-                    .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+                    .perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
         }
     }
 
@@ -83,8 +82,8 @@ public class StoryFragmentTest {
         onView(withId(R.id.btnReservation2))
                 .perform(click());
 
-        // Verify that website fragment was loaded
-        onView(withId(R.id.webView)).check(matches(isCompletelyDisplayed()));
+        // Verify necessary intent
+        intended(hasAction(Intent.ACTION_VIEW));
     }
 
     // Test the favorite button
