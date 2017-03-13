@@ -23,6 +23,7 @@ import static android.support.design.widget.CoordinatorLayout.Behavior.getTag;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.core.deps.guava.base.Predicates.not;
 import static android.support.test.espresso.intent.Intents.intended;
@@ -82,8 +83,8 @@ public class StoryFragmentTest {
         onView(withId(R.id.btnReservation2))
                 .perform(click());
 
-        // Verify necessary intent
-        intended(hasAction(Intent.ACTION_VIEW));
+        // Verify that website fragment was loaded
+        onView(withId(R.id.webView)).check(matches(isCompletelyDisplayed()));
     }
 
     // Test the favorite button
@@ -121,7 +122,7 @@ public class StoryFragmentTest {
     @Test
     public void testLocationButton() {
         //Clicking the submit button and checking for correct toast pop
-        onView(withId(R.id.locationButton)).perform(click());
+        onView(withId(R.id.locationButton)).perform(scrollTo(), click());
 
         //Checking to make sure user is on new gridfragment screen
         onView(withId(R.id.staggered_grid)).check(matches((isCompletelyDisplayed())));
