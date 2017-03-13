@@ -1,47 +1,28 @@
 package com.gtoz.uxsocialmedia;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.support.test.espresso.intent.Intents;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.webkit.WebView;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.design.widget.CoordinatorLayout.Behavior.getTag;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.core.deps.guava.base.Predicates.not;
-import static android.support.test.espresso.intent.Intents.intended;
-import static android.support.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
-import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static android.support.test.espresso.web.sugar.Web.onWebView;
-import static android.support.test.espresso.web.webdriver.DriverAtoms.getText;
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.CoreMatchers.is;
-import static android.support.test.espresso.web.assertion.WebViewAssertions.webMatches;
-import static org.hamcrest.Matchers.containsString;
 
 /**
  * Test class for Story Fragment methodology
@@ -87,27 +68,30 @@ public class StoryFragmentTest {
         onView(withId(R.id.btnReservation2))
                 .perform(click());
 
+        // Verify that website fragment was loaded
         onView(withId(R.id.webView)).check(matches(isCompletelyDisplayed()));
     }
 
-    // Test the favorite button
+    // Toggle the favorite button test and insure proper response
     @Test
-    public void testFavorite() {
+    public void testFavoriteButton() {
 
         //Geting the TextView that shows the number of likes
         TextView image = (TextView) mActivityRule.getActivity().findViewById(R.id.likes);
 
-        //Getting the # of likes before button click
-        String beforeClick = image.toString();
+        for (int i = 0; i < 2; i++){
+            //Getting the # of likes before button click
+            String beforeClick = image.getText().toString();
 
-        //Clicking the button
-        onView(withId(R.id.likeButton)).perform(click());
+            //Clicking the button
+            onView(withId(R.id.likeButton)).perform(click());
 
-        //Getting the # of likes after the button click
-        String afterClick = image.toString();
+            //Getting the # of likes after the button click
+            String afterClick = image.getText().toString();
 
-        //Asserting that there was a change in the # of likes
-        assertNotSame(beforeClick, afterClick);
+            //Asserting that there was a change in the # of likes
+            assertNotSame(beforeClick, afterClick);
+        }
 
     }
 

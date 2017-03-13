@@ -138,7 +138,20 @@ public class StoryFragment extends Fragment {
         // Handles the Like Button
         likeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(!dbHelper.isFavorite(story.getId())) {
+                if(dbHelper.isFavorite(story.getId())) {
+                    // Update likes
+                    TextView tv = (TextView) view.findViewById(R.id.likes);
+                    tv.setText(Integer.toString(story.getLikes() - 1));
+                    // Set like image
+                    likeButton.setImageResource(R.drawable.like_unselected);
+
+                    // Update story in database
+                    story.setLikes(story.getLikes() - 1);
+                    dbHelper.editStory(story);
+
+                    // Delete story from favorites
+                    dbHelper.deleteFavorite(story.getId());
+                } else {
                     // Update likes
                     TextView tv = (TextView) view.findViewById(R.id.likes);
                     tv.setText(Integer.toString(story.getLikes() + 1));
