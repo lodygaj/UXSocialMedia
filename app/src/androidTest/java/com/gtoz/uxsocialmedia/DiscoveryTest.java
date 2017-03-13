@@ -133,7 +133,7 @@ public class DiscoveryTest {
 
         onView(withText("Settings")).perform(click());
 
-        onView(withText("Settings"))
+        onView(withText("Clicked Settings"))
                 .inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
     }
