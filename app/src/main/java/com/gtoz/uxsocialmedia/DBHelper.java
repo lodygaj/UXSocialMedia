@@ -320,6 +320,18 @@ public class DBHelper extends SQLiteOpenHelper {
         return story;
     }
 
+    // Get the number of stories in the database
+    public int getNumberOfStories () {
+        // Set query and establish database
+        String query = "SELECT COUNT(*) FROM " + TABLE_STORIES;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        return cursor.getInt(0);
+    }
+
     // Returns an arraylist of stories from database
     public ArrayList<Story> getStoriesByType(String type) {
         ArrayList<Story> stories = new ArrayList<>();

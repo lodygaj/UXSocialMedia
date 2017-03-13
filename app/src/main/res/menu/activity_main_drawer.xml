@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item android:title="Navigate">
@@ -12,7 +13,7 @@
                     android:title="My Saved Locations" />
             </menu>
         </item>
-        <item android:title="Settings">
+        <item android:title="Preferences">
             <menu>
                 <item
                     android:id="@+id/nav_link_accounts"
@@ -26,8 +27,6 @@
             </menu>
         </item>
     </group>
-
-
 
 
 </menu>

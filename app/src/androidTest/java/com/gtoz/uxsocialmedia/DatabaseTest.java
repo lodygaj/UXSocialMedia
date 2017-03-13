@@ -22,7 +22,7 @@ public class DatabaseTest {
     private Story testStory;
 
     //Story Parameters
-    private int storyID = 3;
+    private int storyID = 31;
     private String storyTitle = "Sample Title";
     private String storyLocation = "Fort Myers";
     private String storyCategory = "Biking";
@@ -53,9 +53,10 @@ public class DatabaseTest {
 
     @Test
     public void addStoryTest() {
-//        dbHelper.addStory(testStory);
-//        Story addedStory = dbHelper.getS
-
+        int initialCount = dbHelper.getNumberOfStories();
+        dbHelper.addStory(testStory);
+        int newCount = dbHelper.getNumberOfStories();
+        Assert.assertEquals(++initialCount, newCount);
     }
 
     @Test
