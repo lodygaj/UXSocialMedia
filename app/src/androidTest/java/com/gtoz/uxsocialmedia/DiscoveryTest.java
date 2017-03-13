@@ -35,19 +35,36 @@ public class DiscoveryTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
+    // Repeat test twice to insure proper behavior
     @Test
     public void testDiscoveryFragmentLoad() {
-        // Locate discovery tab
-        Matcher<View> matcher = allOf(withText("Discovery"),
+        for (int i = 0; i < 2; i++) {
+            // Locate discovery tab
+            Matcher<View> matcher = allOf(withText("Discovery"),
+                    isDescendantOfA(withId(R.id.tabs)));
+            // Click tab
+            onView(matcher).perform(click());
+        }
+    }
+
+    // Insure proper behavior on back press after navigating away from starting tab
+    @Test
+    public void onBackPressedTest () {
+        // Locate favorites tab
+        Matcher<View> matcher = allOf(withText("Favorites"),
                 isDescendantOfA(withId(R.id.tabs)));
         // Click tab
         onView(matcher).perform(click());
-        // Verify that fragment has loaded by checking that title is displayed
-        onView(withText("THRIFTY STORIES")).check(matches(isCompletelyDisplayed()));
+        // Go back
+        pressBack();
+        // Locate discovery tab
+        matcher = allOf(withText("Discovery"),
+                isDescendantOfA(withId(R.id.tabs)));
+        // Click tab
+        onView(matcher).check(matches(isCompletelyDisplayed()));
     }
 
-
-    //Tesitng the navigation drawer opens correctly
+    //Testing the navigation drawer opens correctly
     @Test
     public void navigationDrawerTest(){
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());

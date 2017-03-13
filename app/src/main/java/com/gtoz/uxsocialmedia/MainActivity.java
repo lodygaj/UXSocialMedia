@@ -124,6 +124,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            // If this is the last fragment in the stack, finish and back out of the app
+            if (fm.getBackStackEntryCount() == 1)
+                finish();
             super.onBackPressed();
         }
     }

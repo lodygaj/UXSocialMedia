@@ -28,6 +28,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.RootMatchers.isPlatformPopup;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -59,10 +60,20 @@ public class FavoritesTest {
                 isDescendantOfA(withId(R.id.tabs)));
         // Click tab
         onView(matcher).perform(click());
-        // Verify that fragment has loaded by checking that listview is displayed
-        onView(withId(R.id.locationList)).check(matches(isCompletelyDisplayed()));
     }
 
+    // Tap the favorites tab again to insure proper behavior
+    @Test
+    public void loadFavoritesAgainTest () {
+        // Locate favorites tab
+        Matcher<View> matcher = allOf(withText("Favorites"),
+                isDescendantOfA(withId(R.id.tabs)));
+        // Click tab
+        onView(matcher)
+                .perform(click())
+                .check(matches(isCompletelyDisplayed()));
+
+    }
 
     @Test
     public void selectItemTest() {

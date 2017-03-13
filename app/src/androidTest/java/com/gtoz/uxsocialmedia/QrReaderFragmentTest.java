@@ -34,7 +34,7 @@ import static org.hamcrest.Matchers.is;
  */
 
 @RunWith(AndroidJUnit4.class)
-public class QrReaderTest {
+public class QrReaderFragmentTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
@@ -48,11 +48,16 @@ public class QrReaderTest {
         onView(matcher).perform(click());
     }
 
-    // Test that QR fragment loaded properly
+    // Test that QR fragment loads properly even when selected twice
     @Test
     public void testQrFragmentLoad() {
+        // Locate Qr tab
+        Matcher<View> matcher = allOf(withText("Qr"),
+                isDescendantOfA(withId(R.id.tabs)));
+        // Click tab
+        onView(matcher).perform(click());
         // Verify that fragment has loaded
         onView(isAssignableFrom(ZXingScannerView.class)).check(matches(isCompletelyDisplayed()));
     }
-    
+
 }

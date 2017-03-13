@@ -39,10 +39,16 @@ public class WebsiteFragmentTest {
     }
 
 
+    // Test to insure proper behavior even when tab reselected
     @Test
-    public void randoTest(){
-
-        Assert.assertEquals(1, 1);
+    public void loadFragmentAgainTest() {
+        // Locate Create Story tab
+        Matcher<View> matcher = allOf(withText("Poi"),
+                isDescendantOfA(withId(R.id.tabs)));
+        // Click tab
+        onView(matcher)
+                .perform(click())
+                .check(matches(isCompletelyDisplayed()));
     }
 
 }
