@@ -64,21 +64,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
                 // Load fragment
-                switch(position) {
-                    case 0: setFragment(new CreateStoryFragment());
-                            break;
-                    case 1: setFragment(new MyLocationsFragment());
-                            break;
-                    case 2: setFragment(new DiscoveryFragment());
-                            break;
-                    case 3: WebsiteFragment websiteFragment = new WebsiteFragment();
-                            setFragment(websiteFragment);
-                            websiteFragment.setUrl("https://roadtrippers.com");
-                            break;
-                    case 4: setFragment(new QrReaderFragment());
-                            break;
-                    default: setFragment(new QrReaderFragment());
+                if (position == 0)
+                    setFragment(new CreateStoryFragment());
+                else if (position == 1)
+                    setFragment(new MyLocationsFragment());
+                else if (position == 2)
+                    setFragment(new DiscoveryFragment());
+                else if (position == 3) {
+                    WebsiteFragment websiteFragment = new WebsiteFragment();
+                    setFragment(websiteFragment);
+                    websiteFragment.setUrl("http://www.roadtrippers.com");
                 }
+                else if (position == 4)
+                    setFragment(new QrReaderFragment());
             }
 
             @Override
@@ -88,21 +86,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onTabReselected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
                 // Load fragment
-                switch(position) {
-                    case 0: setFragment(new CreateStoryFragment());
-                            break;
-                    case 1: setFragment(new MyLocationsFragment());
-                            break;
-                    case 2: setFragment(new DiscoveryFragment());
-                            break;
-                    case 3: WebsiteFragment websiteFragment = new WebsiteFragment();
-                            setFragment(websiteFragment);
-                            websiteFragment.setUrl("http://www.roadtrippers.com");
-                            break;
-                    case 4: setFragment(new QrReaderFragment());
-                            break;
-                    default: setFragment(new QrReaderFragment());
+                if (position == 0)
+                    setFragment(new CreateStoryFragment());
+                else if (position == 1)
+                    setFragment(new MyLocationsFragment());
+                else if (position == 2)
+                    setFragment(new DiscoveryFragment());
+                else if (position == 3) {
+                    WebsiteFragment websiteFragment = new WebsiteFragment();
+                    setFragment(websiteFragment);
+                    websiteFragment.setUrl("http://www.roadtrippers.com");
                 }
+                else if (position == 4)
+                    setFragment(new QrReaderFragment());
             }
         });
 
