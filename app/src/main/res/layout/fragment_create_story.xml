@@ -67,33 +67,6 @@
         android:ems="10"
         android:id="@+id/edtTxtCaption" />
 
-    <TextView
-        android:text="Upload Image/Video: "
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/thriftyBlack"
-        android:id="@+id/txtViewUpload" />
-
-    <Button
-        android:text="Choose file"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/uploadButton"
-        style="@style/ThriftyButton" />
-
-    <TextView
-        android:text="Preview: "
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/thriftyBlack"
-        android:id="@+id/txtViewPreview" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="125dp"
-        app:srcCompat="@drawable/preview_upload"
-        android:id="@+id/previewImage" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

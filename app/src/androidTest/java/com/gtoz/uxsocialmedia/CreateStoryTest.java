@@ -46,7 +46,6 @@ public class CreateStoryTest {
 
     @Before
     public void setUp() {
-        //DBHelper dbHelper = new DBHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
         // Locate Create Story tab
         Matcher<View> matcher = allOf(withText("Create"),
                 isDescendantOfA(withId(R.id.tabs)));
@@ -57,7 +56,7 @@ public class CreateStoryTest {
     }
 
     @Test
-    public void titleTextTest(){
+    public void testCreateStorySubmit(){
 
         //Placing text into the Title field and checking for accuracy
         onView(withId(R.id.edtTxtTitle)).perform(typeText("New Story"), closeSoftKeyboard());
@@ -81,11 +80,12 @@ public class CreateStoryTest {
         onView(withText("Story Submitted"))
                 .inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
+    }
 
-        //Clicking the cancel button and checking that user is navigated back to discoveryfragment
+    @Test
+    public void testCreateStoryCancel(){
+        //Clicking the cancel button and checking for discovery page
         onView(withId(R.id.cancelButton)).perform(click());
         onView(withText("THRIFTY STORIES")).check(matches(isCompletelyDisplayed()));
     }
-
-
 }

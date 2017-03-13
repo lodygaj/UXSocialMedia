@@ -122,17 +122,6 @@ public class DatabaseTest {
     }
 
     @Test
-    public void deleteFavoriteTest() {
-        // Delete story id 1 from favorites
-        dbHelper.deleteFavorite(1);
-        // Get array of favorite stories
-        ArrayList<Story> stories = new ArrayList<>();
-        stories = dbHelper.getFavoriteStories();
-        // Verify that the first story is now 3
-        Assert.assertEquals(3, stories.get(0).getId());
-    }
-
-    @Test
     public void addFavoriteTest() {
         // Add story id 1 to favorites
         dbHelper.addFavorite(1);
@@ -141,6 +130,18 @@ public class DatabaseTest {
         stories = dbHelper.getFavoriteStories();
         // Verify that the first story is now 1
         Assert.assertEquals(1, stories.get(0).getId());
+    }
+
+    @Test
+    public void deleteFavoriteTest() {
+        // Delete story id 1 from favorites
+        dbHelper.addFavorite(3);
+        dbHelper.deleteFavorite(1);
+        // Get array of favorite stories
+        ArrayList<Story> stories = new ArrayList<>();
+        stories = dbHelper.getFavoriteStories();
+        // Verify that the first story is now 3
+        Assert.assertEquals(3, stories.get(0).getId());
     }
 
     @Test
