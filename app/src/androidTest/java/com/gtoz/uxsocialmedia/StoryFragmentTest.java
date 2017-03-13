@@ -57,7 +57,7 @@ public class StoryFragmentTest {
         // And again to open story fragment
         for (int i = 0 ; i < 2 ; i++) {
             onView(withId(R.id.rv1))
-                    .perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
+                    .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         }
     }
 
@@ -122,7 +122,7 @@ public class StoryFragmentTest {
     @Test
     public void testLocationButton() {
         //Clicking the submit button and checking for correct toast pop
-        onView(withId(R.id.locationButton)).perform(scrollTo(), click());
+        onView(withId(R.id.locationButton)).perform(click());
 
         //Checking to make sure user is on new gridfragment screen
         onView(withId(R.id.staggered_grid)).check(matches((isCompletelyDisplayed())));
