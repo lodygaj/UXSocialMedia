@@ -1,6 +1,7 @@
 package com.gtoz.uxsocialmedia;
 
 import android.support.test.espresso.contrib.DrawerActions;
+import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
@@ -136,6 +137,14 @@ public class DiscoveryTest {
         onView(withText("Clicked Settings"))
                 .inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView()))))
                 .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void selectStoryThenSelectOther() {
+        // Click first story in "Thrifty list" to display title
+        onView(withId(R.id.rv1)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+        // Click second story in "Thrifty list" to deselect first story and display second story title
+        onView(withId(R.id.rv1)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
     }
 
 }

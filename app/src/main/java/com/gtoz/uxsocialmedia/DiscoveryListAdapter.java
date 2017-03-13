@@ -43,8 +43,8 @@ public class DiscoveryListAdapter extends RecyclerView.Adapter<DiscoveryListAdap
 
     @Override
     public void onBindViewHolder(DiscoveryListAdapter.GridView holder, int position) {
-        // Get image
-        if(list.get(position).getResourceType().equals("video")) {
+//        // Get image
+//        if(list.get(position).getResourceType().equals("video")) {
             // Get thumbnail from video file
             Uri videoURI = Uri.parse("android.resource://com.gtoz.uxsocialmedia/raw/" + list.get(position).getResource());
             MediaMetadataRetriever retriever = new MediaMetadataRetriever();
@@ -53,13 +53,13 @@ public class DiscoveryListAdapter extends RecyclerView.Adapter<DiscoveryListAdap
             Drawable drawable = new BitmapDrawable(context.getResources(), bitmap);
             // Set thumbnail
             holder.imageView.setImageDrawable(drawable);
-        }
-        else {
-            // Get image from drawables
-            int id = context.getResources().getIdentifier("drawable/" + list.get(position).getResource(), null, context.getPackageName());
-            // Set image
-            holder.imageView.setImageResource(id);
-        }
+//        }
+//        else {
+//            // Get image from drawables
+//            int id = context.getResources().getIdentifier("drawable/" + list.get(position).getResource(), null, context.getPackageName());
+//            // Set image
+//            holder.imageView.setImageResource(id);
+//        }
 
         holder.textView.setText(list.get(position).getTitle());
     }
