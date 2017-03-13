@@ -277,6 +277,49 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update(TABLE_STORIES, values, COLUMN_STORY_ID + " = '" + story.getId() + "'", null);
     }
 
+    // Get a story from a database by ID
+    public Story getStory (int id) {
+        // Set query and establish database
+        String query = "SELECT * FROM " + TABLE_STORIES + " WHERE " + COLUMN_STORY_ID + "= '" + id + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        // Load Story elements
+        int idIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_ID);
+        String storyId = cursor.getString(idIndex); // Story ID
+
+        int titleIndex = cursor.getColumnIndexOrThrow(COLUMN_TITLE);
+        String title = cursor.getString(titleIndex); // Story title
+
+        int locationIndex = cursor.getColumnIndexOrThrow(COLUMN_LOCATION);
+        String location = cursor.getString(locationIndex); // Story location
+
+        int categoryIndex = cursor.getColumnIndexOrThrow(COLUMN_CATEGORY);
+        String category = cursor.getString(categoryIndex); // Story category
+
+        int captionIndex = cursor.getColumnIndexOrThrow(COLUMN_CAPTION);
+        String caption = cursor.getString(captionIndex); // Story caption
+
+        int likeIndex = cursor.getColumnIndexOrThrow(COLUMN_LIKES);
+        String like = cursor.getString(likeIndex); // Story likes count
+
+        int resourceTypeIndex = cursor.getColumnIndexOrThrow(COLUMN_RES_TYPE);
+        String resourceType = cursor.getString(resourceTypeIndex); // Story resource type
+
+        int resourceIndex = cursor.getColumnIndexOrThrow(COLUMN_RESOURCE);
+        String resource = cursor.getString(resourceIndex); // Story resource filename
+
+        int storyTypeIndex = cursor.getColumnIndexOrThrow(COLUMN_STORY_TYPE);
+        String storyType = cursor.getString(storyTypeIndex); // Story type
+
+        Story story = new Story(Integer.parseInt(storyId), title, location, category, caption,
+                Integer.parseInt(like), resourceType, resource, storyType); // Create story object
+
+        return story;
+    }
+
     // Returns an arraylist of stories from database
     public ArrayList<Story> getStoriesByType(String type) {
         ArrayList<Story> stories = new ArrayList<>();

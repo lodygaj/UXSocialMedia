@@ -60,8 +60,12 @@ public class MyLocationsFragment extends Fragment {
                 pm.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        // Delete favorite and refresh list
+                        // Edit story values
                         int id = list.get(position).getId();
+                        Story story = dbHelper.getStory(id);
+                        story.setLikes(story.getLikes() - 1);
+                        dbHelper.editStory(story);
+                        // Delete favorite and refresh list
                         dbHelper.deleteFavorite(id);
                         adapter.setList(dbHelper.getFavoriteStories());
                         adapter.notifyDataSetChanged();
