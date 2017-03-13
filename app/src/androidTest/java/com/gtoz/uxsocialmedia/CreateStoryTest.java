@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import static android.app.PendingIntent.getActivity;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
@@ -51,10 +52,23 @@ public class CreateStoryTest {
                 isDescendantOfA(withId(R.id.tabs)));
         // Click tab
         onView(matcher).perform(click());
+    }
+
+    // Navigate away from CreateStoryTab then back to it
+    @Test
+    public void testLoadCreateStoryFragment() {
+        // Navigate away
+        pressBack();
+
+        // Navigate back
+        // Locate Create Story tab
+        Matcher<View> matcher = allOf(withText("Create"),
+                isDescendantOfA(withId(R.id.tabs)));
+        // Click tab
+        onView(matcher).perform(click());
         // Verify that fragment has loaded by checking that title is displayed
         onView(withText("Create a Story")).check(matches(isCompletelyDisplayed()));
     }
-
     @Test
     public void testCreateStorySubmit(){
 

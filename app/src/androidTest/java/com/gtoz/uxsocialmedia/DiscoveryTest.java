@@ -126,4 +126,16 @@ public class DiscoveryTest {
                 .check(matches(isDisplayed()));
     }
 
+    //Testing pressing Update Interests on navigation drawer
+    @Test
+    public void settingsPressedOnNavigationTest(){
+        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
+
+        onView(withText("Settings")).perform(click());
+
+        onView(withText("Settings"))
+                .inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView()))))
+                .check(matches(isDisplayed()));
+    }
+
 }
