@@ -107,6 +107,7 @@
 
                     <ImageView
                         android:id="@+id/likeButton"
+                        android:clickable="true"
                         android:layout_width="34dp"
                         android:layout_height="31dp"
                         android:background="@drawable/like_unselected"

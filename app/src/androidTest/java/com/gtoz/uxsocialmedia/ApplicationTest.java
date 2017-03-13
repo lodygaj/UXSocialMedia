@@ -15,3 +15,6 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
 
 // Run this in command line to generate jacoco coverage:
 // gradlew clean createDebugCoverageReport jacocoTestReport
+
+//Command for Mac
+//./gradlew createDebugCoverageReport

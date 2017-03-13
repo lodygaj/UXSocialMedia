@@ -6,26 +6,26 @@
     android:background="#FFFFFF">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView"
-        android:scrollbars="none"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:scrollbars="none">
 
         <LinearLayout
+            android:id="@+id/menuLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/menuLayout">
+            android:orientation="vertical">
 
             <TextView
-                android:text="THRIFTY STORIES"
-                android:textColor="@color/thriftyBlack"
+                android:id="@+id/title1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/title1" />
+                android:layout_marginTop="5dp"
+                android:text="THRIFTY STORIES"
+                android:textColor="@color/thriftyBlack" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv1"
@@ -34,16 +34,16 @@
                 android:layout_marginBottom="5dp"
                 android:background="#FFFFFF" />
 
-            <View style="@style/Divider"/>
+            <View style="@style/Divider" />
 
             <TextView
-                android:text="EXTRAORDINARY PEOPLE AND PLACES"
-                android:textColor="@color/thriftyBlack"
+                android:id="@+id/title2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/title2" />
+                android:layout_marginTop="5dp"
+                android:text="EXTRAORDINARY PEOPLE AND PLACES"
+                android:textColor="@color/thriftyBlack" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv2"
@@ -52,16 +52,16 @@
                 android:layout_marginBottom="5dp"
                 android:background="#FFFFFF" />
 
-            <View style="@style/Divider"/>
+            <View style="@style/Divider" />
 
             <TextView
-                android:text="CATEGORIES"
-                android:textColor="@color/thriftyBlack"
+                android:id="@+id/title3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/title3" />
+                android:layout_marginTop="5dp"
+                android:text="CATEGORIES"
+                android:textColor="@color/thriftyBlack" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv3"
