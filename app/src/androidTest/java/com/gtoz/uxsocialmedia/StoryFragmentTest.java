@@ -88,7 +88,6 @@ public class StoryFragmentTest {
                 .perform(click());
 
         onView(withId(R.id.webView)).check(matches(isCompletelyDisplayed()));
-
     }
 
     // Test the favorite button
