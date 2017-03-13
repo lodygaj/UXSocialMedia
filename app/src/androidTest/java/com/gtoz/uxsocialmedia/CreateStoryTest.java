@@ -34,6 +34,8 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.not;
 
 /**
+ * This test class is for all tests revolving around the StoryTest
+ *
  * Created by GtoZ on 3/9/2017.
  */
 
@@ -87,4 +89,3 @@ public class CreateStoryTest {
 
 
 }
-

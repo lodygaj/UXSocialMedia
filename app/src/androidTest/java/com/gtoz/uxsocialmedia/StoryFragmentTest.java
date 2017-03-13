@@ -1,7 +1,11 @@
 package com.gtoz.uxsocialmedia;
 
-import android.support.test.rule.ActivityTestRule;
+import android.content.Intent;
+import android.support.test.espresso.contrib.RecyclerViewActions;
+import android.support.test.espresso.intent.Intents;
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.widget.VideoView;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -9,15 +13,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.Assert.assertTrue;
-
-import android.support.test.espresso.contrib.RecyclerViewActions;
-import android.widget.VideoView;
 
 /**
  * Test class for Story Fragment methodology
@@ -26,10 +29,9 @@ import android.widget.VideoView;
 
 @RunWith(AndroidJUnit4.class)
 public class StoryFragmentTest {
-    private static boolean setUp = false;
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
+    public IntentsTestRule<MainActivity> mActivityRule = new IntentsTestRule<>(MainActivity.class);
 
     // Navitate to Story fragment prior to test case
     @Before
@@ -55,6 +57,17 @@ public class StoryFragmentTest {
         // Verify that the video player is playing
         VideoView vidView = (VideoView) mActivityRule.getActivity().findViewById(R.id.videoView);
         assertTrue (vidView.isPlaying());
+    }
+
+    // Test the Make Reservation button leads to the right location
+    @Test
+    public void testMakeReservation() {
+        // Click on the Make Reservation Button
+        onView(withId(R.id.btnReservation2))
+                .perform(click());
+
+        // Verify necessary intent
+        intended(hasAction(Intent.ACTION_VIEW));
     }
 
 }

@@ -4,6 +4,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * This test class is for all tests revolving around the StoryTest
+ *
  * Created by GtoZ on 2/17/2017.
  */
 
