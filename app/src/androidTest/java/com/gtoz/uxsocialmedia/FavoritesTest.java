@@ -1,5 +1,6 @@
 package com.gtoz.uxsocialmedia;
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.RootMatchers;
 import android.support.test.espresso.matcher.ViewMatchers;
@@ -44,6 +45,7 @@ import static org.hamcrest.Matchers.hasToString;
 
 @RunWith(AndroidJUnit4.class)
 public class FavoritesTest {
+    private DBHelper dbHelper;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
@@ -51,6 +53,10 @@ public class FavoritesTest {
 
     @Before
     public void setUp() {
+        // Get database and add a favorite story to delete
+        dbHelper = new DBHelper(InstrumentationRegistry.getTargetContext());
+        dbHelper.addFavorite(1);
+
         // Locate favorites tab
         Matcher<View> matcher = allOf(withText("Favorites"),
                 isDescendantOfA(withId(R.id.tabs)));
