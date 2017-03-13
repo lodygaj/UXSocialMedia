@@ -18,6 +18,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.intent.Intents.intended;
 import static android.support.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static junit.framework.Assert.assertTrue;
@@ -40,7 +41,7 @@ public class StoryFragmentTest {
         // And again to open story fragment
         for (int i = 0 ; i < 2 ; i++) {
             onView(withId(R.id.rv1))
-                    .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+                    .perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
         }
     }
 
@@ -70,4 +71,15 @@ public class StoryFragmentTest {
         intended(hasAction(Intent.ACTION_VIEW));
     }
 
+    /*// Test the favorite button
+    @Test
+    public void testFavorite() {
+
+        // Check state of like/favorite button
+        if (mActivityRule.getActivity().findViewById(R.id.likeButton).)
+        // Click on the favorite button
+        onView(withId(R.id.likeButton))
+                .perform (click())
+                .check(matches(withId(R.drawable.like_selected)));
+    }*/
 }
