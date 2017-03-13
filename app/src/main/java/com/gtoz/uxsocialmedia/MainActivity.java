@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tabLayout.addTab(tabLayout.newTab().setIcon(tabIcons[4]).setText("Qr"));
         // Set indicator to initial position
         tabLayout.setScrollPosition(2, 0, false);
+        // Set tab text color to thrifty grey
+        tabLayout.setTabTextColors(getResources().getColor(R.color.thriftyGrey), getResources().getColor(R.color.thriftyGrey));
         // Set click listener for tabs
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
