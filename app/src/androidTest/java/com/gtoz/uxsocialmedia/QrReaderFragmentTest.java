@@ -1,11 +1,8 @@
 package com.gtoz.uxsocialmedia;
 
-import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
-
-import com.google.zxing.Result;
 
 import org.hamcrest.Matcher;
 import org.junit.Before;
@@ -15,7 +12,6 @@ import org.junit.runner.RunWith;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -25,9 +21,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
 
 /**
  * Created by GtoZ on 3/9/2017.
@@ -59,5 +52,4 @@ public class QrReaderFragmentTest {
         // Verify that fragment has loaded
         onView(isAssignableFrom(ZXingScannerView.class)).check(matches(isCompletelyDisplayed()));
     }
-
 }

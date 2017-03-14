@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import org.hamcrest.Matchers;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

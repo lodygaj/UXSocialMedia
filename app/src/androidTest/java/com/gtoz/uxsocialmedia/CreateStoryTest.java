@@ -1,19 +1,15 @@
 package com.gtoz.uxsocialmedia;
 
-import android.support.test.espresso.Espresso;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 
 import org.hamcrest.Matcher;
-import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.app.PendingIntent.getActivity;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
@@ -57,7 +53,7 @@ public class CreateStoryTest {
     // Navigate away from CreateStoryTab then back to it
     @Test
     public void testLoadCreateStoryFragment() {
-        // Navigate away
+        // Go back
         pressBack();
 
         // Navigate back
@@ -71,7 +67,6 @@ public class CreateStoryTest {
     }
     @Test
     public void testCreateStorySubmit(){
-
         //Placing text into the Title field and checking for accuracy
         onView(withId(R.id.edtTxtTitle)).perform(typeText("New Story"), closeSoftKeyboard());
         onView(withId(R.id.edtTxtTitle)).check(matches(withText("New Story")));
@@ -99,7 +94,6 @@ public class CreateStoryTest {
     //Testing to see if an empty field is there then right message is displayed
     @Test
     public void testFailCreateStorySubmit(){
-
         //Placing text into the Title field and checking for accuracy
         onView(withId(R.id.edtTxtTitle)).perform(typeText("New Story"), closeSoftKeyboard());
         onView(withId(R.id.edtTxtTitle)).check(matches(withText("New Story")));

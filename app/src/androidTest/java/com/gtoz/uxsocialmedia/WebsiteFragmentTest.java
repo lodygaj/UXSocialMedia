@@ -1,11 +1,9 @@
 package com.gtoz.uxsocialmedia;
 
-import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.view.View;
 
 import org.hamcrest.Matcher;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -50,5 +48,4 @@ public class WebsiteFragmentTest {
                 .perform(click())
                 .check(matches(isCompletelyDisplayed()));
     }
-
 }

@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     setFragment(websiteFragment);
                     websiteFragment.setUrl("http://www.roadtrippers.com");
                 }
-                else if (position == 4)
+                else //if (position == 4)
                     setFragment(new QrReaderFragment());
             }
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     setFragment(websiteFragment);
                     websiteFragment.setUrl("http://www.roadtrippers.com");
                 }
-                else if (position == 4)
+                else //if (position == 4)
                     setFragment(new QrReaderFragment());
             }
         });
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_update_interests) {
             Toast.makeText(this, "Clicked Update Interests", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.nav_settings) {
+        } else /*if (id == R.id.nav_settings)*/ {
             Toast.makeText(this, "Clicked Settings", Toast.LENGTH_SHORT).show();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

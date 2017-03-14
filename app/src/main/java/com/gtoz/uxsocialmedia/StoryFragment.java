@@ -62,9 +62,7 @@ public class StoryFragment extends Fragment {
         video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             public void onPrepared(MediaPlayer mediaPlayer) {
                 video.seekTo(position);
-                if (position == 0) {
-                    video.start();
-                }
+                video.start();
                 // When video Screen change size.
                 mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
                     @Override

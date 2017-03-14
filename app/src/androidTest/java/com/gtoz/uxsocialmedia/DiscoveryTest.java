@@ -1,5 +1,6 @@
 package com.gtoz.uxsocialmedia;
 
+import android.support.test.espresso.NoActivityResumedException;
 import android.support.test.espresso.contrib.DrawerActions;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
@@ -50,7 +51,7 @@ public class DiscoveryTest {
 
     // Insure proper behavior on back press after navigating away from starting tab
     @Test
-    public void onBackPressedTest () {
+    public void backPressedTest () {
         // Locate favorites tab
         Matcher<View> matcher = allOf(withText("Favorites"),
                 isDescendantOfA(withId(R.id.tabs)));
@@ -81,6 +82,16 @@ public class DiscoveryTest {
         pressBack();
 
         onView(withText("THRIFTY STORIES")).check(matches(isCompletelyDisplayed()));
+    }
+
+    // Test pressing back on main screen
+    @Test
+    public void backPressedOnMainTest(){
+        try {
+            pressBack();
+        }catch (NoActivityResumedException e) {
+            Assert.assertTrue(true);
+        }
     }
 
     //Testing pressing Home on navigation drawer
@@ -146,5 +157,4 @@ public class DiscoveryTest {
         // Click second story in "Thrifty list" to deselect first story and display second story title
         onView(withId(R.id.rv1)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
     }
-
 }
