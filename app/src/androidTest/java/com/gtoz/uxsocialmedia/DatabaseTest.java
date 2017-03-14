@@ -59,13 +59,32 @@ public class DatabaseTest {
         Assert.assertEquals(++initialCount, newCount);
     }
 
+    // Test for Story set methods
     @Test
-    public void editStoryTest() {
-//        dbHelper.addStory(testStory);
-//        testStory.setLikes(45);
-//        dbHelper.editStory(testStory);
+    public void setStoryTest() {
+        // Make a new story
+        Story newStory = new Story();
 
+        // Set temp values to new story
+        newStory.setCaption(testStory.getCaption());
+        newStory.setCategory(testStory.getCategory());
+        newStory.setLikes(testStory.getLikes());
+        newStory.setLocation(testStory.getLocation());
+        newStory.setResource(testStory.getResource());
+        newStory.setResourceType(testStory.getResourceType());
+        newStory.setTitle(testStory.getTitle());
+        newStory.setStoryType(testStory.getStoryType());
+        newStory.setId(testStory.getId());
 
+        Assert.assertEquals (newStory.getCaption(), testStory.getCaption());
+        Assert.assertEquals (newStory.getCategory(), testStory.getCategory());
+        Assert.assertEquals (newStory.getLikes(), testStory.getLikes());
+        Assert.assertEquals (newStory.getLocation(), testStory.getLocation());
+        Assert.assertEquals (newStory.getResource(), testStory.getResource());
+        Assert.assertEquals (newStory.getResourceType(), testStory.getResourceType());
+        Assert.assertEquals (newStory.getTitle(), testStory.getTitle());
+        Assert.assertEquals (newStory.getStoryType(), testStory.getStoryType());
+        Assert.assertEquals (newStory.getId(), testStory.getId());
     }
 
     @Test

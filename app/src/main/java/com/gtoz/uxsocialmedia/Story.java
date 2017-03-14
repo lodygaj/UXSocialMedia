@@ -15,6 +15,8 @@ public class Story {
     private String resource;
     private String storyType;
 
+    // Null constructor
+    public Story() {}
     public Story(int id, String title, String location, String category,
                  String caption, int likes, String resType, String resource, String storyType) {
         this.id = id;
