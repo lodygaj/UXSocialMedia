@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
 
+import static android.R.id.empty;
+
 /**
  * Created by GtoZ on 12/13/2016.
  */
@@ -87,9 +89,21 @@ public class CreateStoryFragment extends Fragment {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity().getApplicationContext(), "Story Submitted", Toast.LENGTH_LONG).show();
-                Intent mainIntent = new Intent(getActivity(), MainActivity.class);
-                startActivity(mainIntent);
+
+                String title = titleEdtTxt.getText().toString();
+
+                String location = locationEdtTxt.getText().toString();
+
+                String caption = captionEdtTxt.getText().toString();
+
+                if(title.matches("") || location.matches("") || caption.matches("")){
+                    Toast.makeText(getActivity().getApplicationContext(), "Empty Fields, Try Again", Toast.LENGTH_LONG).show();
+                    return;
+                }else{
+                    Toast.makeText(getActivity().getApplicationContext(), "Story Submitted", Toast.LENGTH_LONG).show();
+                    Intent mainIntent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(mainIntent);
+                }
             }
         });
 

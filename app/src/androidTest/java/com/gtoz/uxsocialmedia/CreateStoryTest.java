@@ -96,6 +96,30 @@ public class CreateStoryTest {
                 .check(matches(isDisplayed()));
     }
 
+    //Testing to see if an empty field is there then right message is displayed
+    @Test
+    public void testFailCreateStorySubmit(){
+
+        //Placing text into the Title field and checking for accuracy
+        onView(withId(R.id.edtTxtTitle)).perform(typeText("New Story"), closeSoftKeyboard());
+        onView(withId(R.id.edtTxtTitle)).check(matches(withText("New Story")));
+
+        //Choosing field on the spinner and checking for accuracy
+        onView(withId(R.id.categorySpinner)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Sports"))).perform(click());
+        onView(withId(R.id.categorySpinner)).check(matches(withSpinnerText(containsString("Sports"))));
+
+        //Placing text into the Caption field and checking for accuracy
+        onView(withId(R.id.edtTxtCaption)).perform(typeText("This is a new story."), closeSoftKeyboard());
+        onView(withId(R.id.edtTxtCaption)).check(matches(withText("This is a new story.")));
+
+        //Clicking the submit button and checking for correct toast pop
+        onView(withId(R.id.submitButton)).perform(click());
+        onView(withText("Empty Fields, Try Again"))
+                .inRoot(withDecorView(not(is(mActivityRule.getActivity().getWindow().getDecorView()))))
+                .check(matches(isDisplayed()));
+    }
+
     @Test
     public void testCreateStoryCancel(){
         //Clicking the cancel button and checking for discovery page
