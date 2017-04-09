@@ -35,6 +35,7 @@ public class MyLocationsFragment extends Fragment {
         // Get favorite stories
         final DBHelper dbHelper = new DBHelper(context);
         list = dbHelper.getFavoriteStories();
+
         // Set favorite stories in adapter
         adapter = new FavoritesAdapter(context, list);
         adapter.notifyDataSetChanged();
