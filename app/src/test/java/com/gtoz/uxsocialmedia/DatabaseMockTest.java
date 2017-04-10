@@ -1,7 +1,5 @@
 package com.gtoz.uxsocialmedia;
 
-import android.support.test.runner.AndroidJUnit4;
-
 import junit.framework.Assert;
 
 import org.junit.Before;
