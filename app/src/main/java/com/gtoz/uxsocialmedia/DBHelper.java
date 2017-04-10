@@ -248,7 +248,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // Inserts a new story into database
-    public void addStory(Story story) {
+    public Boolean addStory(Story story) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, story.getTitle());
@@ -260,6 +260,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_RESOURCE, story.getResource());
         values.put(COLUMN_STORY_TYPE, story.getStoryType());
         db.insert(TABLE_STORIES, null, values);
+        return true;
     }
 
     // Edits a story already in database
@@ -584,17 +585,19 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // Deletes a favorite from database
-    public void deleteFavorite(int id) {
+    public Boolean deleteFavorite(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_FAVORITES, COLUMN_FAVORITE_STORY_ID + " = '" + id + "'", null);
+        return true;
     }
 
     // Inserts a new favorite story into database
-    public void addFavorite(int storyId){
+    public Boolean addFavorite(int storyId){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_FAVORITE_STORY_ID, storyId);
         db.insert(TABLE_FAVORITES, null, values);
+        return true;
     }
 
     // Checks if story is a favorite
