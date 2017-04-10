@@ -15,9 +15,8 @@ import java.util.ArrayList;
  * Created by GtoZ on 4/9/2017.
  */
 
-@RunWith(AndroidJUnit4.class)
 public class DatabaseMockTest {
-    private DBHelper dbHelper;
+    private DatabaseInterface dbHelper;
     private Story testStory;
 
     @Before
@@ -29,6 +28,8 @@ public class DatabaseMockTest {
 
     @Test
     public void getStoriesByCategoryTest() {
+        // Mock DBHelper class
+        dbHelper = Mockito.mock(DatabaseInterface.class);
         // Create array of stories with category "Entertainment"
         ArrayList<Story> stories = new ArrayList<>();
         stories.add(testStory);
@@ -41,7 +42,7 @@ public class DatabaseMockTest {
     @Test
     public void getStoriesByQrTest() {
         // Mock DBHelper class
-        dbHelper = Mockito.mock(DBHelper.class);
+        dbHelper = Mockito.mock(DatabaseInterface.class);
         // Create array of stories with QR code "123456"
         ArrayList<Story> stories = new ArrayList<>();
         stories.add(testStory);
@@ -54,7 +55,7 @@ public class DatabaseMockTest {
     @Test
     public void addStoryTest() {
         // Mock DBHelper class
-        dbHelper = Mockito.mock(DBHelper.class);
+        dbHelper = Mockito.mock(DatabaseInterface.class);
         // Mock behavior of addStory()
         Mockito.when(dbHelper.addStory(testStory)).thenReturn(true);
         // Verify that it story was submitted
@@ -64,7 +65,7 @@ public class DatabaseMockTest {
     @Test
     public void addStoryFailTest(){
         // Mock DBHelper class
-        dbHelper = Mockito.mock(DBHelper.class);
+        dbHelper = Mockito.mock(DatabaseInterface.class);
         // Mock behavior of addStory()
         Mockito.when(dbHelper.addStory(testStory)).thenReturn(false);
         // Verify that it story was submitted
@@ -74,7 +75,7 @@ public class DatabaseMockTest {
     @Test
     public void addFavoriteTest() {
         // Mock DBHelper class
-        dbHelper = Mockito.mock(DBHelper.class);
+        dbHelper = Mockito.mock(DatabaseInterface.class);
         // Mock behavior of addFavorite()
         Mockito.when(dbHelper.addFavorite(1)).thenReturn(true);
         // Verify that it story was added to favorites
@@ -83,6 +84,8 @@ public class DatabaseMockTest {
 
     @Test
     public void getStoriesByTypeTest() {
+        // Mock DBHelper class
+        dbHelper = Mockito.mock(DatabaseInterface.class);
         // Create array of stories with type "thrifty"
         ArrayList<Story> stories = new ArrayList<>();
         stories.add(testStory);
@@ -95,7 +98,7 @@ public class DatabaseMockTest {
     @Test
     public void deleteFavoriteTest() {
         // Mock DBHelper class
-        dbHelper = Mockito.mock(DBHelper.class);
+        dbHelper = Mockito.mock(DatabaseInterface.class);
         // Mock behavior of deleteFavorite()
         Mockito.when(dbHelper.deleteFavorite(1)).thenReturn(true);
         // Verify that it story was added to favorites
@@ -106,7 +109,7 @@ public class DatabaseMockTest {
     @Test
     public void getCategoriesTest() {
         // Mock DBHelper class
-        dbHelper = Mockito.mock(DBHelper.class);
+        dbHelper = Mockito.mock(DatabaseInterface.class);
         // Create array of categories
         ArrayList<String> categories = new ArrayList<>();
         categories.add("Adventure");
@@ -118,6 +121,8 @@ public class DatabaseMockTest {
 
     @Test
     public void getStoriesByLocationTest() {
+        // Mock DBHelper class
+        dbHelper = Mockito.mock(DatabaseInterface.class);
         // Create array of stories with location "Los Angeles, CA"
         ArrayList<Story> stories = new ArrayList<>();
         stories.add(testStory);
