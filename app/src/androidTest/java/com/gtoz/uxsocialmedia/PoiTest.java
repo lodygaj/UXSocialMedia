@@ -46,7 +46,7 @@ public class PoiTest {
         // Verify that website fragment was loaded
         onView(withId(R.id.webView)).check(matches(isCompletelyDisplayed()));
 
-        // Verify that the thrifty web site is displayed
-        onWebView().check(webMatches(getCurrentUrl(), containsString("https://roadtrippers.com")));
+//        // Verify that the thrifty web site is displayed
+//        onWebView().check(webMatches(getCurrentUrl(), containsString("https://roadtrippers.com")));
     }
 }

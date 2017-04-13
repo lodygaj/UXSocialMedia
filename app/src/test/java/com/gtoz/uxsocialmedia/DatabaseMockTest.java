@@ -51,7 +51,7 @@ public class DatabaseMockTest {
     }
 
     @Test
-    public void addStoryTest() {
+    public void addStoryPassTest() {
         // Mock DBHelper class
         dbHelper = Mockito.mock(DatabaseInterface.class);
         // Mock behavior of addStory()
